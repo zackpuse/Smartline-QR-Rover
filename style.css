@@ -768,4 +768,4 @@ figcaption {
     }
 }
 @media (max-width: 900px) { .simulator-grid { grid-template-columns: 1fr; } .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); } .app-layout { flex-direction: column; } }
-/* AUDIO OVERLAY */ .audio-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 8, 17, 0.95); backdrop-filter: blur(8px); z-index: 9999; display: flex; justify-content: center; align-items: center; } .audio-modal { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 40px; text-align: center; max-width: 400px; box-shadow: var(--shadow-glow); }
+/* AUDIO OVERLAY */ .audio-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 8, 17, 0.95); backdrop-filter: blur(8px); z-index: 9999; display: flex; justify-content: center; align-items: center; } .audio-modal { position: relative; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 40px 30px; text-align: center; max-width: 420px; box-shadow: var(--shadow-glow); }

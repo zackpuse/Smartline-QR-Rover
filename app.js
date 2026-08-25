@@ -38,35 +38,49 @@ let motorGain = null;
 let beepOsc = null;
 let beepGain = null;
 
-window.initAudioEngine = function() {
+window.closeAudioOverlay = function(event) {
+    if (event && event.target && event.target.id !== 'audio-overlay' && !event.target.classList.contains('modal-close-btn') && event.target.tagName !== 'BUTTON') {
+        return;
+    }
     const overlay = document.getElementById('audio-overlay');
     if (overlay) overlay.style.display = 'none';
+};
+
+window.initAudioEngine = function() {
+    window.closeAudioOverlay();
     
-    if (!window.AudioContext && !window.webkitAudioContext) return;
-    
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    
-    // Motor Sound
-    motorOsc = audioCtx.createOscillator();
-    motorOsc.type = 'triangle';
-    motorOsc.frequency.value = 50; // idle
-    motorGain = audioCtx.createGain();
-    motorGain.gain.value = 0; // silent
-    
-    motorOsc.connect(motorGain);
-    motorGain.connect(audioCtx.destination);
-    motorOsc.start();
-    
-    // Beep Sound
-    beepOsc = audioCtx.createOscillator();
-    beepOsc.type = 'square';
-    beepOsc.frequency.value = 800; // high beep
-    beepGain = audioCtx.createGain();
-    beepGain.gain.value = 0;
-    
-    beepOsc.connect(beepGain);
-    beepGain.connect(audioCtx.destination);
-    beepOsc.start();
+    try {
+        if (!window.AudioContext && !window.webkitAudioContext) return;
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // Motor Sound
+            motorOsc = audioCtx.createOscillator();
+            motorOsc.type = 'triangle';
+            motorOsc.frequency.value = 50; // idle
+            motorGain = audioCtx.createGain();
+            motorGain.gain.value = 0; // silent
+            
+            motorOsc.connect(motorGain);
+            motorGain.connect(audioCtx.destination);
+            motorOsc.start();
+            
+            // Beep Sound
+            beepOsc = audioCtx.createOscillator();
+            beepOsc.type = 'square';
+            beepOsc.frequency.value = 800; // high beep
+            beepGain = audioCtx.createGain();
+            beepGain.gain.value = 0;
+            
+            beepOsc.connect(beepGain);
+            beepGain.connect(audioCtx.destination);
+            beepOsc.start();
+        } else if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    } catch (err) {
+        console.warn('Audio Context initialization note:', err);
+    }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -94,22 +108,71 @@ function cacheDOM() {
 }
 
 /* ==========================================================================
-   1. TAB SWITCHING SYSTEM
+   1. TAB SWITCHING SYSTEM & HASH ROUTING
    ========================================================================== */
-function initTabs() {
+function switchTab(tabName) {
+    if (!tabName) return;
     const navItems = document.querySelectorAll('.nav-item');
     const tabPanels = document.querySelectorAll('.tab-panel');
+    let found = false;
+
+    navItems.forEach(n => {
+        if (n.getAttribute('data-tab') === tabName) {
+            n.classList.add('active');
+            found = true;
+        } else {
+            n.classList.remove('active');
+        }
+    });
+
+    tabPanels.forEach(p => {
+        if (p.id === `tab-${tabName}`) {
+            p.classList.add('active');
+        } else {
+            p.classList.remove('active');
+        }
+    });
+
+    if (found && window.location.hash !== `#${tabName}`) {
+        try {
+            history.replaceState(null, null, `#${tabName}`);
+        } catch (e) {}
+    }
+}
+
+function initTabs() {
+    const navItems = document.querySelectorAll('.nav-item');
 
     navItems.forEach(item => {
-        item.addEventListener('click', () => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
             const targetTab = item.getAttribute('data-tab');
+            switchTab(targetTab);
+        });
+    });
 
-            navItems.forEach(n => n.classList.remove('active'));
-            tabPanels.forEach(p => p.classList.remove('active'));
+    // Check URL Hash on Load
+    if (window.location.hash) {
+        const hashTab = window.location.hash.replace('#', '').replace('tab-', '');
+        switchTab(hashTab);
+    }
 
-            item.classList.add('active');
-            const targetPanel = document.getElementById(`tab-${targetTab}`);
-            if (targetPanel) targetPanel.classList.add('active');
+    // Listen for Hash Changes
+    window.addEventListener('hashchange', () => {
+        if (window.location.hash) {
+            const hashTab = window.location.hash.replace('#', '').replace('tab-', '');
+            switchTab(hashTab);
+        }
+    });
+
+    // Intercept internal hash links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+            const target = anchor.getAttribute('href').replace('#', '').replace('tab-', '');
+            if (document.getElementById(`tab-${target}`)) {
+                e.preventDefault();
+                switchTab(target);
+            }
         });
     });
 }
@@ -565,10 +628,10 @@ window.semakKuiz = function() {
         q1: 'B',
         q2: 'C',
         q3: 'B',
-        q4: 'A',
-        q5: 'B',
-        q6: 'A',
-        q7: 'A',
+        q4: 'B',
+        q5: 'C',
+        q6: 'B',
+        q7: 'C',
         q8: 'B'
     };
     
@@ -593,6 +656,7 @@ window.semakKuiz = function() {
     const alertDesc = document.getElementById('quiz-alert-desc');
     const certForm = document.getElementById('certificate-form-container');
     const failActions = document.getElementById('fail-actions-container');
+    const explanations = document.getElementById('quiz-explanations');
     
     resultContainer.style.display = 'flex';
     scoreText.textContent = `${score}/${total}`;
@@ -603,6 +667,7 @@ window.semakKuiz = function() {
         alertTitle.textContent = 'TAHNIAH! ANDA LULUS!';
         alertTitle.style.color = 'var(--color-green)';
         alertDesc.textContent = 'Markah anda mencukupi. Sila jana slip keputusan anda di bawah.';
+        if (explanations) explanations.style.display = 'block';
         certForm.style.display = 'block';
         failActions.style.display = 'none';
     } else {
@@ -611,6 +676,7 @@ window.semakKuiz = function() {
         alertTitle.textContent = 'MAAF, ANDA GAGAL.';
         alertTitle.style.color = 'var(--color-danger)';
         alertDesc.textContent = `Anda memerlukan sekurang-kurangnya 6 markah untuk lulus. Anda mendapat ${score}. Sila baca semula nota di atas.`;
+        if (explanations) explanations.style.display = 'none';
         certForm.style.display = 'none';
         failActions.style.display = 'flex';
     }
@@ -661,10 +727,21 @@ window.janaPDF = function() {
     certTemplate.parentElement.style.left = '0';
     certTemplate.parentElement.style.zIndex = '-100';
     
+    const jspdfLib = window.jspdf ? window.jspdf.jsPDF : (window.jsPDF || null);
+    const html2canvasLib = window.html2canvas || null;
+
+    if (!html2canvasLib || !jspdfLib) {
+        alert("Sijil digital bersedia untuk dicetak. Membuka dialog cetak peranti...");
+        window.print();
+        certTemplate.parentElement.style.top = '-9999px';
+        certTemplate.parentElement.style.left = '-9999px';
+        return;
+    }
+    
     // Use html2canvas and jspdf
-    window.html2canvas(certTemplate, { scale: 2 }).then(canvas => {
+    html2canvasLib(certTemplate, { scale: 2 }).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new window.jspdf.jsPDF({
+        const pdf = new jspdfLib({
             orientation: 'landscape',
             unit: 'mm',
             format: 'a4'
@@ -672,9 +749,15 @@ window.janaPDF = function() {
         
         // A4 size: 297mm x 210mm
         pdf.addImage(imgData, 'PNG', 0, 0, 297, 210);
-        pdf.save(`Slip_Keputusan_ADAS_${name.replace(/\\s+/g, '_')}.pdf`);
+        pdf.save(`Slip_Keputusan_ADAS_${name.replace(/\s+/g, '_')}.pdf`);
         
         // Hide again
+        certTemplate.parentElement.style.top = '-9999px';
+        certTemplate.parentElement.style.left = '-9999px';
+    }).catch(err => {
+        console.error('PDF Generation Error:', err);
+        alert("Gagal menjana PDF secara langsung. Menggunakan cetakan sistem...");
+        window.print();
         certTemplate.parentElement.style.top = '-9999px';
         certTemplate.parentElement.style.left = '-9999px';
     });
