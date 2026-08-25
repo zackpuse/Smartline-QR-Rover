@@ -285,46 +285,122 @@
             <section id="tab-teori" class="tab-panel">
                 <div class="panel-header">
                     <div>
-                        <h2><i class="fa-solid fa-book-open text-cyan"></i> Modul Teori ADAS</h2>
-                        <p>Nota ringkas dan modul pembelajaran berkaitan sistem Autonomous Emergency Braking (AEB) dan Time-To-Collision (TTC).</p>
+                        <h2><i class="fa-solid fa-graduation-cap text-cyan"></i> Modul E-Pembelajaran: Teori ADAS</h2>
+                        <p>Berdasarkan NOSS G452-011-4:2025 (Automotive Electrical Diagnostic - Tahap 4) | Topik: Advance Driver Assistance System (ADAS)</p>
                     </div>
                 </div>
-                <div class="teori-container" style="max-width: 900px; margin: 0 auto;">
-                    <div class="card">
-                        <div class="card-header">
-                            <span><i class="fa-solid fa-car-burst"></i> 1. Pengenalan ADAS & AEB</span>
-                        </div>
-                        <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
-                            <p style="margin-bottom: 16px;"><strong>Advanced Driver Assistance Systems (ADAS)</strong> adalah kumpulan teknologi elektronik yang membantu pemandu dalam pemanduan dan proses letak kereta. Melalui kombinasi antara muka selamat mesin-manusia (HMI), ADAS bertujuan untuk meningkatkan keselamatan kereta dan keselamatan jalan raya secara amnya.</p>
-                            <p><strong>Autonomous Emergency Braking (AEB)</strong> merupakan salah satu subsistem terpenting. Ia menggunakan sensor untuk memantau keadaan sekeliling, dan jika mendapati risiko perlanggaran semakin hampir sementara pemandu tidak menekan brek, sistem AEB akan membrek kenderaan secara automatik untuk mengelakkan kecelakaan.</p>
-                        </div>
-                    </div>
 
-                    <div class="card" style="margin-top: 24px;">
+                <div class="teori-container" style="max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; padding-bottom: 40px;">
+                    
+                    <!-- KAD 1: PENGENALAN -->
+                    <div class="card card-glow">
                         <div class="card-header">
-                            <span><i class="fa-solid fa-calculator"></i> 2. Pengiraan Matematik (Time-To-Collision / TTC)</span>
+                            <span><i class="fa-solid fa-book"></i> 1. Pengenalan & Objektif</span>
                         </div>
                         <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
-                            <p style="margin-bottom: 16px;">Modul ini menggunakan formula ringkas kinematik untuk mengira risiko perlanggaran (Time-To-Collision):</p>
-                            <div class="formula-box" style="background: rgba(6, 182, 212, 0.1); border: 1px dashed var(--color-cyan-glow); padding: 16px; border-radius: 8px; text-align: center; margin-bottom: 16px; color: var(--text-primary);">
-                                <strong style="font-size: 1.2rem; letter-spacing: 1px;">TTC (saat) = Jarak Halangan (cm) / Kelajuan Semasa (cm/s)</strong>
-                            </div>
-                            <p>Berdasarkan algoritma ini, sekiranya masa yang dikira kurang daripada had yang ditetapkan (contohnya <strong>&lt; 1.0 saat</strong>), unit ECU rover akan menghantar arahan <strong>AEB_TRIGGERED</strong>. Selepas masa reaksi tamat (300ms), daya inersia brek akan diaktifkan untuk memberhentikan rover sebelum perlanggaran berlaku.</p>
-                        </div>
-                    </div>
-
-                    <div class="card" style="margin-top: 24px;">
-                        <div class="card-header">
-                            <span><i class="fa-solid fa-microchip"></i> 3. Komponen Sensor</span>
-                        </div>
-                        <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
-                            <ul style="margin-left: 20px;">
-                                <li style="margin-bottom: 8px;"><strong>Sensor Ultrasonik (HC-SR04)</strong>: Mengukur jarak objek di hadapan dengan menghantar gelombang bunyi frekuensi tinggi dan mengira masa lantunan.</li>
-                                <li style="margin-bottom: 8px;"><strong>Modul AI Vision (HuskyLens)</strong>: Kamera pintar terbina dengan algoritma pembelajaran mesin untuk mengecam papan tanda, kod QR, muka, dan warna bagi mengawal pergerakan asas rover.</li>
-                                <li><strong>Mikropengawal (Arduino/ESP32)</strong>: Bertindak sebagai "Otak" (Electronic Control Unit - ECU) yang memproses semua isyarat masuk dan menghantar kuasa ke motor brek dalam masa pecahan saat.</li>
+                            <p style="margin-bottom: 12px;"><strong>SmartLine QR Rover</strong> ialah kenderaan robot berautonomi berskala kecil (skala makmal) yang mensimulasikan fungsi <strong>Automated Guided Vehicle (AGV)</strong> dan teknologi ADAS dalam industri automotif sebenar (seperti <em>Smart Warehouse</em> dan pembuatan kereta pintar).</p>
+                            <h4 style="color: var(--text-primary); margin-top: 20px; margin-bottom: 10px;">Objektif Pembelajaran:</h4>
+                            <ul style="margin-left: 20px; list-style-type: decimal;">
+                                <li>Menjelaskan konsep kenderaan berautonomi pengikut garisan dalam Industri 4.0.</li>
+                                <li>Mengenal pasti komponen utama (Kamera AI HuskyLens, Sensor Ultrasonik).</li>
+                                <li>Menerangkan cara sistem Pengesanan Tanda Jalan (TSR) dan Brek Kecemasan Autonomi (AEB) berfungsi.</li>
+                                <li>Menganalisis pengiraan <em>Time-To-Collision (TTC)</em>.</li>
+                                <li>Mematuhi Prosedur Keselamatan & Kesihatan Pekerjaan (OSH).</li>
                             </ul>
                         </div>
                     </div>
+
+                    <!-- KAD 2: TEORI OPERASI -->
+                    <div class="card card-glow">
+                        <div class="card-header">
+                            <span><i class="fa-solid fa-gears"></i> 2. Teori Operasi ADAS</span>
+                        </div>
+                        <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                <div style="background: var(--bg-dark); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <h4 style="color: var(--color-cyan); margin-bottom: 10px;"><i class="fa-solid fa-road"></i> Pengikutan Garisan (Line Following)</h4>
+                                    <p style="font-size: 0.95rem;">Menggunakan Sensor Garisan Inframerah (IR). Mata sensor membaca perbezaan pantulan cahaya antara garisan hitam dan lantai putih untuk menghantar isyarat membetulkan pusingan tayar kiri dan kanan (seperti sistem <em>Lane Keeping Assist</em>).</p>
+                                </div>
+                                <div style="background: var(--bg-dark); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <h4 style="color: var(--color-danger); margin-bottom: 10px;"><i class="fa-solid fa-car-burst"></i> Brek Kecemasan Autonomi (AEB)</h4>
+                                    <p style="font-size: 0.95rem;">Menggunakan gelombang bunyi Ultrasonik yang bertindak sebagai <strong>Radar</strong> (Radio Detection and Ranging). Jika pantulan gelombang mengesan halangan dalam masa yang terlalu singkat, daya inersia brek diaktifkan.</p>
+                                </div>
+                            </div>
+
+                            <div class="formula-box" style="margin-top: 20px; background: rgba(6, 182, 212, 0.1); border: 1px dashed var(--color-cyan-glow); padding: 16px; border-radius: 8px; text-align: center; color: var(--text-primary);">
+                                <p style="margin-bottom: 8px; font-size: 0.9rem; color: var(--text-muted);">Formula Kinematik Risiko Perlanggaran</p>
+                                <strong style="font-size: 1.2rem; letter-spacing: 1px;">TTC (saat) = Jarak Halangan (cm) / Kelajuan Semasa (cm/s)</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KAD 3: KOMPONEN SENSOR -->
+                    <div class="card card-glow">
+                        <div class="card-header">
+                            <span><i class="fa-solid fa-microchip"></i> 3. Diagnostik Komponen Sensor (NOSS CU05)</span>
+                        </div>
+                        <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
+                            <ul style="margin-left: 20px; display: flex; flex-direction: column; gap: 15px;">
+                                <li>
+                                    <strong style="color: var(--text-primary);"><i class="fa-solid fa-camera"></i> Kamera AI (HuskyLens) — Traffic Sign Recognition (TSR)</strong><br>
+                                    Berfungsi sebagai mata pintar rover. Sistem ini menggunakan algoritma Pembelajaran Mesin (Machine Learning) yang diproses secara dalaman untuk mengecam Kod QR dan arahan jalan raya, seterusnya menghantar data protokol UART/I2C ke ECU.
+                                </li>
+                                <li>
+                                    <strong style="color: var(--text-primary);"><i class="fa-solid fa-satellite-dish"></i> Sensor Ultrasonik (HC-SR04) — Simulasi Radar</strong><br>
+                                    Memancarkan gelombang bunyi pada frekuensi tinggi. Apabila melanggar objek, ia memantul semula. Masa pantulan ini dikira untuk mencari jarak objek (Distance = Speed x Time / 2). Ini adalah teknologi sandaran yang lebih ringkas berbanding Radar/LiDAR industri, namun memiliki prinsip asas gema yang sama.
+                                </li>
+                                <li>
+                                    <strong style="color: var(--text-primary);"><i class="fa-solid fa-microchip"></i> Mikropengawal (ECU)</strong><br>
+                                    Papan utama yang memproses input penderia dan mengawal penggerak Motor Arus Terus (DC Motor) menerusi isyarat PWM (Pulse Width Modulation) untuk memecut atau membrek.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- KAD 4: KESELAMATAN -->
+                    <div class="card card-glow" style="border-left: 4px solid var(--color-amber);">
+                        <div class="card-header">
+                            <span><i class="fa-solid fa-helmet-safety"></i> 4. Keselamatan & Kesihatan Pekerjaan (OSH)</span>
+                        </div>
+                        <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
+                            <p style="margin-bottom: 12px;">Pematuhan PPE (Personal Protective Equipment) adalah diwajibkan berdasarkan standard NOSS semasa menjalankan diagnostik amali:</p>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.95rem;">
+                                <div><i class="fa-solid fa-check text-green"></i> Cabut sambungan bateri (7.4V) apabila membaiki pendawaian.</div>
+                                <div><i class="fa-solid fa-check text-green"></i> Pastikan alat diagnostik dalam keadaan baik.</div>
+                                <div><i class="fa-solid fa-check text-green"></i> Bersihkan tempat kerja dari bahaya tersadung (tripping hazard).</div>
+                                <div><i class="fa-solid fa-check text-green"></i> Laporkan kod kerosakan (DTC) mengikut SOP pengeluar.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KAD 5: KUIZ -->
+                    <div class="card card-glow">
+                        <div class="card-header">
+                            <span><i class="fa-solid fa-clipboard-question"></i> 5. Kuiz Penilaian Kendiri</span>
+                        </div>
+                        <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
+                            <form id="theory-quiz-form" style="display: flex; flex-direction: column; gap: 20px;">
+                                <div class="quiz-question">
+                                    <p style="color: var(--text-primary); margin-bottom: 8px;"><strong>Soalan 1:</strong> Komponen manakah yang memproses pengecaman Kod QR (TSR)?</p>
+                                    <div style="display: flex; flex-direction: column; gap: 5px; margin-left: 10px;">
+                                        <label><input type="radio" name="q1" value="A"> A. Sensor Ultrasonik</label>
+                                        <label><input type="radio" name="q1" value="B"> B. Kamera AI HuskyLens</label>
+                                        <label><input type="radio" name="q1" value="C"> C. Motor DC</label>
+                                    </div>
+                                </div>
+                                <div class="quiz-question">
+                                    <p style="color: var(--text-primary); margin-bottom: 8px;"><strong>Soalan 2:</strong> Dalam konteks operasi rover ini, apakah komponen yang bertindak menyerupai Radar untuk fungsi Brek Kecemasan Autonomi (AEB)?</p>
+                                    <div style="display: flex; flex-direction: column; gap: 5px; margin-left: 10px;">
+                                        <label><input type="radio" name="q2" value="A"> A. Sensor Garisan IR</label>
+                                        <label><input type="radio" name="q2" value="B"> B. Modul Kamera (TSR)</label>
+                                        <label><input type="radio" name="q2" value="C"> C. Sensor Ultrasonik</label>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="alert('Tahniah! Jawapan yang tepat ialah 1(B) dan 2(C). Anda sedia untuk memulakan Ujian Amali Simulator.')" style="width: fit-content; margin-top: 10px;">Semak Jawapan</button>
+                            </form>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
