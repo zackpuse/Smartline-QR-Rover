@@ -22,7 +22,8 @@ let simState = {
     roverY: 190,
     angle: 0,
     ttc: Infinity,
-    aebTriggerTime: 0
+    aebTriggerTime: 0,
+    lastUiUpdate: 0
 };
 
 // Cached DOM Elements
@@ -178,10 +179,14 @@ function updateState() {
         simState.angle = Math.atan2(dy, dx);
     }
 
-    // Update UI Badges
-    if (DOM.speedBadge) DOM.speedBadge.innerText = `Speed: ${simState.speedCmS.toFixed(1)} cm/s`;
-    if (DOM.modeBadge) DOM.modeBadge.innerText = `Mode: ${simState.mode}`;
-    if (DOM.valUltrasonic) DOM.valUltrasonic.innerText = `${simState.obstacleDist.toFixed(1)} cm`;
+    // Update UI Badges (Throttled to ~10fps for Performance)
+    const now = Date.now();
+    if (now - simState.lastUiUpdate > 100) {
+        if (DOM.speedBadge) DOM.speedBadge.innerText = `Speed: ${simState.speedCmS.toFixed(1)} cm/s`;
+        if (DOM.modeBadge) DOM.modeBadge.innerText = `Mode: ${simState.mode}`;
+        if (DOM.valUltrasonic) DOM.valUltrasonic.innerText = `${simState.obstacleDist.toFixed(1)} cm`;
+        simState.lastUiUpdate = now;
+    }
 }
 
 function drawScene() {
