@@ -769,3 +769,18 @@ window.scrollToKuiz = function() {
         quizElem.scrollIntoView({ behavior: 'smooth' });
     }
 };
+
+window.updateQuizProgress = function() {
+    const totalQ = 8;
+    const answered = ['q1','q2','q3','q4','q5','q6','q7','q8'].filter(name => {
+        return document.querySelector(`input[name="${name}"]:checked`);
+    }).length;
+    const pct = Math.round((answered / totalQ) * 100);
+
+    const countEl = document.getElementById('answered-count');
+    const pctEl = document.getElementById('answered-pct');
+    const barEl = document.getElementById('progress-bar');
+    if (countEl) countEl.textContent = answered;
+    if (pctEl) pctEl.textContent = pct;
+    if (barEl) barEl.style.width = pct + '%';
+};
