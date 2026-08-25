@@ -16,7 +16,7 @@
     <!-- html2canvas and jsPDF for Certificate Generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <link rel="stylesheet" href="style.css?v=10">
+    <link rel="stylesheet" href="style.css?v=12">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192.jpg">
     <meta name="theme-color" content="#06B6D4">
@@ -1019,12 +1019,23 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="app.js?v=10"></script>
+    <script src="app.js?v=12"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js');
+                navigator.serviceWorker.register('./sw.js').then(reg => {
+                    reg.update();
+                });
             });
+            if ('caches' in window) {
+                caches.keys().then(names => {
+                    for (let name of names) {
+                        if (name !== 'qr-rover-v12') {
+                            caches.delete(name);
+                        }
+                    }
+                });
+            }
         }
     </script>
 </body>
