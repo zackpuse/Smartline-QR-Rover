@@ -71,32 +71,64 @@ function updateState() {
     }
 
     // Calculate Time-To-Collision (TTC)
-    // Speed in cm/s is maxSpeed * 10
-    let speedCmS = simState.maxSpeed * 10;
-    let ttc = simState.obstacleDist / (speedCmS || 0.1);
+    // We use maxSpeed as reference for triggering AEB so it doesn't fluctuate during braking
+    let refSpeedCmS = simState.maxSpeed * 10;
+    let ttc = simState.obstacleDist / (refSpeedCmS || 0.1);
     simState.ttc = ttc; // Save for drawing functions
 
     // 2. Ultrasonic AEB Check (Trigger if TTC < 1.0 second)
     if (ttc < 1.0 && simState.dtcFault !== 'DTC_C0035') {
-        simState.mode = 'AEB_BRAKING';
-        simState.speed = 0;
-        document.getElementById('aeb-alert').style.display = 'flex';
-        // Add TTC info to the alert text
-        const alertSpan = document.querySelector('#aeb-alert span');
-        if(alertSpan) alertSpan.innerText = `AEB EMERGENCY STOP! MASA PELANGGARAN: ${ttc.toFixed(1)}s`;
-        document.getElementById('val-ecu').innerText = 'AEB EMERGENCY STOP';
-        document.getElementById('val-ecu').className = 'reading-value text-danger';
+        if (simState.mode === 'RUNNING') {
+            simState.mode = 'AEB_TRIGGERED';
+            simState.aebTriggerTime = Date.now(); // Start reaction timer
+        }
     } else {
         document.getElementById('aeb-alert').style.display = 'none';
-        if (simState.mode === 'AEB_BRAKING') {
+        if (simState.mode === 'AEB_BRAKING' || simState.mode === 'AEB_TRIGGERED') {
             // Auto Resume after obstacle cleared!
             simState.mode = 'RUNNING';
+            document.getElementById('val-ecu').innerText = 'MOTORS ACTIVE';
+            document.getElementById('val-ecu').className = 'reading-value text-green';
         }
     }
 
-    // 3. Movement logic along circuit path
+    if (simState.mode === 'AEB_TRIGGERED') {
+        document.getElementById('aeb-alert').style.display = 'flex';
+        const alertSpan = document.querySelector('#aeb-alert span');
+        if(alertSpan) alertSpan.innerText = `AEB DETECTED! (REACTION DELAY...)`;
+        document.getElementById('val-ecu').innerText = 'AEB PREPARING';
+        document.getElementById('val-ecu').className = 'reading-value text-amber';
+        
+        // 300ms ECU Reaction Time
+        if (Date.now() - simState.aebTriggerTime > 300) {
+            simState.mode = 'AEB_BRAKING';
+        }
+    } else if (simState.mode === 'AEB_BRAKING') {
+        document.getElementById('aeb-alert').style.display = 'flex';
+        const alertSpan = document.querySelector('#aeb-alert span');
+        if(alertSpan) alertSpan.innerText = `AEB EMERGENCY BRAKING! TTC: ${ttc.toFixed(1)}s`;
+        document.getElementById('val-ecu').innerText = 'AEB EMERGENCY STOP';
+        document.getElementById('val-ecu').className = 'reading-value text-danger';
+    }
+
+    // 3. Movement & Inertia logic along circuit path
     if (simState.mode === 'RUNNING') {
-        simState.speed = simState.maxSpeed;
+        // Accelerate up to max speed
+        if (simState.speed < simState.maxSpeed) {
+            simState.speed += 0.1;
+            if (simState.speed > simState.maxSpeed) simState.speed = simState.maxSpeed;
+        }
+    } else if (simState.mode === 'AEB_TRIGGERED') {
+        // Keep current speed during reaction time (no braking yet)
+    } else if (simState.mode === 'AEB_BRAKING') {
+        // Apply Braking Force (Inertia deceleration)
+        simState.speed -= 0.15;
+        if (simState.speed < 0) simState.speed = 0;
+    } else {
+        simState.speed = 0; // PAUSED or STOPPED
+    }
+
+    if (simState.speed > 0) {
         simState.t += simState.speed * (0.015 / 2.2);
 
         // Oval track parametric path
@@ -108,8 +140,6 @@ function updateState() {
         const dx = -rx * Math.sin(simState.t);
         const dy = ry * Math.cos(simState.t);
         simState.angle = Math.atan2(dy, dx);
-    } else {
-        simState.speed = 0;
     }
 
     // Update UI Badges
