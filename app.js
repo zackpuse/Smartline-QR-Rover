@@ -2,11 +2,57 @@
    SMARTLINE QR ROVER - INTERACTIVE SIMULATOR & DASHBOARD LOGIC
    ========================================================================== */
 
+const CONFIG = {
+    SPEED_FACTOR: 2.2, // Base scale for path parametric movement
+    ACCEL_STEP: 1.0,   // cm/s per frame
+    BRAKE_STEP: 1.5,   // cm/s per frame
+    REACTION_MS: 300,  // ECU reaction time delay in ms before braking
+    QR_RESET_MS: 2500  // Reset time for QR commands
+};
+
+let simState = {
+    mode: 'STOPPED', // RUNNING, PAUSED, STOPPED, AEB_TRIGGERED, AEB_BRAKING
+    speedCmS: 0,
+    maxSpeedCmS: 22.0,
+    obstacleDist: 45,
+    qrCommand: 'NONE',
+    dtcFault: 'NONE',
+    t: 0,
+    roverX: 120,
+    roverY: 190,
+    angle: 0,
+    ttc: Infinity,
+    aebTriggerTime: 0
+};
+
+// Cached DOM Elements
+const DOM = {};
+let canvas, ctx;
+let animFrameId;
+
 document.addEventListener('DOMContentLoaded', () => {
+    cacheDOM();
     initTabs();
     initSimulator();
     initAnalyticsChart();
 });
+
+function cacheDOM() {
+    DOM.aebAlert = document.getElementById('aeb-alert');
+    DOM.aebAlertSpan = document.querySelector('#aeb-alert span');
+    DOM.valEcu = document.getElementById('val-ecu');
+    DOM.speedBadge = document.getElementById('speed-badge');
+    DOM.modeBadge = document.getElementById('mode-badge');
+    DOM.valUltrasonic = document.getElementById('val-ultrasonic');
+    DOM.hudText = document.getElementById('hud-text');
+    DOM.valCamera = document.getElementById('val-camera');
+    DOM.distDisplay = document.getElementById('dist-display');
+    DOM.speedDisplay = document.getElementById('speed-display');
+    DOM.obstacleRange = document.getElementById('obstacleRange');
+    DOM.dtcTitle = document.getElementById('dtc-code-title');
+    DOM.dtcDesc = document.getElementById('dtc-desc-text');
+    DOM.dtcRemedy = document.getElementById('dtc-remedy-text');
+}
 
 /* ==========================================================================
    1. TAB SWITCHING SYSTEM
@@ -23,7 +69,8 @@ function initTabs() {
             tabPanels.forEach(p => p.classList.remove('active'));
 
             item.classList.add('active');
-            document.getElementById(`tab-${targetTab}`).classList.add('active');
+            const targetPanel = document.getElementById(`tab-${targetTab}`);
+            if (targetPanel) targetPanel.classList.add('active');
         });
     });
 }
@@ -31,22 +78,6 @@ function initTabs() {
 /* ==========================================================================
    2. ADAS CANVASES & SIMULATOR ENGINE
    ========================================================================== */
-let simState = {
-    mode: 'STOPPED', // RUNNING, PAUSED, STOPPED, AEB_BRAKING
-    speed: 0,
-    maxSpeed: 2.2,
-    obstacleDist: 45,
-    qrCommand: 'NONE',
-    dtcFault: 'NONE',
-    t: 0,
-    roverX: 120,
-    roverY: 190,
-    angle: 0
-};
-
-let canvas, ctx;
-let animFrameId;
-
 function initSimulator() {
     canvas = document.getElementById('roverCanvas');
     if (!canvas) return;
@@ -71,9 +102,8 @@ function updateState() {
     }
 
     // Calculate Time-To-Collision (TTC)
-    // We use maxSpeed as reference for triggering AEB so it doesn't fluctuate during braking
-    let refSpeedCmS = simState.maxSpeed * 10;
-    let ttc = simState.obstacleDist / (refSpeedCmS || 0.1);
+    // We use maxSpeedCmS as reference for triggering AEB so it doesn't fluctuate during braking
+    let ttc = simState.obstacleDist / (simState.maxSpeedCmS || 1.0);
     simState.ttc = ttc; // Save for drawing functions
 
     // 2. Ultrasonic AEB Check (Trigger if TTC < 1.0 second)
@@ -83,53 +113,59 @@ function updateState() {
             simState.aebTriggerTime = Date.now(); // Start reaction timer
         }
     } else {
-        document.getElementById('aeb-alert').style.display = 'none';
+        if (DOM.aebAlert) DOM.aebAlert.style.display = 'none';
         if (simState.mode === 'AEB_BRAKING' || simState.mode === 'AEB_TRIGGERED') {
             // Auto Resume after obstacle cleared!
             simState.mode = 'RUNNING';
-            document.getElementById('val-ecu').innerText = 'MOTORS ACTIVE';
-            document.getElementById('val-ecu').className = 'reading-value text-green';
+            if (DOM.valEcu) {
+                DOM.valEcu.innerText = 'MOTORS ACTIVE';
+                DOM.valEcu.className = 'reading-value text-green';
+            }
         }
     }
 
     if (simState.mode === 'AEB_TRIGGERED') {
-        document.getElementById('aeb-alert').style.display = 'flex';
-        const alertSpan = document.querySelector('#aeb-alert span');
-        if(alertSpan) alertSpan.innerText = `AEB DETECTED! (REACTION DELAY...)`;
-        document.getElementById('val-ecu').innerText = 'AEB PREPARING';
-        document.getElementById('val-ecu').className = 'reading-value text-amber';
+        if (DOM.aebAlert) DOM.aebAlert.style.display = 'flex';
+        if (DOM.aebAlertSpan) DOM.aebAlertSpan.innerText = `AEB DETECTED! (REACTION DELAY...)`;
+        if (DOM.valEcu) {
+            DOM.valEcu.innerText = 'AEB PREPARING';
+            DOM.valEcu.className = 'reading-value text-amber';
+        }
         
-        // 300ms ECU Reaction Time
-        if (Date.now() - simState.aebTriggerTime > 300) {
+        // ECU Reaction Time Delay
+        if (Date.now() - simState.aebTriggerTime > CONFIG.REACTION_MS) {
             simState.mode = 'AEB_BRAKING';
         }
     } else if (simState.mode === 'AEB_BRAKING') {
-        document.getElementById('aeb-alert').style.display = 'flex';
-        const alertSpan = document.querySelector('#aeb-alert span');
-        if(alertSpan) alertSpan.innerText = `AEB EMERGENCY BRAKING! TTC: ${ttc.toFixed(1)}s`;
-        document.getElementById('val-ecu').innerText = 'AEB EMERGENCY STOP';
-        document.getElementById('val-ecu').className = 'reading-value text-danger';
+        if (DOM.aebAlert) DOM.aebAlert.style.display = 'flex';
+        if (DOM.aebAlertSpan) DOM.aebAlertSpan.innerText = `AEB EMERGENCY BRAKING! TTC: ${ttc.toFixed(1)}s`;
+        if (DOM.valEcu) {
+            DOM.valEcu.innerText = 'AEB EMERGENCY STOP';
+            DOM.valEcu.className = 'reading-value text-danger';
+        }
     }
 
     // 3. Movement & Inertia logic along circuit path
     if (simState.mode === 'RUNNING') {
         // Accelerate up to max speed
-        if (simState.speed < simState.maxSpeed) {
-            simState.speed += 0.1;
-            if (simState.speed > simState.maxSpeed) simState.speed = simState.maxSpeed;
+        if (simState.speedCmS < simState.maxSpeedCmS) {
+            simState.speedCmS += CONFIG.ACCEL_STEP;
+            if (simState.speedCmS > simState.maxSpeedCmS) simState.speedCmS = simState.maxSpeedCmS;
         }
     } else if (simState.mode === 'AEB_TRIGGERED') {
         // Keep current speed during reaction time (no braking yet)
     } else if (simState.mode === 'AEB_BRAKING') {
         // Apply Braking Force (Inertia deceleration)
-        simState.speed -= 0.15;
-        if (simState.speed < 0) simState.speed = 0;
+        simState.speedCmS -= CONFIG.BRAKE_STEP;
+        if (simState.speedCmS < 0) simState.speedCmS = 0;
     } else {
-        simState.speed = 0; // PAUSED or STOPPED
+        simState.speedCmS = 0; // PAUSED or STOPPED
     }
 
-    if (simState.speed > 0) {
-        simState.t += simState.speed * (0.015 / 2.2);
+    if (simState.speedCmS > 0) {
+        // Normalize speed relative to base factor for the parametric equation
+        const normalizedSpeed = (simState.speedCmS / 10) * (0.015 / CONFIG.SPEED_FACTOR);
+        simState.t += normalizedSpeed;
 
         // Oval track parametric path
         const cx = 350, cy = 190, rx = 240, ry = 110;
@@ -143,12 +179,13 @@ function updateState() {
     }
 
     // Update UI Badges
-    document.getElementById('speed-badge').innerText = `Speed: ${(simState.speed * 10).toFixed(1)} cm/s`;
-    document.getElementById('mode-badge').innerText = `Mode: ${simState.mode}`;
-    document.getElementById('val-ultrasonic').innerText = `${simState.obstacleDist.toFixed(1)} cm`;
+    if (DOM.speedBadge) DOM.speedBadge.innerText = `Speed: ${simState.speedCmS.toFixed(1)} cm/s`;
+    if (DOM.modeBadge) DOM.modeBadge.innerText = `Mode: ${simState.mode}`;
+    if (DOM.valUltrasonic) DOM.valUltrasonic.innerText = `${simState.obstacleDist.toFixed(1)} cm`;
 }
 
 function drawScene() {
+    if (!ctx) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Grid Background
@@ -305,93 +342,94 @@ let qrResetTimeoutId = null;
 window.triggerQR = function(command) {
     simState.qrCommand = command;
 
-    // Cancel any pending reset from a previous click so messages
-    // never overlap/stack when buttons are pressed in quick succession
     if (qrResetTimeoutId !== null) {
         clearTimeout(qrResetTimeoutId);
         qrResetTimeoutId = null;
     }
 
-    const hudText = document.getElementById('hud-text');
-    const valCam = document.getElementById('val-camera');
-    const valEcu = document.getElementById('val-ecu');
-
     if (command === 'START') {
         simState.mode = 'RUNNING';
-        hudText.innerText = 'HUSKYLENS DETECTED: QR_START (EXECUTE RUN)';
-        valCam.innerText = 'QR_START DETECTED';
-        valCam.className = 'reading-value text-green';
-        valEcu.innerText = 'MOTORS ACTIVE';
-        valEcu.className = 'reading-value text-green';
+        if (DOM.hudText) DOM.hudText.innerText = 'HUSKYLENS DETECTED: QR_START (EXECUTE RUN)';
+        if (DOM.valCamera) {
+            DOM.valCamera.innerText = 'QR_START DETECTED';
+            DOM.valCamera.className = 'reading-value text-green';
+        }
+        if (DOM.valEcu) {
+            DOM.valEcu.innerText = 'MOTORS ACTIVE';
+            DOM.valEcu.className = 'reading-value text-green';
+        }
     } else if (command === 'PAUSE') {
         simState.mode = 'PAUSED';
-        hudText.innerText = 'HUSKYLENS DETECTED: QR_PAUSE (TEMPORARY HOLD)';
-        valCam.innerText = 'QR_PAUSE DETECTED';
-        valCam.className = 'reading-value text-amber';
-        valEcu.innerText = 'HOLDING POSITION';
-        valEcu.className = 'reading-value text-amber';
+        if (DOM.hudText) DOM.hudText.innerText = 'HUSKYLENS DETECTED: QR_PAUSE (TEMPORARY HOLD)';
+        if (DOM.valCamera) {
+            DOM.valCamera.innerText = 'QR_PAUSE DETECTED';
+            DOM.valCamera.className = 'reading-value text-amber';
+        }
+        if (DOM.valEcu) {
+            DOM.valEcu.innerText = 'HOLDING POSITION';
+            DOM.valEcu.className = 'reading-value text-amber';
+        }
     } else if (command === 'STOP') {
         simState.mode = 'STOPPED';
         simState.t = 0;
-        hudText.innerText = 'HUSKYLENS DETECTED: QR_STOP (FULL STOP)';
-        valCam.innerText = 'QR_STOP DETECTED';
-        valCam.className = 'reading-value text-danger';
-        valEcu.innerText = 'MOTORS DISABLED';
-        valEcu.className = 'reading-value text-danger';
+        if (DOM.hudText) DOM.hudText.innerText = 'HUSKYLENS DETECTED: QR_STOP (FULL STOP)';
+        if (DOM.valCamera) {
+            DOM.valCamera.innerText = 'QR_STOP DETECTED';
+            DOM.valCamera.className = 'reading-value text-danger';
+        }
+        if (DOM.valEcu) {
+            DOM.valEcu.innerText = 'MOTORS DISABLED';
+            DOM.valEcu.className = 'reading-value text-danger';
+        }
     }
 
     qrResetTimeoutId = setTimeout(() => {
         simState.qrCommand = 'NONE';
         qrResetTimeoutId = null;
-    }, 2500);
+    }, CONFIG.QR_RESET_MS);
 };
 
 window.updateObstacle = function(val) {
     simState.obstacleDist = parseFloat(val);
-    document.getElementById('dist-display').innerText = `${simState.obstacleDist} cm`;
+    if (DOM.distDisplay) DOM.distDisplay.innerText = `${simState.obstacleDist} cm`;
 };
 
 window.updateSpeed = function(val) {
-    simState.maxSpeed = parseFloat(val) / 10;
-    document.getElementById('speed-display').innerText = `${parseFloat(val).toFixed(1)} cm/s`;
+    simState.maxSpeedCmS = parseFloat(val);
+    if (DOM.speedDisplay) DOM.speedDisplay.innerText = `${simState.maxSpeedCmS.toFixed(1)} cm/s`;
 };
 
 window.toggleObstaclePreset = function() {
-    if (simState.obstacleDist < 20) {
-        updateObstacle(45);
-        document.getElementById('obstacleRange').value = 45;
-    } else {
-        updateObstacle(12);
-        document.getElementById('obstacleRange').value = 12;
-    }
+    const val = simState.obstacleDist < 20 ? 45 : 12;
+    window.updateObstacle(val);
+    if (DOM.obstacleRange) DOM.obstacleRange.value = val;
 };
 
 window.injectDTC = function(code) {
     simState.dtcFault = code;
-    const titleEl = document.getElementById('dtc-code-title');
-    const descEl = document.getElementById('dtc-desc-text');
-    const remedyEl = document.getElementById('dtc-remedy-text');
+
+    if (!DOM.dtcTitle || !DOM.dtcDesc || !DOM.dtcRemedy) return;
 
     if (code === 'NONE') {
-        titleEl.innerText = 'DTC STATUS: SYSTEM NORMAL';
-        titleEl.style.color = '#10B981';
-        descEl.innerText = 'Semua sensor beroperasi secara optimum mengikut standard NOSS Level 4.';
-        remedyEl.innerText = '';
+        DOM.dtcTitle.innerText = 'DTC STATUS: SYSTEM NORMAL';
+        DOM.dtcTitle.style.color = '#10B981';
+        DOM.dtcDesc.innerText = 'Semua sensor beroperasi secara optimum mengikut standard NOSS Level 4.';
+        DOM.dtcRemedy.innerText = '';
     } else if (code === 'DTC_C0035') {
-        titleEl.innerText = 'DTC C0035: ULTRASONIC SENSOR CIRCUIT OPEN';
-        titleEl.style.color = '#EF4444';
-        descEl.innerText = 'Kegagalan talian isyarat Trig/Echo sensor ultrasonik. Halangan tidak dikesan.';
-        remedyEl.innerText = 'Langkah Diagnostik Pelatih: Gunakan Multimeter untuk semak keterusan talian (Continuity Test) pada pin D9 & D10 Arduino.';
+        DOM.dtcTitle.innerText = 'DTC C0035: ULTRASONIC SENSOR CIRCUIT OPEN';
+        DOM.dtcTitle.style.color = '#EF4444';
+        DOM.dtcDesc.innerText = 'Kegagalan talian isyarat Trig/Echo sensor ultrasonik. Halangan tidak dikesan.';
+        DOM.dtcRemedy.innerText = 'Langkah Diagnostik Pelatih: Gunakan Multimeter untuk semak keterusan talian (Continuity Test) pada pin D9 & D10 Arduino.';
     } else if (code === 'DTC_C0074') {
-        titleEl.innerText = 'DTC C0074: HUSKYLENS CAMERA MISALIGNMENT';
-        titleEl.style.color = '#EF4444';
-        descEl.innerText = 'Lensa kamera AI terkeluar dari paksi optik. Arahan kod QR gagal diimbas.';
-        remedyEl.innerText = 'Langkah Diagnostik Pelatih: Laraskan semula sudut kecondongan bracket akrilik HuskyLens (+15 deg) & kalibrasi mod Tag Recognition.';
+        DOM.dtcTitle.innerText = 'DTC C0074: HUSKYLENS CAMERA MISALIGNMENT';
+        DOM.dtcTitle.style.color = '#EF4444';
+        DOM.dtcDesc.innerText = 'Lensa kamera AI terkeluar dari paksi optik. Arahan kod QR gagal diimbas.';
+        DOM.dtcRemedy.innerText = 'Langkah Diagnostik Pelatih: Laraskan semula sudut kecondongan bracket akrilik HuskyLens (+15 deg) & kalibrasi mod Tag Recognition.';
     } else if (code === 'DTC_C0110') {
-        titleEl.innerText = 'DTC C0110: IR LINE ARRAY VOLTAGE LOW';
-        titleEl.style.color = '#EF4444';
-        descEl.innerText = 'Voltan pembekal IR Line sensor drop di bawah 4.2V. Rover terkeluar dari garisan.';
-        remedyEl.innerText = 'Langkah Diagnostik Pelatih: Periksa voltan bateri Li-ion (7.4V) & tukar mod cas jika bekalan kuasa tidak stabil.';
+        DOM.dtcTitle.innerText = 'DTC C0110: IR LINE ARRAY VOLTAGE LOW';
+        DOM.dtcTitle.style.color = '#EF4444';
+        DOM.dtcDesc.innerText = 'Voltan pembekal IR Line sensor drop di bawah 4.2V. Rover terkeluar dari garisan.';
+        DOM.dtcRemedy.innerText = 'Langkah Diagnostik Pelatih: Periksa voltan bateri Li-ion (7.4V) & tukar mod cas jika bekalan kuasa tidak stabil.';
     }
 };
 
@@ -399,10 +437,10 @@ window.injectDTC = function(code) {
    4. ANALYTICS CHART INITIALIZATION
    ========================================================================== */
 function initAnalyticsChart() {
-    const ctx = document.getElementById('analyticsChart');
-    if (!ctx) return;
+    const chartCanvas = document.getElementById('analyticsChart');
+    if (!chartCanvas) return;
 
-    new Chart(ctx, {
+    new Chart(chartCanvas, {
         type: 'bar',
         data: {
             labels: ['Kefahaman Logik Diagnostik ADAS', 'Pendeduksi Kerosakan Sensor', 'Kemahiran Logik Kawalan'],
