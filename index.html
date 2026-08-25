@@ -71,6 +71,10 @@
                     <span>Simulator ADAS Interaktif</span>
                     <span class="pulse-dot"></span>
                 </button>
+                <button class="nav-item" data-tab="teori">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Modul Teori ADAS</span>
+                </button>
                 <button class="nav-item" data-tab="poster">
                     <i class="fa-solid fa-file-powerpoint"></i>
                     <span>Poster Digital eProsiding</span>
@@ -275,6 +279,55 @@
 
 
             <!-- ========================================== -->
+            <!-- ========================================== -->
+            <!-- TAB: TEORI ADAS -->
+            <!-- ========================================== -->
+            <section id="tab-teori" class="tab-panel">
+                <div class="panel-header">
+                    <div>
+                        <h2><i class="fa-solid fa-book-open text-cyan"></i> Modul Teori ADAS</h2>
+                        <p>Nota ringkas dan modul pembelajaran berkaitan sistem Autonomous Emergency Braking (AEB) dan Time-To-Collision (TTC).</p>
+                    </div>
+                </div>
+                <div class="teori-container" style="max-width: 900px; margin: 0 auto;">
+                    <div class="card">
+                        <div class="card-header">
+                            <span><i class="fa-solid fa-car-burst"></i> 1. Pengenalan ADAS & AEB</span>
+                        </div>
+                        <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
+                            <p style="margin-bottom: 16px;"><strong>Advanced Driver Assistance Systems (ADAS)</strong> adalah kumpulan teknologi elektronik yang membantu pemandu dalam pemanduan dan proses letak kereta. Melalui kombinasi antara muka selamat mesin-manusia (HMI), ADAS bertujuan untuk meningkatkan keselamatan kereta dan keselamatan jalan raya secara amnya.</p>
+                            <p><strong>Autonomous Emergency Braking (AEB)</strong> merupakan salah satu subsistem terpenting. Ia menggunakan sensor untuk memantau keadaan sekeliling, dan jika mendapati risiko perlanggaran semakin hampir sementara pemandu tidak menekan brek, sistem AEB akan membrek kenderaan secara automatik untuk mengelakkan kecelakaan.</p>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top: 24px;">
+                        <div class="card-header">
+                            <span><i class="fa-solid fa-calculator"></i> 2. Pengiraan Matematik (Time-To-Collision / TTC)</span>
+                        </div>
+                        <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
+                            <p style="margin-bottom: 16px;">Modul ini menggunakan formula ringkas kinematik untuk mengira risiko perlanggaran (Time-To-Collision):</p>
+                            <div class="formula-box" style="background: rgba(6, 182, 212, 0.1); border: 1px dashed var(--color-cyan-glow); padding: 16px; border-radius: 8px; text-align: center; margin-bottom: 16px; color: var(--text-primary);">
+                                <strong style="font-size: 1.2rem; letter-spacing: 1px;">TTC (saat) = Jarak Halangan (cm) / Kelajuan Semasa (cm/s)</strong>
+                            </div>
+                            <p>Berdasarkan algoritma ini, sekiranya masa yang dikira kurang daripada had yang ditetapkan (contohnya <strong>&lt; 1.0 saat</strong>), unit ECU rover akan menghantar arahan <strong>AEB_TRIGGERED</strong>. Selepas masa reaksi tamat (300ms), daya inersia brek akan diaktifkan untuk memberhentikan rover sebelum perlanggaran berlaku.</p>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top: 24px;">
+                        <div class="card-header">
+                            <span><i class="fa-solid fa-microchip"></i> 3. Komponen Sensor</span>
+                        </div>
+                        <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
+                            <ul style="margin-left: 20px;">
+                                <li style="margin-bottom: 8px;"><strong>Sensor Ultrasonik (HC-SR04)</strong>: Mengukur jarak objek di hadapan dengan menghantar gelombang bunyi frekuensi tinggi dan mengira masa lantunan.</li>
+                                <li style="margin-bottom: 8px;"><strong>Modul AI Vision (HuskyLens)</strong>: Kamera pintar terbina dengan algoritma pembelajaran mesin untuk mengecam papan tanda, kod QR, muka, dan warna bagi mengawal pergerakan asas rover.</li>
+                                <li><strong>Mikropengawal (Arduino/ESP32)</strong>: Bertindak sebagai "Otak" (Electronic Control Unit - ECU) yang memproses semua isyarat masuk dan menghantar kuasa ke motor brek dalam masa pecahan saat.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- TAB 2: DIGITAL POSTER VIEWER (EPROSIDING) -->
             <!-- ========================================== -->
             <section id="tab-poster" class="tab-panel">
