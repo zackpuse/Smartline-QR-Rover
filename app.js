@@ -552,3 +552,130 @@ function initAnalyticsChart() {
         }
     });
 }
+
+/* ==========================================================================
+   5. QUIZ AND CERTIFICATE GENERATION
+   ========================================================================== */
+window.semakKuiz = function() {
+    const form = document.getElementById('theory-quiz-form');
+    if (!form) return;
+    
+    // Check all questions
+    const answers = {
+        q1: 'B',
+        q2: 'C',
+        q3: 'B',
+        q4: 'A',
+        q5: 'B',
+        q6: 'A',
+        q7: 'A',
+        q8: 'B'
+    };
+    
+    let score = 0;
+    let total = Object.keys(answers).length;
+    
+    for (let key in answers) {
+        const selected = form.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === answers[key]) {
+            score++;
+        }
+    }
+    
+    const percentage = (score / total) * 100;
+    
+    // Hide form, show result
+    form.style.display = 'none';
+    const resultContainer = document.getElementById('quiz-result-container');
+    const alertBox = document.getElementById('quiz-alert');
+    const alertTitle = document.getElementById('quiz-alert-title');
+    const scoreText = document.getElementById('quiz-score');
+    const alertDesc = document.getElementById('quiz-alert-desc');
+    const certForm = document.getElementById('certificate-form-container');
+    const failActions = document.getElementById('fail-actions-container');
+    
+    resultContainer.style.display = 'flex';
+    scoreText.textContent = `${score}/${total}`;
+    
+    if (percentage >= 75) {
+        alertBox.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        alertBox.style.border = '2px solid var(--color-green)';
+        alertTitle.textContent = 'TAHNIAH! ANDA LULUS!';
+        alertTitle.style.color = 'var(--color-green)';
+        alertDesc.textContent = 'Markah anda mencukupi. Sila jana slip keputusan anda di bawah.';
+        certForm.style.display = 'block';
+        failActions.style.display = 'none';
+    } else {
+        alertBox.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        alertBox.style.border = '2px solid var(--color-danger)';
+        alertTitle.textContent = 'MAAF, ANDA GAGAL.';
+        alertTitle.style.color = 'var(--color-danger)';
+        alertDesc.textContent = `Anda memerlukan sekurang-kurangnya 6 markah untuk lulus. Anda mendapat ${score}. Sila baca semula nota di atas.`;
+        certForm.style.display = 'none';
+        failActions.style.display = 'flex';
+    }
+};
+
+window.resetKuiz = function() {
+    const form = document.getElementById('theory-quiz-form');
+    const resultContainer = document.getElementById('quiz-result-container');
+    form.reset();
+    form.style.display = 'flex';
+    resultContainer.style.display = 'none';
+};
+
+window.janaPDF = function() {
+    // Basic validation
+    const nameInput = document.getElementById('cert-name');
+    const icInput = document.getElementById('cert-ic');
+    const programInput = document.getElementById('cert-program');
+    const institutionInput = document.getElementById('cert-institution');
+
+    const name = nameInput.value.trim() || 'Tanpa Nama';
+    const ic = icInput.value.trim() || '-';
+    const program = programInput.value.trim() || '-';
+    const institution = institutionInput.value.trim() || '-';
+    
+    if (!nameInput.value.trim()) {
+        alert("Sila masukkan Nama Penuh anda sebelum menjana PDF.");
+        return;
+    }
+    
+    // Update hidden template
+    document.getElementById('print-name').textContent = name;
+    document.getElementById('print-ic').textContent = ic;
+    document.getElementById('print-program').textContent = program;
+    document.getElementById('print-institution').textContent = institution;
+    
+    // Set current date
+    const dateOpts = { day: 'numeric', month: 'long', year: 'numeric' };
+    document.getElementById('print-date').textContent = new Date().toLocaleDateString('ms-MY', dateOpts);
+    
+    const scoreText = document.getElementById('quiz-score').textContent;
+    document.getElementById('print-score').textContent = scoreText;
+
+    const certTemplate = document.getElementById('certificate-template');
+    
+    // Show temporarily to render
+    certTemplate.parentElement.style.top = '0';
+    certTemplate.parentElement.style.left = '0';
+    certTemplate.parentElement.style.zIndex = '-100';
+    
+    // Use html2canvas and jspdf
+    window.html2canvas(certTemplate, { scale: 2 }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new window.jspdf.jsPDF({
+            orientation: 'landscape',
+            unit: 'mm',
+            format: 'a4'
+        });
+        
+        // A4 size: 297mm x 210mm
+        pdf.addImage(imgData, 'PNG', 0, 0, 297, 210);
+        pdf.save(`Slip_Keputusan_ADAS_${name.replace(/\\s+/g, '_')}.pdf`);
+        
+        // Hide again
+        certTemplate.parentElement.style.top = '-9999px';
+        certTemplate.parentElement.style.left = '-9999px';
+    });
+};
