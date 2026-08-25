@@ -125,9 +125,9 @@ function drawScene() {
     drawRover();
 
     // AI Vision Target Banner if scanning QR
-    if (simState.qrCommand !== 'NONE') {
-        drawQRBanner(simState.qrCommand);
-    }
+    // if (simState.qrCommand !== 'NONE') {
+    //     drawQRBanner(simState.qrCommand);
+    // }
 }
 
 function drawGrid() {
