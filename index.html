@@ -380,10 +380,107 @@
                         </div>
                     </div>
 
-                    <!-- KAD 5: KUIZ -->
+                    <!-- KAD 5: MODUL AMALI -->
+                    <div class="card card-glow" id="amali-section-container" style="border-left: 4px solid var(--color-cyan);">
+                        <div class="card-header">
+                            <span><i class="fa-solid fa-vial-circle-check"></i> 5. Amali: Ujian Operasi SmartLine QR Rover</span>
+                        </div>
+                        <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
+                            <div style="background: rgba(6, 182, 212, 0.1); border-left: 4px solid var(--color-cyan); padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+                                <strong style="color: var(--color-cyan); font-size: 1.05rem;"><i class="fa-solid fa-circle-info"></i> Nota Pelajar:</strong>
+                                <p style="margin-top: 5px; font-size: 0.95rem; color: var(--text-primary);">Amali ini adalah aktiviti pemerhatian dan pengujian terpandu. Ikut setiap langkah dengan teliti. Jangan ubah sebarang sambungan perkakasan tanpa kebenaran pensyarah.</p>
+                            </div>
+
+                            <div class="amali-steps" style="display: flex; flex-direction: column; gap: 20px;">
+                                <!-- Langkah 1 -->
+                                <div style="background: var(--bg-dark); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;"><span style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">1</span> Semakan Awal Sebelum Hidupkan Rover</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Pastikan semua komponen berada dalam keadaan baik sebelum bekalan kuasa dihidupkan.</p>
+                                    <ul style="margin-left: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px;">
+                                        <li><i class="fa-solid fa-square-check text-cyan"></i> Semak sambungan wayar — tiada yang longgar atau tercabut</li>
+                                        <li><i class="fa-solid fa-square-check text-cyan"></i> Pastikan bateri telah dicas penuh</li>
+                                        <li><i class="fa-solid fa-square-check text-cyan"></i> Semak paras bateri pada display (jika ada)</li>
+                                        <li><i class="fa-solid fa-square-check text-cyan"></i> Pastikan tiada objek di laluan rover</li>
+                                        <li><i class="fa-solid fa-square-check text-cyan"></i> HuskyLens telah dikonfigurasi dalam mod "QR Code Recognition"</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Langkah 2 -->
+                                <div style="background: var(--bg-dark); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;"><span style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">2</span> Hidupkan Rover dan Uji Sensor Garisan</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Letakkan rover di atas trek garisan dan uji tindakbalas sensor.</p>
+                                    <ul style="margin-left: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px;">
+                                        <li><i class="fa-solid fa-play text-green"></i> Hidupkan suis kuasa rover</li>
+                                        <li><i class="fa-solid fa-play text-green"></i> Letakkan rover di permulaan trek garisan</li>
+                                        <li><i class="fa-solid fa-play text-green"></i> Tunjukkan QR START kepada HuskyLens</li>
+                                        <li><i class="fa-solid fa-play text-green"></i> Perhatikan rover mula bergerak mengikut garisan</li>
+                                        <li><i class="fa-solid fa-pen-to-square text-gold"></i> Rekod pemerhatian: adakah rover mengikut garisan dengan tepat?</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Langkah 3 -->
+                                <div style="background: var(--bg-dark); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;"><span style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">3</span> Uji Pengesanan Halangan</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Semasa rover bergerak, uji fungsi berhenti automatik.</p>
+                                    <ul style="margin-left: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px;">
+                                        <li><i class="fa-solid fa-hand text-danger"></i> Semasa rover sedang bergerak, letakkan objek di hadapannya (dalam jarak ~20cm)</li>
+                                        <li><i class="fa-solid fa-hand text-danger"></i> Perhatikan rover berhenti secara automatik</li>
+                                        <li><i class="fa-solid fa-hand text-danger"></i> Singkirkan objek — perhatikan rover teruskan perjalanan sendiri</li>
+                                        <li><i class="fa-solid fa-ruler text-gold"></i> Rekod jarak pengesanan (ukur dengan pembaris)</li>
+                                    </ul>
+                                    <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid var(--color-danger); padding: 10px 14px; border-radius: 6px; color: #fca5a5; font-size: 0.9rem;">
+                                        <i class="fa-solid fa-triangle-exclamation"></i> <strong>AMARAN KESELAMATAN:</strong> JANGAN letak tangan terus di hadapan roda semasa ujian!
+                                    </div>
+                                </div>
+
+                                <!-- Langkah 4 -->
+                                <div style="background: var(--bg-dark); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;"><span style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">4</span> Uji Kawalan QR Code</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Gunakan kad QR yang disediakan untuk uji setiap arahan.</p>
+                                    <ul style="margin-left: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px;">
+                                        <li><i class="fa-solid fa-qrcode text-cyan"></i> Tunjukkan QR STOP — perhatikan rover berhenti</li>
+                                        <li><i class="fa-solid fa-qrcode text-cyan"></i> Tunjukkan QR START — rover mula bergerak semula</li>
+                                        <li><i class="fa-solid fa-qrcode text-cyan"></i> Tunjukkan QR PAUSE — rover berhenti sementara</li>
+                                        <li><i class="fa-solid fa-ruler text-gold"></i> Rekod jarak maksimum HuskyLens dapat baca QR dengan tepat</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Langkah 5 -->
+                                <div style="background: var(--bg-dark); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;"><span style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">5</span> Penutupan dan Refleksi</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Selesaikan sesi amali dengan betul.</p>
+                                    <ul style="margin-left: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px; margin-bottom: 15px;">
+                                        <li><i class="fa-solid fa-power-off text-muted"></i> Tunjukkan QR STOP untuk hentikan rover</li>
+                                        <li><i class="fa-solid fa-power-off text-muted"></i> Matikan suis kuasa rover</li>
+                                        <li><i class="fa-solid fa-arrow-rotate-left text-muted"></i> Letakkan semula rover di kedudukan asal</li>
+                                        <li><i class="fa-solid fa-file-signature text-gold"></i> Isi Borang Rekod Amali yang disediakan pensyarah</li>
+                                        <li><i class="fa-solid fa-lightbulb text-amber"></i> Jawab soalan refleksi di bawah sebelum pergi!</li>
+                                    </ul>
+
+                                    <!-- Soalan Refleksi -->
+                                    <div style="background: rgba(245, 158, 11, 0.1); border: 1px dashed var(--color-amber); padding: 16px; border-radius: 6px;">
+                                        <h5 style="color: var(--color-amber); margin-bottom: 10px; font-size: 1rem;"><i class="fa-solid fa-lightbulb"></i> Soalan Refleksi Pelajar:</h5>
+                                        <ol style="margin-left: 20px; color: var(--text-secondary); font-size: 0.9rem; display: flex; flex-direction: column; gap: 8px;">
+                                            <li>Apakah yang berlaku jika sensor garisan terhalang kotoran atau debu? Bagaimana cara mengatasinya?</li>
+                                            <li>Bolehkah rover ini digunakan dalam gudang sebenar? Apakah pengubahsuaian yang diperlukan?</li>
+                                            <li>Bagaimana HuskyLens berbeza daripada kamera biasa dari segi keupayaan pemprosesan AI?</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 25px; display: flex; justify-content: flex-end;">
+                                <button type="button" class="btn btn-primary" onclick="scrollToKuiz()" style="padding: 12px 28px; font-size: 1rem; font-weight: bold;">
+                                    Seterusnya: Kuiz →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KAD 6: KUIZ -->
                     <div class="card card-glow" id="quiz-section-container">
                         <div class="card-header">
-                            <span><i class="fa-solid fa-clipboard-question"></i> 5. Kuiz Penilaian Kendiri (Lulus: 75% @ 6/8)</span>
+                            <span><i class="fa-solid fa-clipboard-question"></i> 6. Kuiz Penilaian Kendiri (Lulus: 75% @ 6/8)</span>
                         </div>
                         <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
                             

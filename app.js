@@ -762,3 +762,10 @@ window.janaPDF = function() {
         certTemplate.parentElement.style.left = '-9999px';
     });
 };
+
+window.scrollToKuiz = function() {
+    const quizElem = document.getElementById('quiz-section-container');
+    if (quizElem) {
+        quizElem.scrollIntoView({ behavior: 'smooth' });
+    }
+};
