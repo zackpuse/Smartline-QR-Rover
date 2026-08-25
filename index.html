@@ -1019,35 +1019,45 @@
 
     <!-- HIDDEN CERTIFICATE TEMPLATE -->
     <div style="position: absolute; top: -9999px; left: -9999px; overflow: hidden;">
-        <div id="certificate-template" style="width: 800px; height: 565px; background: white; color: #1e293b; font-family: Arial, sans-serif; padding: 40px; box-sizing: border-box; position: relative; text-align: center; border: 10px solid #06B6D4;">
-            <div style="border: 2px solid #2563EB; width: 100%; height: 100%; padding: 30px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; align-items: center;">
-                <div>
-                    <h1 style="color: #2563EB; font-size: 28px; margin-bottom: 5px; text-transform: uppercase;">SLIP KEPUTUSAN E-PEMBELAJARAN</h1>
-                    <h3 style="color: #64748B; font-size: 16px; font-weight: normal; margin-top: 0;">Automotive Electrical Diagnostic (NOSS G452-011-4:2025)</h3>
+        <div id="certificate-template" style="width: 794px; height: 1123px; background: white; color: #1e293b; font-family: Arial, sans-serif; position: relative; box-sizing: border-box;">
+            
+            <!-- HEADER -->
+            <div style="background-color: #0b1c3c; padding: 40px 20px; text-align: center; border-bottom: 15px solid #f59e0b;">
+                <h1 style="color: #fbbf24; font-size: 28px; margin: 0 0 15px 0; text-transform: uppercase;">ADTEC JTM KAMPUS KUALA LUMPUR</h1>
+                <h2 style="color: white; font-size: 22px; margin: 0 0 15px 0; text-transform: uppercase;">SLIP KEPUTUSAN KUIZ</h2>
+                <p style="color: white; font-size: 16px; margin: 0; font-weight: bold;">SmartLine QR Rover | Modul Pembelajaran Interaktif</p>
+            </div>
+
+            <div style="padding: 40px;">
+                <!-- MAKLUMAT PELAJAR -->
+                <h3 style="color: #1e3a8a; font-size: 20px; margin-bottom: 10px; text-transform: uppercase; border-bottom: 2px solid #1e3a8a; padding-bottom: 5px;">MAKLUMAT PELAJAR</h3>
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 16px;">
+                    <tr><td style="padding: 8px 0; width: 30%; color: #1e3a8a; font-weight: bold;">Nama :</td><td style="padding: 8px 0;" id="print-name"></td></tr>
+                    <tr><td style="padding: 8px 0; color: #1e3a8a; font-weight: bold;">No. Kad Pengenalan :</td><td style="padding: 8px 0;" id="print-ic"></td></tr>
+                    <tr><td style="padding: 8px 0; color: #1e3a8a; font-weight: bold;">Program / Kursus :</td><td style="padding: 8px 0;" id="print-program"></td></tr>
+                    <tr><td style="padding: 8px 0; color: #1e3a8a; font-weight: bold;">Institusi :</td><td style="padding: 8px 0;" id="print-institution"></td></tr>
+                    <tr><td style="padding: 8px 0; color: #1e3a8a; font-weight: bold;">Tarikh & Masa :</td><td style="padding: 8px 0;" id="print-date"></td></tr>
+                </table>
+
+                <!-- KEPUTUSAN KUIZ -->
+                <h3 style="color: #1e3a8a; font-size: 20px; margin-bottom: 10px; text-transform: uppercase; border-bottom: 2px solid #1e3a8a; padding-bottom: 5px;">KEPUTUSAN KUIZ</h3>
+                <div style="background-color: #e6f9ec; border-radius: 8px; padding: 20px; text-align: center; margin-bottom: 30px;">
+                    <div style="font-size: 48px; font-weight: bold; color: #10b981; margin-bottom: 10px;" id="print-score">8 / 8</div>
+                    <div style="font-size: 18px; font-weight: bold; color: #10b981; margin-bottom: 10px;" id="print-pct">100% | Had Lulus: 75%</div>
+                    <div style="font-size: 24px; font-weight: bold; color: #10b981;" id="print-status">[LULUS]</div>
                 </div>
-                <div style="margin: 20px 0;">
-                    <p style="font-size: 16px; color: #334155; margin-bottom: 10px;">Dengan ini disahkan bahawa</p>
-                    <h2 id="print-name" style="font-size: 32px; color: #0f172a; margin: 10px 0; border-bottom: 2px solid #cbd5e1; display: inline-block; padding-bottom: 5px;">Ahmad bin Abdullah</h2>
-                    <p style="font-size: 16px; color: #334155; margin-top: 10px;">No. Kad Pengenalan: <strong id="print-ic">001231-14-5678</strong></p>
-                </div>
-                <div>
-                    <p style="font-size: 16px; color: #334155; margin-bottom: 5px;">telah LULUS Penilaian Teori ADAS bagi Program/Kursus:</p>
-                    <h3 id="print-program" style="font-size: 18px; color: #0f172a; margin: 5px 0;">Teknologi Kenderaan Elektrik</h3>
-                    <p style="font-size: 16px; color: #334155; margin-top: 5px;">di Institusi: <strong id="print-institution">ADTEC JTM Kampus Kuala Lumpur</strong></p>
-                </div>
-                <div style="margin-top: 20px; width: 100%; display: flex; justify-content: space-around; align-items: flex-end;">
-                    <div style="text-align: center;">
-                        <div style="font-size: 24px; font-weight: bold; color: #10B981;" id="print-score">8 / 8</div>
-                        <div style="font-size: 14px; color: #64748B; border-top: 1px solid #cbd5e1; padding-top: 5px; margin-top: 5px;">Markah Lulus</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 16px; font-weight: bold; color: #0f172a;" id="print-date">26 Ogos 2026</div>
-                        <div style="font-size: 14px; color: #64748B; border-top: 1px solid #cbd5e1; padding-top: 5px; margin-top: 5px;">Tarikh Dijana</div>
-                    </div>
-                </div>
-                <div style="position: absolute; bottom: 20px; left: 0; width: 100%; text-align: center; font-size: 10px; color: #94a3b8;">
-                    Dokumen ini dijana secara automatik oleh Sistem Simulator SmartLine QR Rover. Tiada tandatangan rasmi diperlukan.
-                </div>
+
+                <!-- BUTIRAN JAWAPAN -->
+                <h3 style="color: #1e3a8a; font-size: 20px; margin-bottom: 10px; text-transform: uppercase; border-bottom: 2px solid #1e3a8a; padding-bottom: 5px;">BUTIRAN JAWAPAN</h3>
+                <table style="width: 100%; border-collapse: collapse; font-size: 16px;" id="print-answers">
+                    <!-- Populated dynamically by app.js -->
+                </table>
+            </div>
+
+            <!-- FOOTER -->
+            <div style="position: absolute; bottom: 0; left: 0; width: 100%; background-color: #0b1c3c; padding: 20px; text-align: center; box-sizing: border-box;">
+                <p style="color: #fbbf24; font-size: 14px; margin: 0 0 10px 0; font-weight: bold;">ADTEC JTM Kampus Kuala Lumpur | Jabatan Tenaga Manusia</p>
+                <p style="color: #cbd5e1; font-size: 12px; margin: 0;">Dokumen ini dijana secara automatik oleh sistem e-Pembelajaran.</p>
             </div>
         </div>
     </div>

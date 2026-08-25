@@ -713,12 +713,68 @@ window.janaPDF = function() {
     document.getElementById('print-program').textContent = program;
     document.getElementById('print-institution').textContent = institution;
     
-    // Set current date
-    const dateOpts = { day: 'numeric', month: 'long', year: 'numeric' };
-    document.getElementById('print-date').textContent = new Date().toLocaleDateString('ms-MY', dateOpts);
+    // Set current date and time
+    const now = new Date();
+    const dateOpts = { day: 'numeric', month: 'numeric', year: 'numeric' };
+    const timeOpts = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+    const dateString = now.toLocaleDateString('ms-MY', dateOpts);
+    const timeString = now.toLocaleTimeString('ms-MY', timeOpts);
+    document.getElementById('print-date').textContent = `${dateString}, ${timeString}`;
     
-    const scoreText = document.getElementById('quiz-score').textContent;
-    document.getElementById('print-score').textContent = scoreText;
+    const scoreText = document.getElementById('quiz-score').textContent; // e.g. "8/8"
+    const scoreParts = scoreText.split('/');
+    const score = parseInt(scoreParts[0]);
+    const total = parseInt(scoreParts[1]);
+    const pct = Math.round((score / total) * 100);
+    
+    document.getElementById('print-score').textContent = `${score} / ${total}`;
+    document.getElementById('print-pct').textContent = `${pct}% | Had Lulus: 75%`;
+    
+    const statusEl = document.getElementById('print-status');
+    const scoreBox = statusEl.parentElement;
+    if (pct >= 75) {
+        statusEl.textContent = '[LULUS]';
+        statusEl.style.color = '#10b981';
+        document.getElementById('print-score').style.color = '#10b981';
+        document.getElementById('print-pct').style.color = '#10b981';
+        scoreBox.style.backgroundColor = '#e6f9ec';
+    } else {
+        statusEl.textContent = '[GAGAL]';
+        statusEl.style.color = '#ef4444';
+        document.getElementById('print-score').style.color = '#ef4444';
+        document.getElementById('print-pct').style.color = '#ef4444';
+        scoreBox.style.backgroundColor = '#fee2e2';
+    }
+
+    // Populate BUTIRAN JAWAPAN
+    const form = document.getElementById('theory-quiz-form');
+    const answers = {
+        q1: { ans: 'B', label: 'S1: Sensor pengikut garisan' },
+        q2: { ans: 'C', label: 'S2: Fungsi HuskyLens' },
+        q3: { ans: 'B', label: 'S3: Tindakan kesan halangan' },
+        q4: { ans: 'B', label: 'S4: Singkatan AGV' },
+        q5: { ans: 'C', label: 'S5: Julat voltan operasi' },
+        q6: { ans: 'B', label: 'S6: Protokol komunikasi HuskyLens' },
+        q7: { ans: 'C', label: 'S7: Otak utama sistem' },
+        q8: { ans: 'B', label: 'S8: Bahan casis rover' }
+    };
+    
+    const printAnswersEl = document.getElementById('print-answers');
+    printAnswersEl.innerHTML = '';
+    
+    for (let key in answers) {
+        const selected = form.querySelector(`input[name="${key}"]:checked`);
+        const isCorrect = selected && selected.value === answers[key].ans;
+        const statusText = isCorrect ? '[BETUL]' : '[SALAH]';
+        const color = isCorrect ? '#10b981' : '#ef4444';
+        
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td style="padding: 8px 0; width: 20%; color: ${color}; font-weight: bold;">${statusText}</td>
+            <td style="padding: 8px 0; color: #334155;">${answers[key].label}</td>
+        `;
+        printAnswersEl.appendChild(tr);
+    }
 
     const certTemplate = document.getElementById('certificate-template');
     
@@ -742,14 +798,14 @@ window.janaPDF = function() {
     html2canvasLib(certTemplate, { scale: 2 }).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jspdfLib({
-            orientation: 'landscape',
+            orientation: 'portrait',
             unit: 'mm',
             format: 'a4'
         });
         
-        // A4 size: 297mm x 210mm
-        pdf.addImage(imgData, 'PNG', 0, 0, 297, 210);
-        pdf.save(`Slip_Keputusan_ADAS_${name.replace(/\s+/g, '_')}.pdf`);
+        // A4 size: 210mm x 297mm
+        pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
+        pdf.save(`Keputusan_QR_Rover_${name.replace(/\s+/g, '_')}.pdf`);
         
         // Hide again
         certTemplate.parentElement.style.top = '-9999px';
