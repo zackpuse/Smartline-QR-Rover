@@ -386,7 +386,7 @@ body {
     top: 16px;
     left: 16px;
     right: 16px;
-    height: 60px;
+    bottom: 16px;
     border: 1px solid rgba(6, 182, 212, 0.4);
     background: rgba(6, 182, 212, 0.05);
     border-radius: var(--radius-sm);
