@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul PdP Digital Interaktif | SmartLine QR Rover ADAS</title>
+    <meta name="description" content="Modul Pengajaran & Pembelajaran Digital Interaktif Simulator Diagnostik ADAS Automotif Menggunakan SmartLine QR Rover. ADTEC JTM Kampus Kuala Lumpur.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Tab-Based Portal Styling */
+        .portal-hero {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.9)), url('assets/site_image_1.jpg') center/cover;
+            padding: 36px 32px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-glow);
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .portal-tabs-wrapper {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 10px;
+            margin-bottom: 32px; /* Clear gap between tabs bar and panel content */
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+        }
+
+        .portal-tab-btn {
+            padding: 12px 20px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .portal-tab-btn:hover {
+            background: rgba(30, 41, 59, 0.6);
+            color: var(--text-primary);
+        }
+
+        .portal-tab-btn.active {
+            background: linear-gradient(135deg, var(--color-cyan), var(--color-blue));
+            color: #FFFFFF;
+            border-color: var(--color-cyan-glow);
+            box-shadow: 0 4px 14px rgba(6, 182, 212, 0.4);
+            font-weight: 700;
+        }
+
+        /* Distinct Tab Content Panels */
+        .portal-panel {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .portal-panel.active {
+            display: block;
+            animation: panelFadeIn 0.3s ease;
+        }
+
+        @keyframes panelFadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .quiz-question-card {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .quiz-opt {
+            display: block;
+            padding: 10px 14px;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            margin-top: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 13px;
+        }
+
+        .quiz-opt:hover {
+            background: rgba(6, 182, 212, 0.15);
+            border-color: var(--color-cyan);
+        }
+
+        .quiz-opt input {
+            margin-right: 10px;
+            accent-color: var(--color-cyan);
+        }
+
+        .code-block-box {
+            background: #050811;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #38BDF8;
+            overflow-x: auto;
+            position: relative;
+            margin: 16px 0;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .comp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .comp-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px;
+        }
+
+        .comp-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--color-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body class="dark-theme">
+
+    <!-- TOP NAV BAR -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <div class="brand-logo">
+                <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="brand-text">
+                    <span class="brand-title">Modul PdP Digital Interaktif</span>
+                    <span class="brand-sub">SmartLine QR Rover | ADTEC JTM Kampus Kuala Lumpur</span>
+                </div>
+            </div>
+
+            <div class="nav-actions">
+                <a href="index.html" class="btn btn-outline btn-sm">
+                    <i class="fa-solid fa-gamepad"></i> Simulator Showcase
+                </a>
+                <a href="Poster_A4_eProsiding_SmartLine_QR_Rover_MIPACTVET2026.docx" download class="btn btn-primary btn-sm">
+                    <i class="fa-solid fa-file-word"></i> Muat Turun Poster Word
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content" style="max-width: 1400px; margin: 0 auto; padding: 24px 32px;">
+        
+        <!-- HERO SECTION BANNER -->
+        <div class="portal-hero">
+            <span class="badge badge-category"><i class="fa-solid fa-layer-group"></i> National Occupational Skills Standard (NOSS G452-011-4:2025)</span>
+            <h1 style="font-size: 28px; font-weight: 900; margin: 12px 0; color: #fff;">
+                SIMULATOR DIAGNOSTIK ADAS AUTOMOTIF MENGGUNAKAN SMARTLINE QR ROVER
+            </h1>
+            <p style="color: #94A3B8; max-width: 800px; font-size: 14px;">
+                Modul pengajaran dan pembelajaran digital interaktif selari dengan Competency Unit CU05 ADAS Diagnosis Level 4. Pilih tab modul di bawah untuk mengakses kandungan khusus.
+            </p>
+        </div>
+
+        <!-- TAB NAVIGATION (INDIVIDUAL TAB SEPARATION) -->
+        <div class="portal-tabs-wrapper">
+            <button class="portal-tab-btn active" onclick="switchPortalTab(this, 'tab-sec-1')">
+                <i class="fa-solid fa-book text-cyan"></i> 1. Pengenalan
+            </button>
+            <button class="portal-tab-btn" onclick="switchPortalTab(this, 'tab-sec-2')">
+                <i class="fa-solid fa-bullseye text-cyan"></i> 2. Objektif
+            </button>
+            <button class="portal-tab-btn" onclick="switchPortalTab(this, 'tab-sec-3')">
+                <i class="fa-solid fa-brain text-cyan"></i> 3. Teori & Logik
+            </button>
+            <button class="portal-tab-btn" onclick="switchPortalTab(this, 'tab-sec-4')">
+                <i class="fa-solid fa-microchip text-cyan"></i> 4. Komponen
+            </button>
+            <button class="portal-tab-btn" onclick="switchPortalTab(this, 'tab-sec-5')">
+                <i class="fa-solid fa-wrench text-cyan"></i> 5. Amali & Manual
+            </button>
+            <button class="portal-tab-btn" onclick="switchPortalTab(this, 'tab-sec-6')">
+                <i class="fa-solid fa-pen-to-square text-cyan"></i> 6. Kuiz Interaktif
+            </button>
+            <button class="portal-tab-btn" onclick="switchPortalTab(this, 'tab-sec-7')">
+                <i class="fa-solid fa-flag-checkered text-cyan"></i> 7. Rumusan
+            </button>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TAB 1 PANEL: PENGENALAN -->
+        <!-- ========================================== -->
+        <div id="tab-sec-1" class="portal-panel active">
+            <div class="card card-glow">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-book text-cyan"></i> Seksyen 1: Pengenalan & Latar Belakang Inovasi</h2>
+                </div>
+                <div class="card-body">
+                    <p>Perkembangan teknologi kenderaan moden menuntut pelatih Latihan Teknikal dan Vokasional (TVET) dalam bidang Automotif untuk menguasai kemahiran mendiagnosis sistem kompleks seperti <strong>Advance Driver Assistance System (ADAS)</strong>. Sistem ini merangkumi komponen seperti kamera pengesanan visual, sensor ultrasonik, radar dan LiDAR yang saling berkomunikasi dengan unit kawalan elektronik (ECU) kenderaan.</p>
+                    
+                    <div class="comp-grid" style="margin-top: 20px;">
+                        <div class="comp-card">
+                            <div class="comp-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                            <h4 style="color: var(--color-cyan);">Cabaran Kenderaan Sebenar</h4>
+                            <p style="font-size: 13px; color: var(--text-secondary); margin-top: 6px;">Kos tinggi penyediaan kenderaan sebenar ber-ADAS serta risiko keselamatan pengendalian voltan tinggi membataskan peluang amali pelatih.</p>
+                        </div>
+                        <div class="comp-card">
+                            <div class="comp-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4 style="color: var(--color-cyan);">Penyelesaian SmartLine QR Rover</h4>
+                            <p style="font-size: 13px; color: var(--text-secondary); margin-top: 6px;">Platform robotik berskala mikro dan murah yang mensimulasikan kamera Traffic Sign Recognition (TSR) & Automatic Emergency Braking (AEB).</p>
+                        </div>
+                    </div>
+
+                    <!-- VIDEO PLAYER -->
+                    <h3 style="margin-top: 28px; margin-bottom: 12px; color: #fff;"><i class="fa-solid fa-video text-amber"></i> Video PdP AI DigiTeach (3-5 Minit)</h3>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/Lzb06oSUD6E" title="Video PdP SmartLine QR Rover ADAS" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TAB 2 PANEL: OBJEKTIF -->
+        <!-- ========================================== -->
+        <div id="tab-sec-2" class="portal-panel">
+            <div class="card card-glow">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-bullseye text-cyan"></i> Seksyen 2: Objektif Modul & Hasil Pembelajaran</h2>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 16px; color: var(--text-secondary);">Projek ini bertujuan untuk mencapai hasil pembelajaran berikut:</p>
+                    <ul class="noss-list" style="font-size: 14px; line-height: 1.8;">
+                        <li><i class="fa-solid fa-circle-check text-success"></i> <strong>Objektif 1:</strong> Membangunkan platform simulator robotik berautonomi SmartLine QR Rover menggunakan AI Vision (HuskyLens) dan sensor ultrasonik bagi mensimulasikan ADAS.</li>
+                        <li><i class="fa-solid fa-circle-check text-success"></i> <strong>Objektif 2:</strong> Menyediakan modul PdP digital interaktif yang dipetakan secara langsung kepada standard <strong>NOSS G452-011-4:2025 (ADAS Diagnosis Level 4)</strong>.</li>
+                        <li><i class="fa-solid fa-circle-check text-success"></i> <strong>Objektif 3:</strong> Menyediakan pendedahan amali berskala mikro dan kos rendah sebelum pelatih mengendalikan kenderaan sebenar bervoltan tinggi.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TAB 3 PANEL: TEORI & PSEUDOKOD -->
+        <!-- ========================================== -->
+        <div id="tab-sec-3" class="portal-panel">
+            <div class="card card-glow">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-brain text-cyan"></i> Seksyen 3: Teori Navigasi & Pseudokod Logik Kawalan ECU</h2>
+                </div>
+                <div class="card-body">
+                    <p>Rover beroperasi berasaskan 3 prinsip kawalan utama:</p>
+                    <ol style="margin-left: 20px; color: var(--text-secondary); margin-top: 10px; line-height: 1.8;">
+                        <li><strong>Line Following Navigation:</strong> Sensor IR array membaca kontras garisan hitam pada trek permukaan.</li>
+                        <li><strong>Obstacle Detection & AEB:</strong> Sensor Ultrasonik mengira masa balik gelombang bunyi untuk mengesan objek (< 20cm).</li>
+                        <li><strong>AI Vision Command Recognition:</strong> HuskyLens membaca tag QR untuk menghantar arahan START, PAUSE & STOP menerusi komunikasi UART/I2C ke Arduino ECU.</li>
+                    </ol>
+
+                    <h4 style="margin-top: 24px; color: #fff;"><i class="fa-solid fa-code text-cyan"></i> Pseudokod Logik Kawalan (Arduino ECU):</h4>
+                    <div class="code-block-box">
+                        <button class="copy-btn" onclick="copyCode()"><i class="fa-solid fa-copy"></i> Salin Kod</button>
+<pre id="code-content">// SmartLine QR Rover - ADAS Control Logic
+VOID LOOP() {
+    READ_HUSKYLENS_QR();
+    READ_ULTRASONIC_DISTANCE();
+    READ_LINE_SENSORS();
+
+    IF (qr_command == "QR_START") {
+        rover_state = STATE_RUNNING;
+    } ELSE IF (qr_command == "QR_PAUSE") {
+        rover_state = STATE_HOLD;
+    } ELSE IF (qr_command == "QR_STOP") {
+        rover_state = STATE_STOPPED;
+    }
+
+    // AEB Emergency Braking Priority Check
+    IF (ultrasonic_distance < 20.0) { // Object in front < 20cm
+        STOP_MOTORS();
+        TRIGGER_HAZARD_ALARM();
+        WAIT_UNTIL_PATH_CLEAR();
+    } ELSE IF (rover_state == STATE_RUNNING) {
+        EXECUTE_LINE_FOLLOWING();
+    } ELSE {
+        STOP_MOTORS();
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TAB 4 PANEL: KOMPONEN & SPESIFIKASI -->
+        <!-- ========================================== -->
+        <div id="tab-sec-4" class="portal-panel">
+            <div class="card card-glow">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-microchip text-cyan"></i> Seksyen 4: Senarai Komponen & Spesifikasi Teknikal</h2>
+                </div>
+                <div class="card-body">
+                    <div class="comp-grid">
+                        <div class="comp-card">
+                            <div class="comp-icon"><i class="fa-solid fa-eye"></i></div>
+                            <h4>1. HuskyLens AI Vision Sensor</h4>
+                            <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Pengecaman kod QR & pemprosesan imej AI terbenam (Kamera TSR ADAS).</p>
+                        </div>
+                        <div class="comp-card">
+                            <div class="comp-icon"><i class="fa-solid fa-radar"></i></div>
+                            <h4>2. Dual Ultrasonic Sensor</h4>
+                            <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Pengesanan halangan & jarak gelombang bunyi (Sensor AEB ADAS).</p>
+                        </div>
+                        <div class="comp-card">
+                            <div class="comp-icon"><i class="fa-solid fa-arrows-split-up-and-left"></i></div>
+                            <h4>3. IR Line Sensor Array</h4>
+                            <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Membaca garisan hitam pada trek untuk navigasi autonomi.</p>
+                        </div>
+                        <div class="comp-card">
+                            <div class="comp-icon"><i class="fa-solid fa-bolt"></i></div>
+                            <h4>4. Arduino / Compatible ECU</h4>
+                            <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Unit kawalan pusat pemprosesan input sensor & output motor.</p>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top: 24px; color: #fff;">Jadual Spesifikasi Teknikal Rover:</h4>
+                    <div class="table-responsive" style="margin-top: 10px;">
+                        <table class="poster-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Spesifikasi Teknikal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Voltan Operasi</strong></td><td>7.4V – 12V DC (Bateri Li-ion Boleh Cas)</td></tr>
+                                <tr><td><strong>Papan Kawalan Utama</strong></td><td>Arduino / Compatible Microcontroller (ECU)</td></tr>
+                                <tr><td><strong>Sistem Pemacu</strong></td><td>4 x DC Gear Motor + L298N Motor Driver Module</td></tr>
+                                <tr><td><strong>Sistem Navigasi</strong></td><td>Line Following (Sensor IR Array)</td></tr>
+                                <tr><td><strong>Pengesanan Halangan</strong></td><td>Sensor Ultrasonik (AEB Safety Zone < 20cm)</td></tr>
+                                <tr><td><strong>Sistem Penglihatan Visual</strong></td><td>HuskyLens AI Vision Camera</td></tr>
+                                <tr><td><strong>Antara Muka Arahan</strong></td><td>Kod QR (START, PAUSE, STOP)</td></tr>
+                                <tr><td><strong>Bahan Casis</strong></td><td>Akrilik & Plastik Tahan Lasak (Pacuan 4-Roda)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TAB 5 PANEL: AMALI & MANUAL DIAGNOSTIK -->
+        <!-- ========================================== -->
+        <div id="tab-sec-5" class="portal-panel">
+            <div class="card card-glow">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-wrench text-cyan"></i> Seksyen 5: Manual Amali Terpandu & Diagnostik Kerosakan</h2>
+                </div>
+                <div class="card-body">
+                    <p>Pelatih TVET dikehendaki melaksanakan 4 fasa ujian amali mengikut prosedur standard:</p>
+                    
+                    <div class="quiz-question-card" style="margin-top: 14px;">
+                        <h4 style="color: var(--color-cyan);"><i class="fa-solid fa-clipboard-check"></i> Prosedur Ujian Operasi Amali:</h4>
+                        <ol style="margin-left: 20px; color: var(--text-secondary); margin-top: 8px; font-size: 13px; line-height: 1.8;">
+                            <li><strong>Semakan Awal Sebelum Operasi:</strong> Semak sambungan talian kuasa bateri (7.4V DC), pin I/O sensor, dan mod pengesan HuskyLens.</li>
+                            <li><strong>Ujian Sensor Garisan (Line Following):</strong> Tunjukkan kod QR START kepada HuskyLens dan perhatikan sama ada rover mengikut garisan trek secara tepat.</li>
+                            <li><strong>Ujian Pengesanan Halangan (AEB Test):</strong> Letakkan objek pada jarak ~20cm semasa rover bergerak dan catat tindak balas henti automatik.</li>
+                            <li><strong>Ujian Kawalan Kod QR (TSR Test):</strong> Tunjukkan kod QR STOP, START dan PAUSE secara berurutan dan perhatikan tindak balas ECU.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TAB 6 PANEL: KUIZ INTERAKTIF -->
+        <!-- ========================================== -->
+        <div id="tab-sec-6" class="portal-panel">
+            <div class="card card-glow">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-pen-to-square text-cyan"></i> Seksyen 6: Penilaian Pemahaman Interaktif (Kuiz Diagnostik ADAS)</h2>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 16px; color: var(--text-secondary);">Jawab 4 soalan penilaian berikut untuk menguji kefahaman anda tentang logik diagnostik ADAS (Had Lulus: 75%):</p>
+                    
+                    <form id="quizForm" onsubmit="evaluateQuiz(event)">
+                        <div class="quiz-question-card">
+                            <strong>Soalan 1: Komponen manakah pada SmartLine QR Rover yang mensimulasikan sistem Traffic Sign Recognition (TSR)?</strong>
+                            <label class="quiz-opt"><input type="radio" name="q1" value="A"> A. Sensor Ultrasonik</label>
+                            <label class="quiz-opt"><input type="radio" name="q1" value="B"> B. HuskyLens AI Vision Camera</label>
+                            <label class="quiz-opt"><input type="radio" name="q1" value="C"> C. IR Line Sensor Array</label>
+                        </div>
+
+                        <div class="quiz-question-card">
+                            <strong>Soalan 2: Apakah tindak balas rover apabila sensor ultrasonik mengesan halangan pada jarak kurang daripada 20cm?</strong>
+                            <label class="quiz-opt"><input type="radio" name="q2" value="A"> A. Memecut melebihi kelajuan biasa</label>
+                            <label class="quiz-opt"><input type="radio" name="q2" value="B"> B. Berhenti automatik (AEB Trigger) & menunggu laluan bersih</label>
+                            <label class="quiz-opt"><input type="radio" name="q2" value="C"> C. Mengundur secara berterusan</label>
+                        </div>
+
+                        <div class="quiz-question-card">
+                            <strong>Soalan 3: Apakah unit kompetensi NOSS G452-011-4:2025 yang dipetakan bagi ujian pengesanan halangan ultrasonik?</strong>
+                            <label class="quiz-opt"><input type="radio" name="q3" value="A"> A. C05-W02 (Diagnose Camera System)</label>
+                            <label class="quiz-opt"><input type="radio" name="q3" value="B"> B. C05-W03 (Diagnose Ultrasonic Sensor System)</label>
+                            <label class="quiz-opt"><input type="radio" name="q3" value="C"> C. C05-W01 (Diagnose Radar System)</label>
+                        </div>
+
+                        <div class="quiz-question-card">
+                            <strong>Soalan 4: Sekiranya voltan bateri drop di bawah 4.2V dan sensor garisan gagal membaca trek, apakah Kod DTC yang disimulasikan?</strong>
+                            <label class="quiz-opt"><input type="radio" name="q4" value="A"> A. DTC C0110 (IR Line Array Low Supply Voltage)</label>
+                            <label class="quiz-opt"><input type="radio" name="q4" value="B"> B. DTC C0035 (Ultrasonic Circuit Fault)</label>
+                            <label class="quiz-opt"><input type="radio" name="q4" value="C"> C. DTC C0074 (Camera Alignment Fault)</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" style="margin-top: 16px;">
+                            <i class="fa-solid fa-paper-plane"></i> Hantar & Semak Keputusan Kuiz
+                        </button>
+                    </form>
+
+                    <div id="quizResultBox" class="dtc-info-box" style="display: none; margin-top: 20px;">
+                        <div id="quizResultScore" class="dtc-code"></div>
+                        <div id="quizResultDesc" class="dtc-desc"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TAB 7 PANEL: RUMUSAN -->
+        <!-- ========================================== -->
+        <div id="tab-sec-7" class="portal-panel">
+            <div class="card card-glow">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-flag-checkered text-cyan"></i> Seksyen 7: Rumusan & Modul Pembangunan Lanjutan</h2>
+                </div>
+                <div class="card-body">
+                    <p>SmartLine QR Rover membuktikan bahawa pendedahan sistem kenderaan autonomi dan diagnosis ADAS boleh diajar secara berkesan melalui kaedah simulasi skala mikro. Inovasi ini selari dengan keperluan pasaran buruh yang menuntut kepakaran mendiagnosis kenderaan berteknologi pintar (Industry 4.0).</p>
+
+                    <h4 style="margin-top: 20px; color: #fff;"><i class="fa-solid fa-rocket text-amber"></i> Cadangan Pembangunan Lanjutan Masa Hadapan:</h4>
+                    <ul class="noss-list" style="margin-top: 10px;">
+                        <li><i class="fa-solid fa-arrow-right text-cyan"></i> Mengintegrasikan sistem pelaporan Diagnostic Trouble Code (DTC) menerusi skrin scan tool OLED.</li>
+                        <li><i class="fa-solid fa-arrow-right text-cyan"></i> Mengembangkan modul untuk merangkumi simulasi sistem Radar & LiDAR (CU05-W01 & W04).</li>
+                        <li><i class="fa-solid fa-arrow-right text-cyan"></i> Penglihatan AI peringkat tinggi menggunakan model YOLOv5 terbenam pada Raspberry Pi.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 Modul PdP Digital Interaktif SmartLine QR Rover | ADTEC JTM Kampus Kuala Lumpur.</p>
+    </footer>
+
+    <script>
+        function switchPortalTab(btnElement, targetTabId) {
+            // Deactivate all tab buttons
+            const buttons = document.querySelectorAll('.portal-tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Deactivate all tab panels
+            const panels = document.querySelectorAll('.portal-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+
+            // Activate clicked button and panel
+            btnElement.classList.add('active');
+            const targetPanel = document.getElementById(targetTabId);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
+        }
+
+        function copyCode() {
+            const code = document.getElementById('code-content').innerText;
+            navigator.clipboard.writeText(code);
+            alert('Pseudokod berjaya disalin ke papan keratan!');
+        }
+
+        function evaluateQuiz(e) {
+            e.preventDefault();
+            const answers = { q1: 'B', q2: 'B', q3: 'B', q4: 'A' };
+            let score = 0;
+            const form = new FormData(document.getElementById('quizForm'));
+            
+            for (let k in answers) {
+                if (form.get(k) === answers[k]) score += 25;
+            }
+
+            const resBox = document.getElementById('quizResultBox');
+            const scoreEl = document.getElementById('quizResultScore');
+            const descEl = document.getElementById('quizResultDesc');
+
+            resBox.style.display = 'block';
+            scoreEl.innerText = `KEPUTUSAN KUIZ: ${score}% (${score >= 75 ? 'LULUS' : 'GAGAL'})`;
+            
+            if (score >= 75) {
+                scoreEl.style.color = '#10B981';
+                descEl.innerText = 'Tahniah! Anda telah menguasai logik diagnostik ADAS & NOSS Level 4 secara cemerlang.';
+            } else {
+                scoreEl.style.color = '#EF4444';
+                descEl.innerText = 'Sila ulang kaji Seksyen 3 (Teori) dan Seksyen 5 (Amali) sebelum mencuba lagi.';
+            }
+        }
+    </script>
+</body>
+</html>
