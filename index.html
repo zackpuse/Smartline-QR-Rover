@@ -13,9 +13,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Chart.js for analytics -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=9">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.jpg">
+    <meta name="theme-color" content="#06B6D4">
 </head>
 <body class="dark-theme">
+    <!-- AUDIO ENABLE OVERLAY -->
+    <div id="audio-overlay" class="audio-overlay">
+        <div class="audio-modal">
+            <i class="fa-solid fa-volume-high" style="font-size: 3rem; color: var(--color-cyan-glow); margin-bottom: 16px;"></i>
+            <h2 style="margin-bottom: 8px;">SmartLine QR Rover Simulator</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 14px;">Click below to initialize the Web Audio engine and start the simulator.</p>
+            <button class="btn btn-primary" onclick="initAudioEngine()" style="padding: 12px 32px; font-size: 16px;">Start Simulator</button>
+        </div>
+    </div>
 
     <!-- TOP NAV BAR -->
     <header class="top-nav">
@@ -626,6 +638,13 @@
         <p>&copy; 2026 Kumpulan Innovate TVET - ADTEC JTM Kampus Kuala Lumpur. Dihasilkan untuk Pertandingan MIPAC TVET 2026 Kategori AI DigiTeach.</p>
     </footer>
 
-    <script src="app.js?v=8"></script>
+    <script src="app.js?v=9"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js');
+            });
+        }
+    </script>
 </body>
 </html>

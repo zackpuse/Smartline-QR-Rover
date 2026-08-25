@@ -31,6 +31,44 @@ const DOM = {};
 let canvas, ctx;
 let animFrameId;
 
+// Web Audio API
+let audioCtx = null;
+let motorOsc = null;
+let motorGain = null;
+let beepOsc = null;
+let beepGain = null;
+
+window.initAudioEngine = function() {
+    const overlay = document.getElementById('audio-overlay');
+    if (overlay) overlay.style.display = 'none';
+    
+    if (!window.AudioContext && !window.webkitAudioContext) return;
+    
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    
+    // Motor Sound
+    motorOsc = audioCtx.createOscillator();
+    motorOsc.type = 'triangle';
+    motorOsc.frequency.value = 50; // idle
+    motorGain = audioCtx.createGain();
+    motorGain.gain.value = 0; // silent
+    
+    motorOsc.connect(motorGain);
+    motorGain.connect(audioCtx.destination);
+    motorOsc.start();
+    
+    // Beep Sound
+    beepOsc = audioCtx.createOscillator();
+    beepOsc.type = 'square';
+    beepOsc.frequency.value = 800; // high beep
+    beepGain = audioCtx.createGain();
+    beepGain.gain.value = 0;
+    
+    beepOsc.connect(beepGain);
+    beepGain.connect(audioCtx.destination);
+    beepOsc.start();
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     cacheDOM();
     initTabs();
@@ -186,6 +224,29 @@ function updateState() {
         if (DOM.modeBadge) DOM.modeBadge.innerText = `Mode: ${simState.mode}`;
         if (DOM.valUltrasonic) DOM.valUltrasonic.innerText = `${simState.obstacleDist.toFixed(1)} cm`;
         simState.lastUiUpdate = now;
+    }
+
+    // Audio Engine Update
+    if (audioCtx) {
+        // Motor Pitch based on speed
+        if (simState.speedCmS > 0) {
+            motorOsc.frequency.setTargetAtTime(100 + (simState.speedCmS * 15), audioCtx.currentTime, 0.1);
+            motorGain.gain.setTargetAtTime(0.1, audioCtx.currentTime, 0.1);
+        } else {
+            motorOsc.frequency.setTargetAtTime(50, audioCtx.currentTime, 0.1);
+            motorGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.1);
+        }
+
+        // AEB Beeping
+        if (simState.mode === 'AEB_TRIGGERED' || simState.mode === 'AEB_BRAKING') {
+            if (now % 200 < 100) {
+                beepGain.gain.setTargetAtTime(0.1, audioCtx.currentTime, 0.01);
+            } else {
+                beepGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.01);
+            }
+        } else {
+            beepGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.01);
+        }
     }
 }
 
