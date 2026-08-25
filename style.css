@@ -767,3 +767,4 @@ figcaption {
         max-width: 100% !important;
     }
 }
+@media (max-width: 900px) { .simulator-grid { grid-template-columns: 1fr; } .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); } .app-layout { flex-direction: column; } }

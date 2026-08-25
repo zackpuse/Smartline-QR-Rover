@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Chart.js for analytics -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body class="dark-theme">
 
@@ -200,7 +200,7 @@
                                         <span>Jarak Objek (Distance):</span>
                                         <strong id="dist-display" class="text-cyan">45 cm</strong>
                                     </div>
-                                    <input type="range" id="obstacleRange" min="5" max="100" value="45" oninput="updateObstacle(this.value)">
+                                    <input type="range" id="obstacleRange" min="5" max="100" value="45" oninput="updateObstacle(this.value)" aria-label="Obstacle distance">
                                     <div class="slider-labels">
                                         <span class="text-danger"><i class="fa-solid fa-hand"></i> AEB Trigger (TTC < 1.0s)</span>
                                         <span class="text-success"><i class="fa-solid fa-check"></i> Safe Zone (TTC > 1.0s)</span>
@@ -225,7 +225,7 @@
                                         <span>Kelajuan (Speed):</span>
                                         <strong id="speed-display" class="text-cyan">22.0 cm/s</strong>
                                     </div>
-                                    <input type="range" id="speedRange" min="10" max="60" step="1" value="22" oninput="updateSpeed(this.value)">
+                                    <input type="range" id="speedRange" min="10" max="60" step="1" value="22" oninput="updateSpeed(this.value)" aria-label="Motor speed control">
                                     <div class="slider-labels">
                                         <span class="text-secondary"><i class="fa-solid fa-turtle"></i> 10 cm/s</span>
                                         <span class="text-secondary"><i class="fa-solid fa-rabbit-running"></i> 60 cm/s</span>
