@@ -190,26 +190,6 @@
                             </div>
                         </div>
 
-                        <!-- SPEED CONTROLS -->
-                        <div class="card card-control">
-                            <div class="card-header">
-                                <span><i class="fa-solid fa-gauge-high text-cyan"></i> Kawalan Kelajuan Motor (Speed)</span>
-                            </div>
-                            <div class="card-body">
-                                <div class="slider-container">
-                                    <div class="slider-header">
-                                        <span>Kelajuan (Speed):</span>
-                                        <strong id="speed-display" class="text-cyan">22.0 cm/s</strong>
-                                    </div>
-                                    <input type="range" id="speedRange" min="10" max="60" step="1" value="22" oninput="updateSpeed(this.value)">
-                                    <div class="slider-labels">
-                                        <span class="text-secondary"><i class="fa-solid fa-turtle"></i> 10 cm/s</span>
-                                        <span class="text-secondary"><i class="fa-solid fa-rabbit-running"></i> 60 cm/s</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- ULTRASONIC AEB OBSTACLE CONTROLS -->
                         <div class="card card-control">
                             <div class="card-header">
@@ -231,6 +211,26 @@
                                     <button class="btn btn-outline btn-block" onclick="toggleObstaclePreset()">
                                         <i class="fa-solid fa-cube"></i> Letak / Alih Halangan Serta-merta
                                     </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SPEED CONTROLS -->
+                        <div class="card card-control">
+                            <div class="card-header">
+                                <span><i class="fa-solid fa-gauge-high text-cyan"></i> Kawalan Kelajuan Motor (Speed)</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="slider-container">
+                                    <div class="slider-header">
+                                        <span>Kelajuan (Speed):</span>
+                                        <strong id="speed-display" class="text-cyan">22.0 cm/s</strong>
+                                    </div>
+                                    <input type="range" id="speedRange" min="10" max="60" step="1" value="22" oninput="updateSpeed(this.value)">
+                                    <div class="slider-labels">
+                                        <span class="text-secondary"><i class="fa-solid fa-turtle"></i> 10 cm/s</span>
+                                        <span class="text-secondary"><i class="fa-solid fa-rabbit-running"></i> 60 cm/s</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
