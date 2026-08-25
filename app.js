@@ -97,7 +97,7 @@ function updateState() {
     // 3. Movement logic along circuit path
     if (simState.mode === 'RUNNING') {
         simState.speed = simState.maxSpeed;
-        simState.t += 0.015;
+        simState.t += simState.speed * (0.015 / 2.2);
 
         // Oval track parametric path
         const cx = 350, cy = 190, rx = 240, ry = 110;
@@ -319,6 +319,11 @@ window.triggerQR = function(command) {
 window.updateObstacle = function(val) {
     simState.obstacleDist = parseFloat(val);
     document.getElementById('dist-display').innerText = `${simState.obstacleDist} cm`;
+};
+
+window.updateSpeed = function(val) {
+    simState.maxSpeed = parseFloat(val) / 10;
+    document.getElementById('speed-display').innerText = `${parseFloat(val).toFixed(1)} cm/s`;
 };
 
 window.toggleObstaclePreset = function() {

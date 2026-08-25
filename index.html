@@ -186,6 +186,27 @@
                                         <small>Henti Sepenuhnya</small>
                                     </button>
                                 </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SPEED CONTROLS -->
+                        <div class="card card-control">
+                            <div class="card-header">
+                                <span><i class="fa-solid fa-gauge-high text-cyan"></i> Kawalan Kelajuan Motor (Speed)</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="slider-container">
+                                    <div class="slider-header">
+                                        <span>Kelajuan (Speed):</span>
+                                        <strong id="speed-display" class="text-cyan">22.0 cm/s</strong>
+                                    </div>
+                                    <input type="range" id="speedRange" min="10" max="60" step="1" value="22" oninput="updateSpeed(this.value)">
+                                    <div class="slider-labels">
+                                        <span class="text-secondary"><i class="fa-solid fa-turtle"></i> 10 cm/s</span>
+                                        <span class="text-secondary"><i class="fa-solid fa-rabbit-running"></i> 60 cm/s</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -202,8 +223,8 @@
                                     </div>
                                     <input type="range" id="obstacleRange" min="5" max="100" value="45" oninput="updateObstacle(this.value)">
                                     <div class="slider-labels">
-                                        <span class="text-danger"><i class="fa-solid fa-hand"></i> AEB Trigger (< 20cm)</span>
-                                        <span class="text-success"><i class="fa-solid fa-check"></i> Safe Zone (> 20cm)</span>
+                                        <span class="text-danger"><i class="fa-solid fa-hand"></i> AEB Trigger (TTC < 1.0s)</span>
+                                        <span class="text-success"><i class="fa-solid fa-check"></i> Safe Zone (TTC > 1.0s)</span>
                                     </div>
                                 </div>
                                 <div class="toggle-row">
@@ -606,6 +627,6 @@
         <p>&copy; 2026 Kumpulan Innovate TVET - ADTEC JTM Kampus Kuala Lumpur. Dihasilkan untuk Pertandingan MIPAC TVET 2026 Kategori AI DigiTeach.</p>
     </footer>
 
-    <script src="app.js?v=4"></script>
+    <script src="app.js?v=5"></script>
 </body>
 </html>
