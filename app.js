@@ -123,11 +123,6 @@ function drawScene() {
 
     // SmartLine QR Rover
     drawRover();
-
-    // AI Vision Target Banner if scanning QR
-    // if (simState.qrCommand !== 'NONE') {
-    //     drawQRBanner(simState.qrCommand);
-    // }
 }
 
 function drawGrid() {
@@ -263,26 +258,20 @@ function drawRover() {
     ctx.restore();
 }
 
-function drawQRBanner(cmd) {
-    ctx.save();
-    ctx.fillStyle = 'rgba(6, 182, 212, 0.2)';
-    ctx.strokeStyle = '#00F0FF';
-    ctx.lineWidth = 2;
-    ctx.fillRect(canvas.width / 2 - 120, 20, 240, 40);
-    ctx.strokeRect(canvas.width / 2 - 120, 20, 240, 40);
-
-    ctx.fillStyle = '#FFFFFF';
-    ctx.font = 'bold 13px JetBrains Mono, monospace';
-    ctx.textAlign = 'center';
-    ctx.fillText(`HUSKYLENS READ: QR ${cmd}`, canvas.width / 2, 45);
-    ctx.restore();
-}
-
 /* ==========================================================================
    3. SIMULATOR CONTROLS
    ========================================================================== */
+let qrResetTimeoutId = null;
+
 window.triggerQR = function(command) {
     simState.qrCommand = command;
+
+    // Cancel any pending reset from a previous click so messages
+    // never overlap/stack when buttons are pressed in quick succession
+    if (qrResetTimeoutId !== null) {
+        clearTimeout(qrResetTimeoutId);
+        qrResetTimeoutId = null;
+    }
 
     const hudText = document.getElementById('hud-text');
     const valCam = document.getElementById('val-camera');
@@ -312,8 +301,9 @@ window.triggerQR = function(command) {
         valEcu.className = 'reading-value text-danger';
     }
 
-    setTimeout(() => {
+    qrResetTimeoutId = setTimeout(() => {
         simState.qrCommand = 'NONE';
+        qrResetTimeoutId = null;
     }, 2500);
 };
 
