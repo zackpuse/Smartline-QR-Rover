@@ -70,11 +70,20 @@ function updateState() {
         // Line sensor voltage low - rover strays from path
     }
 
-    // 2. Ultrasonic AEB Check
-    if (simState.obstacleDist < 20 && simState.dtcFault !== 'DTC_C0035') {
+    // Calculate Time-To-Collision (TTC)
+    // Speed in cm/s is maxSpeed * 10
+    let speedCmS = simState.maxSpeed * 10;
+    let ttc = simState.obstacleDist / (speedCmS || 0.1);
+    simState.ttc = ttc; // Save for drawing functions
+
+    // 2. Ultrasonic AEB Check (Trigger if TTC < 1.0 second)
+    if (ttc < 1.0 && simState.dtcFault !== 'DTC_C0035') {
         simState.mode = 'AEB_BRAKING';
         simState.speed = 0;
         document.getElementById('aeb-alert').style.display = 'flex';
+        // Add TTC info to the alert text
+        const alertSpan = document.querySelector('#aeb-alert span');
+        if(alertSpan) alertSpan.innerText = `AEB EMERGENCY STOP! MASA PELANGGARAN: ${ttc.toFixed(1)}s`;
         document.getElementById('val-ecu').innerText = 'AEB EMERGENCY STOP';
         document.getElementById('val-ecu').className = 'reading-value text-danger';
     } else {
@@ -173,14 +182,14 @@ function drawTrack() {
 }
 
 function drawObstacle() {
-    if (simState.obstacleDist < 60) {
+    if (simState.ttc < 3.0) { // Show obstacle if TTC < 3s
         // Compute position in front of rover
         const obsX = simState.roverX + (simState.obstacleDist * 2.5) * Math.cos(simState.angle);
         const obsY = simState.roverY + (simState.obstacleDist * 2.5) * Math.sin(simState.angle);
 
         ctx.save();
         ctx.translate(obsX, obsY);
-        ctx.fillStyle = simState.obstacleDist < 20 ? '#EF4444' : '#F59E0B';
+        ctx.fillStyle = simState.ttc < 1.0 ? '#EF4444' : '#F59E0B';
         ctx.shadowColor = ctx.fillStyle;
         ctx.shadowBlur = 15;
         ctx.fillRect(-12, -12, 24, 24);
@@ -213,8 +222,8 @@ function drawRover() {
     ctx.fill();
 
     // Ultrasonic Beam
-    if (simState.obstacleDist < 60) {
-        ctx.strokeStyle = simState.obstacleDist < 20 ? 'rgba(239, 68, 68, 0.8)' : 'rgba(245, 158, 11, 0.6)';
+    if (simState.ttc < 3.0) {
+        ctx.strokeStyle = simState.ttc < 1.0 ? 'rgba(239, 68, 68, 0.8)' : 'rgba(245, 158, 11, 0.6)';
         ctx.lineWidth = 2;
         ctx.setLineDash([4, 4]);
         ctx.beginPath();
