@@ -377,7 +377,9 @@ body {
 
 #roverCanvas {
     width: 100%;
-    height: 380px;
+    height: auto;
+    max-height: 380px;
+    aspect-ratio: 700 / 380;
     display: block;
 }
 
@@ -772,14 +774,35 @@ figcaption {
     .app-layout { flex-direction: column; min-height: auto; }
     .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); padding: 12px; }
     .nav-menu { flex-direction: row; overflow-x: auto; white-space: nowrap; padding-bottom: 8px; -webkit-overflow-scrolling: touch; }
-    .nav-item { padding: 8px 12px; font-size: 13px; }
+    .nav-item { padding: 8px 12px; font-size: 13px; flex-shrink: 0; }
     .sidebar-header, .team-card { display: none; }
     .main-content { padding: 16px 12px; }
     .simulator-grid, .analytics-grid, .metrics-cards { grid-template-columns: 1fr; } 
     .nav-container { flex-direction: column; gap: 12px; align-items: stretch; text-align: center; }
-    .nav-center { justify-content: center; }
-    .nav-actions { justify-content: center; }
+    .nav-center { justify-content: center; flex-wrap: wrap; }
+    .nav-actions { justify-content: center; flex-wrap: wrap; }
     .panel-header { flex-direction: column; gap: 12px; align-items: flex-start; }
-    .poster-paper-container { height: 55vh; }
+    .poster-paper-container { height: auto; }
 }
+
+/* RESPONSIVE HELPERS */
+.responsive-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 1024px) {
+    .sensor-readings { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .responsive-grid-2 { grid-template-columns: 1fr; }
+    .sensor-readings { grid-template-columns: 1fr; }
+    .qr-btn-grid { grid-template-columns: 1fr; }
+    .panel-header h2 { font-size: 20px; }
+    .brand-title { font-size: 18px; }
+    .poster-logos { flex-direction: column; gap: 8px; align-items: center; text-align: center; }
+    .audio-modal { padding: 24px 20px; margin: 0 16px; }
+}
+
 /* AUDIO OVERLAY */ .audio-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 8, 17, 0.95); backdrop-filter: blur(8px); z-index: 9999; display: flex; justify-content: center; align-items: center; } .audio-modal { position: relative; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 40px 30px; text-align: center; max-width: 420px; box-shadow: var(--shadow-glow); }
