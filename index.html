@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartLine QR Rover | Simulator Diagnostik ADAS Automotif MIPAC TVET 2026</title>
-    <meta name="description" content="Modul PdP Interaktif & Simulator Diagnostik ADAS Automotif Menggunakan SmartLine QR Rover - MIPAC TVET 2026 Kategori AI DigiTeach.">
+    <meta name="description"
+        content="Modul PdP Interaktif & Simulator Diagnostik ADAS Automotif Menggunakan SmartLine QR Rover - MIPAC TVET 2026 Kategori AI DigiTeach.">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap"
+        rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Chart.js for analytics -->
@@ -21,17 +25,25 @@
     <link rel="apple-touch-icon" href="icon-192.jpg">
     <meta name="theme-color" content="#06B6D4">
 </head>
+
 <body class="dark-theme">
     <!-- AUDIO ENABLE OVERLAY -->
     <div id="audio-overlay" class="audio-overlay" onclick="closeAudioOverlay(event)">
         <div class="audio-modal" onclick="event.stopPropagation()">
-            <button class="modal-close-btn" onclick="closeAudioOverlay()" aria-label="Close modal" style="position: absolute; top: 12px; right: 16px; background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer;">&times;</button>
-            <i class="fa-solid fa-volume-high" style="font-size: 3rem; color: var(--color-cyan-glow); margin-bottom: 16px;"></i>
+            <button class="modal-close-btn" onclick="closeAudioOverlay()" aria-label="Close modal"
+                style="position: absolute; top: 12px; right: 16px; background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer;">&times;</button>
+            <i class="fa-solid fa-volume-high"
+                style="font-size: 3rem; color: var(--color-cyan-glow); margin-bottom: 16px;"></i>
             <h2 style="margin-bottom: 8px;">SmartLine QR Rover Simulator</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 14px;">Click below to initialize the Web Audio engine and start the simulator.</p>
+            <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 14px;">Click below to initialize the
+                Web Audio engine and start the simulator.</p>
             <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <button class="btn btn-primary" onclick="initAudioEngine()" style="padding: 12px 28px; font-size: 15px;"><i class="fa-solid fa-volume-high"></i> Start with Sound</button>
-                <button class="btn btn-outline" onclick="closeAudioOverlay()" style="padding: 12px 20px; font-size: 15px;"><i class="fa-solid fa-volume-xmark"></i> Continue Silent</button>
+                <button class="btn btn-primary" onclick="initAudioEngine()"
+                    style="padding: 12px 28px; font-size: 15px;"><i class="fa-solid fa-volume-high"></i> Start with
+                    Sound</button>
+                <button class="btn btn-outline" onclick="closeAudioOverlay()"
+                    style="padding: 12px 20px; font-size: 15px;"><i class="fa-solid fa-volume-xmark"></i> Continue
+                    Silent</button>
             </div>
         </div>
     </div>
@@ -46,14 +58,16 @@
                     <span class="brand-sub">Simulator Diagnostik ADAS Automotif | MIPAC TVET 2026</span>
                 </div>
             </div>
-            
+
             <div class="nav-center">
                 <span class="badge badge-category"><i class="fa-solid fa-brain"></i> Kategori AI DigiTeach</span>
-                <span class="badge badge-institution"><i class="fa-solid fa-building-columns"></i> ADTEC JTM Kampus Kuala Lumpur</span>
+                <span class="badge badge-institution"><i class="fa-solid fa-building-columns"></i> ADTEC JTM Kampus
+                    Kuala Lumpur</span>
             </div>
 
             <div class="nav-actions">
-                <a href="https://sites.google.com/jtm.gov.my/smartlineqrrover/home" target="_blank" class="btn btn-outline btn-sm">
+                <a href="https://sites.google.com/jtm.gov.my/smartlineqrrover/home" target="_blank"
+                    class="btn btn-outline btn-sm">
                     <i class="fa-solid fa-globe"></i> Portal Google Site (Self-Hosted)
                 </a>
             </div>
@@ -62,7 +76,7 @@
 
     <!-- MAIN CONTAINER -->
     <div class="app-layout">
-        
+
         <!-- SIDEBAR TABS NAVIGATION -->
         <aside class="sidebar">
             <div class="sidebar-header">
@@ -117,8 +131,10 @@
             <section id="tab-simulator" class="tab-panel active">
                 <div class="panel-header">
                     <div>
-                        <h2><i class="fa-solid fa-microchip text-cyan"></i> Live ADAS Control & Diagnostic Simulator</h2>
-                        <p>Simulasikan tindak balas AI Vision (HuskyLens QR Recognition), Sensor Ultrasonik AEB, dan Diagnostik Kerosakan DTC secara masa nyata.</p>
+                        <h2><i class="fa-solid fa-microchip text-cyan"></i> Live ADAS Control & Diagnostic Simulator
+                        </h2>
+                        <p>Simulasikan tindak balas AI Vision (HuskyLens QR Recognition), Sensor Ultrasonik AEB, dan
+                            Diagnostik Kerosakan DTC secara masa nyata.</p>
                     </div>
                     <div class="status-indicator">
                         <span class="status-dot online"></span>
@@ -137,10 +153,10 @@
                                 <span class="badge-tag" id="mode-badge">Mode: Line Follower</span>
                             </div>
                         </div>
-                        
+
                         <div class="canvas-wrapper">
                             <canvas id="roverCanvas" width="700" height="380"></canvas>
-                            
+
                             <!-- HUD OVERLAY FOR AI VISION -->
                             <div class="hud-overlay" id="hud-overlay">
                                 <div class="hud-corner top-left"></div>
@@ -169,7 +185,8 @@
                                 <div class="reading-value" id="val-ultrasonic">45.0 cm</div>
                             </div>
                             <div class="reading-box">
-                                <div class="reading-label"><i class="fa-solid fa-arrows-split-up-and-left"></i> Line Sensors</div>
+                                <div class="reading-label"><i class="fa-solid fa-arrows-split-up-and-left"></i> Line
+                                    Sensors</div>
                                 <div class="reading-value text-green" id="val-line">TRACKED (0-1-0)</div>
                             </div>
                             <div class="reading-box">
@@ -181,14 +198,15 @@
 
                     <!-- CONTROLS & DIAGNOSTIC LAB -->
                     <div class="simulator-sidebar">
-                        
+
                         <!-- AI VISION QR CONTROLS -->
                         <div class="card card-control">
                             <div class="card-header">
                                 <span><i class="fa-solid fa-qrcode text-cyan"></i> AI Vision QR Commands (TSR)</span>
                             </div>
                             <div class="card-body">
-                                <p class="help-text">Imbas kod QR di hadapan modul HuskyLens AI untuk mengawal pergerakan rover:</p>
+                                <p class="help-text">Imbas kod QR di hadapan modul HuskyLens AI untuk mengawal
+                                    pergerakan rover:</p>
                                 <div class="qr-btn-grid">
                                     <button class="btn btn-success btn-qr" onclick="triggerQR('START')">
                                         <i class="fa-solid fa-play"></i>
@@ -212,7 +230,8 @@
                         <!-- ULTRASONIC AEB OBSTACLE CONTROLS -->
                         <div class="card card-control">
                             <div class="card-header">
-                                <span><i class="fa-solid fa-shield-halved text-amber"></i> Ultrasonic AEB Obstacle Slider</span>
+                                <span><i class="fa-solid fa-shield-halved text-amber"></i> Ultrasonic AEB Obstacle
+                                    Slider</span>
                             </div>
                             <div class="card-body">
                                 <div class="slider-container">
@@ -220,10 +239,13 @@
                                         <span>Jarak Objek (Distance):</span>
                                         <strong id="dist-display" class="text-cyan">45 cm</strong>
                                     </div>
-                                    <input type="range" id="obstacleRange" min="5" max="100" value="45" oninput="updateObstacle(this.value)" aria-label="Obstacle distance">
+                                    <input type="range" id="obstacleRange" min="5" max="100" value="45"
+                                        oninput="updateObstacle(this.value)" aria-label="Obstacle distance">
                                     <div class="slider-labels">
-                                        <span class="text-danger"><i class="fa-solid fa-hand"></i> AEB Trigger (TTC < 1.0s)</span>
-                                        <span class="text-success"><i class="fa-solid fa-check"></i> Safe Zone (TTC > 1.0s)</span>
+                                        <span class="text-danger"><i class="fa-solid fa-hand"></i> AEB Trigger (TTC <
+                                                1.0s)</span>
+                                                <span class="text-success"><i class="fa-solid fa-check"></i> Safe Zone
+                                                    (TTC > 1.0s)</span>
                                     </div>
                                 </div>
                                 <div class="toggle-row">
@@ -237,7 +259,8 @@
                         <!-- SPEED CONTROLS -->
                         <div class="card card-control">
                             <div class="card-header">
-                                <span><i class="fa-solid fa-gauge-high text-cyan"></i> Kawalan Kelajuan Motor (Speed)</span>
+                                <span><i class="fa-solid fa-gauge-high text-cyan"></i> Kawalan Kelajuan Motor
+                                    (Speed)</span>
                             </div>
                             <div class="card-body">
                                 <div class="slider-container">
@@ -245,10 +268,12 @@
                                         <span>Kelajuan (Speed):</span>
                                         <strong id="speed-display" class="text-cyan">22.0 cm/s</strong>
                                     </div>
-                                    <input type="range" id="speedRange" min="10" max="60" step="1" value="22" oninput="updateSpeed(this.value)" aria-label="Motor speed control">
+                                    <input type="range" id="speedRange" min="10" max="60" step="1" value="22"
+                                        oninput="updateSpeed(this.value)" aria-label="Motor speed control">
                                     <div class="slider-labels">
                                         <span class="text-secondary"><i class="fa-solid fa-turtle"></i> 10 cm/s</span>
-                                        <span class="text-secondary"><i class="fa-solid fa-rabbit-running"></i> 60 cm/s</span>
+                                        <span class="text-secondary"><i class="fa-solid fa-rabbit-running"></i> 60
+                                            cm/s</span>
                                     </div>
                                 </div>
                             </div>
@@ -257,20 +282,25 @@
                         <!-- DTC FAULT INJECTION LAB FOR TVET TRAINEES -->
                         <div class="card card-control card-dtc">
                             <div class="card-header">
-                                <span><i class="fa-solid fa-triangle-exclamation text-danger"></i> TVET DTC Diagnostic Fault Lab</span>
+                                <span><i class="fa-solid fa-triangle-exclamation text-danger"></i> TVET DTC Diagnostic
+                                    Fault Lab</span>
                             </div>
                             <div class="card-body">
-                                <label for="dtcSelect" class="form-label">Simulasikan Kerosakan Sensor (Fault Injection):</label>
+                                <label for="dtcSelect" class="form-label">Simulasikan Kerosakan Sensor (Fault
+                                    Injection):</label>
                                 <select id="dtcSelect" class="form-select" onchange="injectDTC(this.value)">
                                     <option value="NONE">Tiada Kerosakan (System Normal - No DTC)</option>
-                                    <option value="DTC_C0035">C0035 - Ultrasonic Sensor Signal Line Open Circuit</option>
-                                    <option value="DTC_C0074">C0074 - HuskyLens AI Vision Camera Optical Misalignment</option>
+                                    <option value="DTC_C0035">C0035 - Ultrasonic Sensor Signal Line Open Circuit
+                                    </option>
+                                    <option value="DTC_C0074">C0074 - HuskyLens AI Vision Camera Optical Misalignment
+                                    </option>
                                     <option value="DTC_C0110">C0110 - IR Line Tracking Array Low Supply Voltage</option>
                                 </select>
 
                                 <div class="dtc-info-box" id="dtc-info-box">
                                     <div class="dtc-code" id="dtc-code-title">DTC STATUS: NO FAULT</div>
-                                    <div class="dtc-desc" id="dtc-desc-text">Semua sensor beroperasi secara optimum mengikut standard NOSS Level 4.</div>
+                                    <div class="dtc-desc" id="dtc-desc-text">Semua sensor beroperasi secara optimum
+                                        mengikut standard NOSS Level 4.</div>
                                     <div class="dtc-remedy" id="dtc-remedy-text"></div>
                                 </div>
                             </div>
@@ -290,24 +320,31 @@
                 <div class="panel-header">
                     <div>
                         <h2><i class="fa-solid fa-graduation-cap text-cyan"></i> Modul E-Pembelajaran: Teori ADAS</h2>
-                        <p>Berdasarkan NOSS G452-011-4:2025 (Automotive Electrical Diagnostic - Tahap 4) | Topik: Advance Driver Assistance System (ADAS)</p>
+                        <p>Berdasarkan NOSS G452-011-4:2025 (Automotive Electrical Diagnostic - Tahap 4) | Topik:
+                            Advance Driver Assistance System (ADAS)</p>
                     </div>
                 </div>
 
-                <div class="teori-container" style="max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; padding-bottom: 40px;">
-                    
+                <div class="teori-container"
+                    style="max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; padding-bottom: 40px;">
+
                     <!-- KAD 1: PENGENALAN -->
                     <div class="card card-glow">
                         <div class="card-header">
                             <span><i class="fa-solid fa-book"></i> 1. Pengenalan & Objektif</span>
                         </div>
                         <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
-                            <p style="margin-bottom: 12px;"><strong>SmartLine QR Rover</strong> ialah kenderaan robot berautonomi berskala kecil (skala makmal) yang mensimulasikan fungsi <strong>Automated Guided Vehicle (AGV)</strong> dan teknologi ADAS dalam industri automotif sebenar (seperti <em>Smart Warehouse</em> dan pembuatan kereta pintar).</p>
-                            <h4 style="color: var(--text-primary); margin-top: 20px; margin-bottom: 10px;">Objektif Pembelajaran:</h4>
+                            <p style="margin-bottom: 12px;"><strong>SmartLine QR Rover</strong> ialah kenderaan robot
+                                berautonomi berskala kecil (skala makmal) yang mensimulasikan fungsi <strong>Automated
+                                    Guided Vehicle (AGV)</strong> dan teknologi ADAS dalam industri automotif sebenar
+                                (seperti <em>Smart Warehouse</em> dan pembuatan kereta pintar).</p>
+                            <h4 style="color: var(--text-primary); margin-top: 20px; margin-bottom: 10px;">Objektif
+                                Pembelajaran:</h4>
                             <ul style="margin-left: 20px; list-style-type: decimal;">
                                 <li>Menjelaskan konsep kenderaan berautonomi pengikut garisan dalam Industri 4.0.</li>
                                 <li>Mengenal pasti komponen utama (Kamera AI HuskyLens, Sensor Ultrasonik).</li>
-                                <li>Menerangkan cara sistem Pengesanan Tanda Jalan (TSR) dan Brek Kecemasan Autonomi (AEB) berfungsi.</li>
+                                <li>Menerangkan cara sistem Pengesanan Tanda Jalan (TSR) dan Brek Kecemasan Autonomi
+                                    (AEB) berfungsi.</li>
                                 <li>Menganalisis pengiraan <em>Time-To-Collision (TTC)</em>.</li>
                                 <li>Mematuhi Prosedur Keselamatan & Kesihatan Pekerjaan (OSH).</li>
                             </ul>
@@ -321,19 +358,32 @@
                         </div>
                         <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                                <div style="background: var(--bg-dark); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);">
-                                    <h4 style="color: var(--color-cyan); margin-bottom: 10px;"><i class="fa-solid fa-road"></i> Pengikutan Garisan (Line Following)</h4>
-                                    <p style="font-size: 0.95rem;">Menggunakan Sensor Garisan Inframerah (IR). Mata sensor membaca perbezaan pantulan cahaya antara garisan hitam dan lantai putih untuk menghantar isyarat membetulkan pusingan tayar kiri dan kanan (seperti sistem <em>Lane Keeping Assist</em>).</p>
+                                <div
+                                    style="background: var(--bg-dark); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <h4 style="color: var(--color-cyan); margin-bottom: 10px;"><i
+                                            class="fa-solid fa-road"></i> Pengikutan Garisan (Line Following)</h4>
+                                    <p style="font-size: 0.95rem;">Menggunakan Sensor Garisan Inframerah (IR). Mata
+                                        sensor membaca perbezaan pantulan cahaya antara garisan hitam dan lantai putih
+                                        untuk menghantar isyarat membetulkan pusingan tayar kiri dan kanan (seperti
+                                        sistem <em>Lane Keeping Assist</em>).</p>
                                 </div>
-                                <div style="background: var(--bg-dark); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);">
-                                    <h4 style="color: var(--color-danger); margin-bottom: 10px;"><i class="fa-solid fa-car-burst"></i> Brek Kecemasan Autonomi (AEB)</h4>
-                                    <p style="font-size: 0.95rem;">Menggunakan gelombang bunyi Ultrasonik yang bertindak sebagai <strong>Radar</strong> (Radio Detection and Ranging). Jika pantulan gelombang mengesan halangan dalam masa yang terlalu singkat, daya inersia brek diaktifkan.</p>
+                                <div
+                                    style="background: var(--bg-dark); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <h4 style="color: var(--color-danger); margin-bottom: 10px;"><i
+                                            class="fa-solid fa-car-burst"></i> Brek Kecemasan Autonomi (AEB)</h4>
+                                    <p style="font-size: 0.95rem;">Menggunakan gelombang bunyi Ultrasonik yang bertindak
+                                        sebagai <strong>Radar</strong> (Radio Detection and Ranging). Jika pantulan
+                                        gelombang mengesan halangan dalam masa yang terlalu singkat, daya inersia brek
+                                        diaktifkan.</p>
                                 </div>
                             </div>
 
-                            <div class="formula-box" style="margin-top: 20px; background: rgba(6, 182, 212, 0.1); border: 1px dashed var(--color-cyan-glow); padding: 16px; border-radius: 8px; text-align: center; color: var(--text-primary);">
-                                <p style="margin-bottom: 8px; font-size: 0.9rem; color: var(--text-muted);">Formula Kinematik Risiko Perlanggaran</p>
-                                <strong style="font-size: 1.2rem; letter-spacing: 1px;">TTC (saat) = Jarak Halangan (cm) / Kelajuan Semasa (cm/s)</strong>
+                            <div class="formula-box"
+                                style="margin-top: 20px; background: rgba(6, 182, 212, 0.1); border: 1px dashed var(--color-cyan-glow); padding: 16px; border-radius: 8px; text-align: center; color: var(--text-primary);">
+                                <p style="margin-bottom: 8px; font-size: 0.9rem; color: var(--text-muted);">Formula
+                                    Kinematik Risiko Perlanggaran</p>
+                                <strong style="font-size: 1.2rem; letter-spacing: 1px;">TTC (saat) = Jarak Halangan (cm)
+                                    / Kelajuan Semasa (cm/s)</strong>
                             </div>
                         </div>
                     </div>
@@ -346,16 +396,26 @@
                         <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
                             <ul style="margin-left: 20px; display: flex; flex-direction: column; gap: 15px;">
                                 <li>
-                                    <strong style="color: var(--text-primary);"><i class="fa-solid fa-camera"></i> Kamera AI (HuskyLens) — Traffic Sign Recognition (TSR)</strong><br>
-                                    Berfungsi sebagai mata pintar rover. Sistem ini menggunakan algoritma Pembelajaran Mesin (Machine Learning) yang diproses secara dalaman untuk mengecam Kod QR dan arahan jalan raya, seterusnya menghantar data protokol UART/I2C ke ECU.
+                                    <strong style="color: var(--text-primary);"><i class="fa-solid fa-camera"></i>
+                                        Kamera AI (HuskyLens) — Traffic Sign Recognition (TSR)</strong><br>
+                                    Berfungsi sebagai mata pintar rover. Sistem ini menggunakan algoritma Pembelajaran
+                                    Mesin (Machine Learning) yang diproses secara dalaman untuk mengecam Kod QR dan
+                                    arahan jalan raya, seterusnya menghantar data protokol UART/I2C ke ECU.
                                 </li>
                                 <li>
-                                    <strong style="color: var(--text-primary);"><i class="fa-solid fa-satellite-dish"></i> Sensor Ultrasonik (HC-SR04) — Simulasi Radar</strong><br>
-                                    Memancarkan gelombang bunyi pada frekuensi tinggi. Apabila melanggar objek, ia memantul semula. Masa pantulan ini dikira untuk mencari jarak objek (Distance = Speed x Time / 2). Ini adalah teknologi sandaran yang lebih ringkas berbanding Radar/LiDAR industri, namun memiliki prinsip asas gema yang sama.
+                                    <strong style="color: var(--text-primary);"><i
+                                            class="fa-solid fa-satellite-dish"></i> Sensor Ultrasonik (HC-SR04) —
+                                        Simulasi Radar</strong><br>
+                                    Memancarkan gelombang bunyi pada frekuensi tinggi. Apabila melanggar objek, ia
+                                    memantul semula. Masa pantulan ini dikira untuk mencari jarak objek (Distance =
+                                    Speed x Time / 2). Ini adalah teknologi sandaran yang lebih ringkas berbanding
+                                    Radar/LiDAR industri, namun memiliki prinsip asas gema yang sama.
                                 </li>
                                 <li>
-                                    <strong style="color: var(--text-primary);"><i class="fa-solid fa-microchip"></i> Mikropengawal (ECU)</strong><br>
-                                    Papan utama yang memproses input penderia dan mengawal penggerak Motor Arus Terus (DC Motor) menerusi isyarat PWM (Pulse Width Modulation) untuk memecut atau membrek.
+                                    <strong style="color: var(--text-primary);"><i class="fa-solid fa-microchip"></i>
+                                        Mikropengawal (ECU)</strong><br>
+                                    Papan utama yang memproses input penderia dan mengawal penggerak Motor Arus Terus
+                                    (DC Motor) menerusi isyarat PWM (Pulse Width Modulation) untuk memecut atau membrek.
                                 </li>
                             </ul>
                         </div>
@@ -364,110 +424,185 @@
                     <!-- KAD 4: KESELAMATAN -->
                     <div class="card card-glow" style="border-left: 4px solid var(--color-amber);">
                         <div class="card-header">
-                            <span><i class="fa-solid fa-helmet-safety"></i> 4. Keselamatan & Kesihatan Pekerjaan (OSH)</span>
+                            <span><i class="fa-solid fa-helmet-safety"></i> 4. Keselamatan & Kesihatan Pekerjaan
+                                (OSH)</span>
                         </div>
                         <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
-                            <p style="margin-bottom: 12px;">Pematuhan PPE (Personal Protective Equipment) adalah diwajibkan berdasarkan standard NOSS semasa menjalankan diagnostik amali:</p>
+                            <p style="margin-bottom: 12px;">Pematuhan PPE (Personal Protective Equipment) adalah
+                                diwajibkan berdasarkan standard NOSS semasa menjalankan diagnostik amali:</p>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.95rem;">
-                                <div><i class="fa-solid fa-check text-green"></i> Cabut sambungan bateri (7.4V) apabila membaiki pendawaian.</div>
-                                <div><i class="fa-solid fa-check text-green"></i> Pastikan alat diagnostik dalam keadaan baik.</div>
-                                <div><i class="fa-solid fa-check text-green"></i> Bersihkan tempat kerja dari bahaya tersadung (tripping hazard).</div>
-                                <div><i class="fa-solid fa-check text-green"></i> Laporkan kod kerosakan (DTC) mengikut SOP pengeluar.</div>
+                                <div><i class="fa-solid fa-check text-green"></i> Cabut sambungan bateri (7.4V) apabila
+                                    membaiki pendawaian.</div>
+                                <div><i class="fa-solid fa-check text-green"></i> Pastikan alat diagnostik dalam keadaan
+                                    baik.</div>
+                                <div><i class="fa-solid fa-check text-green"></i> Bersihkan tempat kerja dari bahaya
+                                    tersadung (tripping hazard).</div>
+                                <div><i class="fa-solid fa-check text-green"></i> Laporkan kod kerosakan (DTC) mengikut
+                                    SOP pengeluar.</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- KAD 5: MODUL AMALI -->
-                    <div class="card card-glow" id="amali-section-container" style="border-left: 4px solid var(--color-cyan);">
+                    <div class="card card-glow" id="amali-section-container"
+                        style="border-left: 4px solid var(--color-cyan);">
                         <div class="card-header">
-                            <span><i class="fa-solid fa-vial-circle-check"></i> 5. Amali: Ujian Operasi SmartLine QR Rover</span>
+                            <span><i class="fa-solid fa-vial-circle-check"></i> 5. Amali: Ujian Operasi SmartLine QR
+                                Rover</span>
                         </div>
                         <div class="card-body" style="padding: 24px; color: var(--text-secondary); line-height: 1.6;">
-                            <div style="background: rgba(6, 182, 212, 0.1); border-left: 4px solid var(--color-cyan); padding: 15px; border-radius: 4px; margin-bottom: 20px;">
-                                <strong style="color: var(--color-cyan); font-size: 1.05rem;"><i class="fa-solid fa-circle-info"></i> Nota Pelajar:</strong>
-                                <p style="margin-top: 5px; font-size: 0.95rem; color: var(--text-primary);">Amali ini adalah aktiviti pemerhatian dan pengujian terpandu. Ikut setiap langkah dengan teliti. Jangan ubah sebarang sambungan perkakasan tanpa kebenaran pensyarah.</p>
+                            <div
+                                style="background: rgba(6, 182, 212, 0.1); border-left: 4px solid var(--color-cyan); padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+                                <strong style="color: var(--color-cyan); font-size: 1.05rem;"><i
+                                        class="fa-solid fa-circle-info"></i> Nota Pelajar:</strong>
+                                <p style="margin-top: 5px; font-size: 0.95rem; color: var(--text-primary);">Amali ini
+                                    adalah aktiviti pemerhatian dan pengujian terpandu. Ikut setiap langkah dengan
+                                    teliti. Jangan ubah sebarang sambungan perkakasan tanpa kebenaran pensyarah.</p>
                             </div>
 
                             <div class="amali-steps" style="display: flex; flex-direction: column; gap: 20px;">
                                 <!-- Langkah 1 -->
-                                <div style="background: var(--bg-dark); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color);">
-                                    <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;"><span style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">1</span> Semakan Awal Sebelum Hidupkan Rover</h4>
-                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Pastikan semua komponen berada dalam keadaan baik sebelum bekalan kuasa dihidupkan.</p>
-                                    <ul style="margin-left: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px;">
-                                        <li><i class="fa-solid fa-square-check text-cyan"></i> Semak sambungan wayar — tiada yang longgar atau tercabut</li>
-                                        <li><i class="fa-solid fa-square-check text-cyan"></i> Pastikan bateri telah dicas penuh</li>
-                                        <li><i class="fa-solid fa-square-check text-cyan"></i> Semak paras bateri pada display (jika ada)</li>
-                                        <li><i class="fa-solid fa-square-check text-cyan"></i> Pastikan tiada objek di laluan rover</li>
-                                        <li><i class="fa-solid fa-square-check text-cyan"></i> HuskyLens telah dikonfigurasi dalam mod "QR Code Recognition"</li>
+                                <div
+                                    style="background: var(--bg-dark); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;">
+                                        <span
+                                            style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">1</span>
+                                        Semakan Awal Sebelum Hidupkan Rover</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">
+                                        Pastikan semua komponen berada dalam keadaan baik sebelum bekalan kuasa
+                                        dihidupkan.</p>
+                                    <ul
+                                        style="margin-left: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px;">
+                                        <li><i class="fa-solid fa-square-check text-cyan"></i> Semak sambungan wayar —
+                                            tiada yang longgar atau tercabut</li>
+                                        <li><i class="fa-solid fa-square-check text-cyan"></i> Pastikan bateri telah
+                                            dicas penuh</li>
+                                        <li><i class="fa-solid fa-square-check text-cyan"></i> Semak paras bateri pada
+                                            display (jika ada)</li>
+                                        <li><i class="fa-solid fa-square-check text-cyan"></i> Pastikan tiada objek di
+                                            laluan rover</li>
+                                        <li><i class="fa-solid fa-square-check text-cyan"></i> HuskyLens telah
+                                            dikonfigurasi dalam mod "QR Code Recognition"</li>
                                     </ul>
                                 </div>
 
                                 <!-- Langkah 2 -->
-                                <div style="background: var(--bg-dark); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color);">
-                                    <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;"><span style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">2</span> Hidupkan Rover dan Uji Sensor Garisan</h4>
-                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Letakkan rover di atas trek garisan dan uji tindakbalas sensor.</p>
-                                    <ul style="margin-left: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px;">
+                                <div
+                                    style="background: var(--bg-dark); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;">
+                                        <span
+                                            style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">2</span>
+                                        Hidupkan Rover dan Uji Sensor Garisan</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">
+                                        Letakkan rover di atas trek garisan dan uji tindakbalas sensor.</p>
+                                    <ul
+                                        style="margin-left: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px;">
                                         <li><i class="fa-solid fa-play text-green"></i> Hidupkan suis kuasa rover</li>
-                                        <li><i class="fa-solid fa-play text-green"></i> Letakkan rover di permulaan trek garisan</li>
-                                        <li><i class="fa-solid fa-play text-green"></i> Tunjukkan QR START kepada HuskyLens</li>
-                                        <li><i class="fa-solid fa-play text-green"></i> Perhatikan rover mula bergerak mengikut garisan</li>
-                                        <li><i class="fa-solid fa-pen-to-square text-gold"></i> Rekod pemerhatian: adakah rover mengikut garisan dengan tepat?</li>
+                                        <li><i class="fa-solid fa-play text-green"></i> Letakkan rover di permulaan trek
+                                            garisan</li>
+                                        <li><i class="fa-solid fa-play text-green"></i> Tunjukkan QR START kepada
+                                            HuskyLens</li>
+                                        <li><i class="fa-solid fa-play text-green"></i> Perhatikan rover mula bergerak
+                                            mengikut garisan</li>
+                                        <li><i class="fa-solid fa-pen-to-square text-gold"></i> Rekod pemerhatian:
+                                            adakah rover mengikut garisan dengan tepat?</li>
                                     </ul>
                                 </div>
 
                                 <!-- Langkah 3 -->
-                                <div style="background: var(--bg-dark); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color);">
-                                    <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;"><span style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">3</span> Uji Pengesanan Halangan</h4>
-                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Semasa rover bergerak, uji fungsi berhenti automatik.</p>
-                                    <ul style="margin-left: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px;">
-                                        <li><i class="fa-solid fa-hand text-danger"></i> Semasa rover sedang bergerak, letakkan objek di hadapannya (dalam jarak ~20cm)</li>
-                                        <li><i class="fa-solid fa-hand text-danger"></i> Perhatikan rover berhenti secara automatik</li>
-                                        <li><i class="fa-solid fa-hand text-danger"></i> Singkirkan objek — perhatikan rover teruskan perjalanan sendiri</li>
-                                        <li><i class="fa-solid fa-ruler text-gold"></i> Rekod jarak pengesanan (ukur dengan pembaris)</li>
+                                <div
+                                    style="background: var(--bg-dark); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;">
+                                        <span
+                                            style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">3</span>
+                                        Uji Pengesanan Halangan</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Semasa
+                                        rover bergerak, uji fungsi berhenti automatik.</p>
+                                    <ul
+                                        style="margin-left: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px;">
+                                        <li><i class="fa-solid fa-hand text-danger"></i> Semasa rover sedang bergerak,
+                                            letakkan objek di hadapannya (dalam jarak ~20cm)</li>
+                                        <li><i class="fa-solid fa-hand text-danger"></i> Perhatikan rover berhenti
+                                            secara automatik</li>
+                                        <li><i class="fa-solid fa-hand text-danger"></i> Singkirkan objek — perhatikan
+                                            rover teruskan perjalanan sendiri</li>
+                                        <li><i class="fa-solid fa-ruler text-gold"></i> Rekod jarak pengesanan (ukur
+                                            dengan pembaris)</li>
                                     </ul>
-                                    <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid var(--color-danger); padding: 10px 14px; border-radius: 6px; color: #fca5a5; font-size: 0.9rem;">
-                                        <i class="fa-solid fa-triangle-exclamation"></i> <strong>AMARAN KESELAMATAN:</strong> JANGAN letak tangan terus di hadapan roda semasa ujian!
+                                    <div
+                                        style="background: rgba(239, 68, 68, 0.15); border: 1px solid var(--color-danger); padding: 10px 14px; border-radius: 6px; color: #fca5a5; font-size: 0.9rem;">
+                                        <i class="fa-solid fa-triangle-exclamation"></i> <strong>AMARAN
+                                            KESELAMATAN:</strong> JANGAN letak tangan terus di hadapan roda semasa
+                                        ujian!
                                     </div>
                                 </div>
 
                                 <!-- Langkah 4 -->
-                                <div style="background: var(--bg-dark); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color);">
-                                    <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;"><span style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">4</span> Uji Kawalan QR Code</h4>
-                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Gunakan kad QR yang disediakan untuk uji setiap arahan.</p>
-                                    <ul style="margin-left: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px;">
-                                        <li><i class="fa-solid fa-qrcode text-cyan"></i> Tunjukkan QR STOP — perhatikan rover berhenti</li>
-                                        <li><i class="fa-solid fa-qrcode text-cyan"></i> Tunjukkan QR START — rover mula bergerak semula</li>
-                                        <li><i class="fa-solid fa-qrcode text-cyan"></i> Tunjukkan QR PAUSE — rover berhenti sementara</li>
-                                        <li><i class="fa-solid fa-ruler text-gold"></i> Rekod jarak maksimum HuskyLens dapat baca QR dengan tepat</li>
+                                <div
+                                    style="background: var(--bg-dark); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;">
+                                        <span
+                                            style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">4</span>
+                                        Uji Kawalan QR Code</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Gunakan
+                                        kad QR yang disediakan untuk uji setiap arahan.</p>
+                                    <ul
+                                        style="margin-left: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px;">
+                                        <li><i class="fa-solid fa-qrcode text-cyan"></i> Tunjukkan QR STOP — perhatikan
+                                            rover berhenti</li>
+                                        <li><i class="fa-solid fa-qrcode text-cyan"></i> Tunjukkan QR START — rover mula
+                                            bergerak semula</li>
+                                        <li><i class="fa-solid fa-qrcode text-cyan"></i> Tunjukkan QR PAUSE — rover
+                                            berhenti sementara</li>
+                                        <li><i class="fa-solid fa-ruler text-gold"></i> Rekod jarak maksimum HuskyLens
+                                            dapat baca QR dengan tepat</li>
                                     </ul>
                                 </div>
 
                                 <!-- Langkah 5 -->
-                                <div style="background: var(--bg-dark); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color);">
-                                    <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;"><span style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">5</span> Penutupan dan Refleksi</h4>
-                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Selesaikan sesi amali dengan betul.</p>
-                                    <ul style="margin-left: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px; margin-bottom: 15px;">
-                                        <li><i class="fa-solid fa-power-off text-muted"></i> Tunjukkan QR STOP untuk hentikan rover</li>
-                                        <li><i class="fa-solid fa-power-off text-muted"></i> Matikan suis kuasa rover</li>
-                                        <li><i class="fa-solid fa-arrow-rotate-left text-muted"></i> Letakkan semula rover di kedudukan asal</li>
-                                        <li><i class="fa-solid fa-file-signature text-gold"></i> Isi Borang Rekod Amali yang disediakan pensyarah</li>
-                                        <li><i class="fa-solid fa-lightbulb text-amber"></i> Jawab soalan refleksi di bawah sebelum pergi!</li>
+                                <div
+                                    style="background: var(--bg-dark); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;">
+                                        <span
+                                            style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">5</span>
+                                        Penutupan dan Refleksi</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">
+                                        Selesaikan sesi amali dengan betul.</p>
+                                    <ul
+                                        style="margin-left: 20px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px; margin-bottom: 15px;">
+                                        <li><i class="fa-solid fa-power-off text-muted"></i> Tunjukkan QR STOP untuk
+                                            hentikan rover</li>
+                                        <li><i class="fa-solid fa-power-off text-muted"></i> Matikan suis kuasa rover
+                                        </li>
+                                        <li><i class="fa-solid fa-arrow-rotate-left text-muted"></i> Letakkan semula
+                                            rover di kedudukan asal</li>
+                                        <li><i class="fa-solid fa-file-signature text-gold"></i> Isi Borang Rekod Amali
+                                            yang disediakan pensyarah</li>
+                                        <li><i class="fa-solid fa-lightbulb text-amber"></i> Jawab soalan refleksi di
+                                            bawah sebelum pergi!</li>
                                     </ul>
 
                                     <!-- Soalan Refleksi -->
-                                    <div style="background: rgba(245, 158, 11, 0.1); border: 1px dashed var(--color-amber); padding: 16px; border-radius: 6px;">
-                                        <h5 style="color: var(--color-amber); margin-bottom: 10px; font-size: 1rem;"><i class="fa-solid fa-lightbulb"></i> Soalan Refleksi Pelajar:</h5>
-                                        <ol style="margin-left: 20px; color: var(--text-secondary); font-size: 0.9rem; display: flex; flex-direction: column; gap: 8px;">
-                                            <li>Apakah yang berlaku jika sensor garisan terhalang kotoran atau debu? Bagaimana cara mengatasinya?</li>
-                                            <li>Bolehkah rover ini digunakan dalam gudang sebenar? Apakah pengubahsuaian yang diperlukan?</li>
-                                            <li>Bagaimana HuskyLens berbeza daripada kamera biasa dari segi keupayaan pemprosesan AI?</li>
+                                    <div
+                                        style="background: rgba(245, 158, 11, 0.1); border: 1px dashed var(--color-amber); padding: 16px; border-radius: 6px;">
+                                        <h5 style="color: var(--color-amber); margin-bottom: 10px; font-size: 1rem;"><i
+                                                class="fa-solid fa-lightbulb"></i> Soalan Refleksi Pelajar:</h5>
+                                        <ol
+                                            style="margin-left: 20px; color: var(--text-secondary); font-size: 0.9rem; display: flex; flex-direction: column; gap: 8px;">
+                                            <li>Apakah yang berlaku jika sensor garisan terhalang kotoran atau debu?
+                                                Bagaimana cara mengatasinya?</li>
+                                            <li>Bolehkah rover ini digunakan dalam gudang sebenar? Apakah pengubahsuaian
+                                                yang diperlukan?</li>
+                                            <li>Bagaimana HuskyLens berbeza daripada kamera biasa dari segi keupayaan
+                                                pemprosesan AI?</li>
                                         </ol>
                                     </div>
                                 </div>
                             </div>
 
                             <div style="margin-top: 25px; display: flex; justify-content: flex-end;">
-                                <button type="button" class="btn btn-primary" onclick="scrollToKuiz()" style="padding: 12px 28px; font-size: 1rem; font-weight: bold;">
+                                <button type="button" class="btn btn-primary" onclick="scrollToKuiz()"
+                                    style="padding: 12px 28px; font-size: 1rem; font-weight: bold;">
                                     Seterusnya: Kuiz →
                                 </button>
                             </div>
@@ -483,166 +618,273 @@
 
                             <!-- SCORE TRACKER PANEL -->
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;">
-                                <div style="background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 8px; padding: 16px; text-align: center;">
-                                    <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px;">Markah Semasa</div>
-                                    <div id="live-score-display" style="font-size: 2rem; font-weight: 900; color: var(--color-cyan);">0 / 8</div>
-                                    <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">soalan</div>
+                                <div
+                                    style="background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 8px; padding: 16px; text-align: center;">
+                                    <div
+                                        style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px;">
+                                        Markah Semasa</div>
+                                    <div id="live-score-display"
+                                        style="font-size: 2rem; font-weight: 900; color: var(--color-cyan);">0 / 8</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">soalan
+                                    </div>
                                 </div>
-                                <div style="background: var(--bg-dark); border: 1px solid var(--color-amber); border-radius: 8px; padding: 16px; text-align: center;">
-                                    <div style="font-size: 0.8rem; color: var(--color-amber); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px;">Had Lulus</div>
-                                    <div style="font-size: 2rem; font-weight: 900; color: var(--color-amber);">6 / 8</div>
-                                    <div style="font-size: 0.8rem; color: var(--color-amber); margin-top: 4px;">(75%)</div>
+                                <div
+                                    style="background: var(--bg-dark); border: 1px solid var(--color-amber); border-radius: 8px; padding: 16px; text-align: center;">
+                                    <div
+                                        style="font-size: 0.8rem; color: var(--color-amber); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px;">
+                                        Had Lulus</div>
+                                    <div style="font-size: 2rem; font-weight: 900; color: var(--color-amber);">6 / 8
+                                    </div>
+                                    <div style="font-size: 0.8rem; color: var(--color-amber); margin-top: 4px;">(75%)
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- PROGRESS BAR -->
                             <div style="margin-bottom: 24px;">
-                                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px;">
+                                <div
+                                    style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px;">
                                     <span>Soalan dijawab: <span id="answered-count">0</span>/8</span>
                                     <span><span id="answered-pct">0</span>% selesai</span>
                                 </div>
                                 <div style="background: var(--border-color); border-radius: 4px; height: 6px;">
-                                    <div id="progress-bar" style="background: var(--color-cyan); height: 6px; border-radius: 4px; width: 0%; transition: width 0.3s ease;"></div>
+                                    <div id="progress-bar"
+                                        style="background: var(--color-cyan); height: 6px; border-radius: 4px; width: 0%; transition: width 0.3s ease;">
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- QUIZ FORM -->
-                            <form id="theory-quiz-form" style="display: flex; flex-direction: column; gap: 20px;" onchange="updateQuizProgress()">
+                            <form id="theory-quiz-form" style="display: flex; flex-direction: column; gap: 20px;"
+                                onchange="updateQuizProgress()">
 
-                                <div class="quiz-question" style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
-                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan 1:</strong> Apakah jenis sensor yang digunakan oleh SmartLine QR Rover untuk mengikut garisan pada lantai?</p>
+                                <div class="quiz-question"
+                                    style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan
+                                            1:</strong> Apakah jenis sensor yang digunakan oleh SmartLine QR Rover untuk
+                                        mengikut garisan pada lantai?</p>
                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 10px;">
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q1" value="A"> A. Sensor ultrasonik</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q1" value="B"> B. Sensor garisan inframerah (IR)</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q1" value="C"> C. Kamera biasa</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q1" value="D"> D. Sensor sentuhan</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q1" value="A"> A. Sensor ultrasonik</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q1" value="B"> B. Sensor garisan inframerah
+                                            (IR)</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q1" value="C"> C. Kamera biasa</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q1" value="D"> D. Sensor sentuhan</label>
                                     </div>
                                 </div>
 
-                                <div class="quiz-question" style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
-                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan 2:</strong> Apakah fungsi utama HuskyLens dalam sistem SmartLine QR Rover?</p>
+                                <div class="quiz-question"
+                                    style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan
+                                            2:</strong> Apakah fungsi utama HuskyLens dalam sistem SmartLine QR Rover?
+                                    </p>
                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 10px;">
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q2" value="A"> A. Mengawal kelajuan motor</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q2" value="B"> B. Menyimpan rekod perjalanan</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q2" value="C"> C. Mengenali kod QR dan memproses imej dengan AI</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q2" value="D"> D. Mengukur jarak halangan</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q2" value="A"> A. Mengawal kelajuan motor</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q2" value="B"> B. Menyimpan rekod perjalanan</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q2" value="C"> C. Mengenali kod QR dan memproses imej
+                                            dengan AI</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q2" value="D"> D. Mengukur jarak halangan</label>
                                     </div>
                                 </div>
 
-                                <div class="quiz-question" style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
-                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan 3:</strong> Apakah yang berlaku secara automatik apabila sensor ultrasonik mengesan halangan dalam jarak yang ditetapkan?</p>
+                                <div class="quiz-question"
+                                    style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan
+                                            3:</strong> Apakah yang berlaku secara automatik apabila sensor ultrasonik
+                                        mengesan halangan dalam jarak yang ditetapkan?</p>
                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 10px;">
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q3" value="A"> A. Rover memperlahankan kelajuan sahaja</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q3" value="B"> B. Rover berhenti serta-merta dan menunggu halangan disingkirkan</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q3" value="C"> C. Rover menghantar isyarat bunyi amaran</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q3" value="D"> D. Rover berpatah balik ke titik mula</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q3" value="A"> A. Rover memperlahankan kelajuan
+                                            sahaja</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q3" value="B"> B. Rover berhenti serta-merta dan
+                                            menunggu halangan disingkirkan</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q3" value="C"> C. Rover menghantar isyarat bunyi
+                                            amaran</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q3" value="D"> D. Rover berpatah balik ke titik
+                                            mula</label>
                                     </div>
                                 </div>
 
-                                <div class="quiz-question" style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
-                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan 4:</strong> Antara berikut, apakah singkatan yang BETUL bagi AGV dalam konteks SmartLine QR Rover?</p>
+                                <div class="quiz-question"
+                                    style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan
+                                            4:</strong> Antara berikut, apakah singkatan yang BETUL bagi AGV dalam
+                                        konteks SmartLine QR Rover?</p>
                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 10px;">
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q4" value="A"> A. Autonomous Grid Vehicle</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q4" value="B"> B. Automated Guided Vehicle</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q4" value="C"> C. Advanced Gear Vehicle</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q4" value="D"> D. Artificial Guidance Vehicle</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q4" value="A"> A. Autonomous Grid Vehicle</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q4" value="B"> B. Automated Guided Vehicle</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q4" value="C"> C. Advanced Gear Vehicle</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q4" value="D"> D. Artificial Guidance Vehicle</label>
                                     </div>
                                 </div>
 
-                                <div class="quiz-question" style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
-                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan 5:</strong> Apakah julat voltan bekalan kuasa yang BETUL untuk operasi SmartLine QR Rover?</p>
+                                <div class="quiz-question"
+                                    style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan
+                                            5:</strong> Apakah julat voltan bekalan kuasa yang BETUL untuk operasi
+                                        SmartLine QR Rover?</p>
                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 10px;">
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q5" value="A"> A. 3.3V – 5V DC</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q5" value="B"> B. 5V – 6V DC</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q5" value="C"> C. 7.4V – 12V DC</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q5" value="D"> D. 12V – 24V DC</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q5" value="A"> A. 3.3V – 5V DC</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q5" value="B"> B. 5V – 6V DC</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q5" value="C"> C. 7.4V – 12V DC</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q5" value="D"> D. 12V – 24V DC</label>
                                     </div>
                                 </div>
 
-                                <div class="quiz-question" style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
-                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan 6:</strong> Bagaimana HuskyLens berkomunikasi dengan mikropengawal Arduino dalam sistem ini?</p>
+                                <div class="quiz-question"
+                                    style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan
+                                            6:</strong> Bagaimana HuskyLens berkomunikasi dengan mikropengawal Arduino
+                                        dalam sistem ini?</p>
                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 10px;">
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q6" value="A"> A. Melalui Bluetooth sahaja</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q6" value="B"> B. Melalui protokol I2C atau UART</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q6" value="C"> C. Melalui WiFi</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q6" value="D"> D. Melalui port USB sahaja</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q6" value="A"> A. Melalui Bluetooth sahaja</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q6" value="B"> B. Melalui protokol I2C atau
+                                            UART</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q6" value="C"> C. Melalui WiFi</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q6" value="D"> D. Melalui port USB sahaja</label>
                                     </div>
                                 </div>
 
-                                <div class="quiz-question" style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
-                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan 7:</strong> Apakah komponen yang bertindak sebagai "otak utama" yang memproses semua input dan mengawal semua output dalam SmartLine QR Rover?</p>
+                                <div class="quiz-question"
+                                    style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan
+                                            7:</strong> Apakah komponen yang bertindak sebagai "otak utama" yang
+                                        memproses semua input dan mengawal semua output dalam SmartLine QR Rover?</p>
                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 10px;">
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q7" value="A"> A. HuskyLens AI Vision</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q7" value="B"> B. Motor Driver Module</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q7" value="C"> C. Mikropengawal Arduino</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q7" value="D"> D. Sensor Ultrasonik</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q7" value="A"> A. HuskyLens AI Vision</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q7" value="B"> B. Motor Driver Module</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q7" value="C"> C. Mikropengawal Arduino</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q7" value="D"> D. Sensor Ultrasonik</label>
                                     </div>
                                 </div>
 
-                                <div class="quiz-question" style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
-                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan 8:</strong> Apakah casis (badan) SmartLine QR Rover diperbuat daripada?</p>
+                                <div class="quiz-question"
+                                    style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan
+                                            8:</strong> Apakah casis (badan) SmartLine QR Rover diperbuat daripada?</p>
                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 10px;">
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q8" value="A"> A. Aluminium dan keluli</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q8" value="B"> B. Akrilik dan plastik</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q8" value="C"> C. Kayu dan plastik</label>
-                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="q8" value="D"> D. Getah dan aluminium</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q8" value="A"> A. Aluminium dan keluli</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q8" value="B"> B. Akrilik dan plastik</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q8" value="C"> C. Kayu dan plastik</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q8" value="D"> D. Getah dan aluminium</label>
                                     </div>
                                 </div>
 
-                                <button type="button" class="btn btn-primary" onclick="semakKuiz()" id="submit-quiz-btn" style="width: fit-content; margin-top: 10px; padding: 12px 28px; font-size: 1rem;">
+                                <button type="button" class="btn btn-primary" onclick="semakKuiz()" id="submit-quiz-btn"
+                                    style="width: fit-content; margin-top: 10px; padding: 12px 28px; font-size: 1rem;">
                                     <i class="fa-solid fa-check-double"></i> Semak Jawapan
                                 </button>
                             </form>
 
                             <!-- QUIZ RESULTS (Hidden by default) -->
-                            <div id="quiz-result-container" style="display: none; flex-direction: column; gap: 20px; margin-top: 30px;">
+                            <div id="quiz-result-container"
+                                style="display: none; flex-direction: column; gap: 20px; margin-top: 30px;">
                                 <div id="quiz-alert" style="padding: 24px; border-radius: 8px; text-align: center;">
                                     <h3 id="quiz-alert-title" style="margin-bottom: 10px; font-size: 1.5rem;"></h3>
-                                    <h1 id="quiz-score" style="font-size: 4rem; margin-bottom: 10px; font-weight: 900;"></h1>
+                                    <h1 id="quiz-score" style="font-size: 4rem; margin-bottom: 10px; font-weight: 900;">
+                                    </h1>
                                     <p id="quiz-alert-desc" style="font-size: 1rem;"></p>
                                 </div>
 
-                                <div id="quiz-explanations" style="display: none; background: rgba(16, 185, 129, 0.05); padding: 20px; border-radius: 8px; border: 1px solid var(--color-green); margin-bottom: 20px;">
-                                    <h4 style="color: var(--color-green); margin-bottom: 15px;"><i class="fa-solid fa-book-open"></i> Ulasan Jawapan (Nota Tambahan)</h4>
-                                    <ul style="color: var(--text-secondary); font-size: 0.9rem; margin-left: 15px; display: flex; flex-direction: column; gap: 10px;">
-                                        <li><strong>S1 (B):</strong> Betul! Syabas! Sensor garisan menggunakan cahaya inframerah (IR) untuk membezakan garisan hitam dan permukaan cerah.</li>
-                                        <li><strong>S2 (C):</strong> Betul! Syabas! HuskyLens memproses imej secara dalaman dengan AI dan menghantar hasil pengesanan ke Arduino.</li>
-                                        <li><strong>S3 (B):</strong> Betul! Syabas! Selepas berhenti, rover akan teruskan sendiri apabila halangan tiada — tiada tindakan manusia diperlukan.</li>
-                                        <li><strong>S4 (B):</strong> Betul! Syabas! AGV ialah Automated Guided Vehicle — kenderaan berautonomi yang digunakan dalam industri.</li>
-                                        <li><strong>S5 (C):</strong> Betul! Syabas! Voltan 7.4V-12V sesuai untuk motor DC dan elektronik dalam sistem ini.</li>
-                                        <li><strong>S6 (B):</strong> Betul! Syabas! I2C dan UART adalah protokol komunikasi berwayar yang biasa digunakan dalam robotik.</li>
-                                        <li><strong>S7 (C):</strong> Betul! Syabas! Arduino memproses semua isyarat dari sensor dan menghantar arahan ke motor driver.</li>
-                                        <li><strong>S8 (B):</strong> Betul! Syabas! Akrilik dan plastik dipilih kerana ringan, murah, dan mudah diproses untuk prototaip.</li>
+                                <div id="quiz-explanations"
+                                    style="display: none; background: rgba(16, 185, 129, 0.05); padding: 20px; border-radius: 8px; border: 1px solid var(--color-green); margin-bottom: 20px;">
+                                    <h4 style="color: var(--color-green); margin-bottom: 15px;"><i
+                                            class="fa-solid fa-book-open"></i> Ulasan Jawapan (Nota Tambahan)</h4>
+                                    <ul
+                                        style="color: var(--text-secondary); font-size: 0.9rem; margin-left: 15px; display: flex; flex-direction: column; gap: 10px;">
+                                        <li><strong>S1 (B):</strong> Betul! Syabas! Sensor garisan menggunakan cahaya
+                                            inframerah (IR) untuk membezakan garisan hitam dan permukaan cerah.</li>
+                                        <li><strong>S2 (C):</strong> Betul! Syabas! HuskyLens memproses imej secara
+                                            dalaman dengan AI dan menghantar hasil pengesanan ke Arduino.</li>
+                                        <li><strong>S3 (B):</strong> Betul! Syabas! Selepas berhenti, rover akan
+                                            teruskan sendiri apabila halangan tiada — tiada tindakan manusia diperlukan.
+                                        </li>
+                                        <li><strong>S4 (B):</strong> Betul! Syabas! AGV ialah Automated Guided Vehicle —
+                                            kenderaan berautonomi yang digunakan dalam industri.</li>
+                                        <li><strong>S5 (C):</strong> Betul! Syabas! Voltan 7.4V-12V sesuai untuk motor
+                                            DC dan elektronik dalam sistem ini.</li>
+                                        <li><strong>S6 (B):</strong> Betul! Syabas! I2C dan UART adalah protokol
+                                            komunikasi berwayar yang biasa digunakan dalam robotik.</li>
+                                        <li><strong>S7 (C):</strong> Betul! Syabas! Arduino memproses semua isyarat dari
+                                            sensor dan menghantar arahan ke motor driver.</li>
+                                        <li><strong>S8 (B):</strong> Betul! Syabas! Akrilik dan plastik dipilih kerana
+                                            ringan, murah, dan mudah diproses untuk prototaip.</li>
                                     </ul>
                                 </div>
 
-                                <div id="certificate-form-container" style="background: rgba(30, 41, 59, 0.5); padding: 24px; border-radius: 8px; border: 1px solid var(--color-blue); display: none;">
-                                    <h3 style="color: var(--color-cyan); margin-bottom: 20px;"><i class="fa-solid fa-file-pdf"></i> Jana Slip Keputusan PDF</h3>
+                                <div id="certificate-form-container"
+                                    style="background: rgba(30, 41, 59, 0.5); padding: 24px; border-radius: 8px; border: 1px solid var(--color-blue); display: none;">
+                                    <h3 style="color: var(--color-cyan); margin-bottom: 20px;"><i
+                                            class="fa-solid fa-file-pdf"></i> Jana Slip Keputusan PDF</h3>
                                     <div style="display: flex; flex-direction: column; gap: 15px;">
                                         <div>
-                                            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Nama Penuh</label>
-                                            <input type="text" id="cert-name" placeholder="Contoh: Ahmad bin Abdullah" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid var(--text-muted); background: var(--bg-dark); color: white;">
+                                            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Nama
+                                                Penuh</label>
+                                            <input type="text" id="cert-name" placeholder="Contoh: Ahmad bin Abdullah"
+                                                style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid var(--text-muted); background: var(--bg-dark); color: white;">
                                         </div>
                                         <div>
-                                            <label style="display: block; margin-bottom: 5px; font-weight: 600;">No. Kad Pengenalan</label>
-                                            <input type="text" id="cert-ic" placeholder="001231-14-5678" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid var(--text-muted); background: var(--bg-dark); color: white;">
+                                            <label style="display: block; margin-bottom: 5px; font-weight: 600;">No. Kad
+                                                Pengenalan</label>
+                                            <input type="text" id="cert-ic" placeholder="001231-14-5678"
+                                                style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid var(--text-muted); background: var(--bg-dark); color: white;">
                                         </div>
                                         <div>
-                                            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Program / Kursus</label>
-                                            <input type="text" id="cert-program" placeholder="Contoh: Teknologi Kenderaan Elektrik" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid var(--text-muted); background: var(--bg-dark); color: white;">
+                                            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Program
+                                                / Kursus</label>
+                                            <input type="text" id="cert-program"
+                                                placeholder="Contoh: Teknologi Kenderaan Elektrik"
+                                                style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid var(--text-muted); background: var(--bg-dark); color: white;">
                                         </div>
                                         <div>
-                                            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Institusi</label>
-                                            <input type="text" id="cert-institution" value="ADTEC JTM Kampus Kuala Lumpur" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid var(--text-muted); background: var(--bg-dark); color: white;">
+                                            <label
+                                                style="display: block; margin-bottom: 5px; font-weight: 600;">Institusi</label>
+                                            <input type="text" id="cert-institution"
+                                                value="ADTEC JTM Kampus Kuala Lumpur"
+                                                style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid var(--text-muted); background: var(--bg-dark); color: white;">
                                         </div>
                                         <div style="display: flex; gap: 10px; margin-top: 10px;">
-                                            <button type="button" class="btn btn-primary" onclick="janaPDF()"><i class="fa-solid fa-download"></i> Pratonton &amp; Jana PDF</button>
-                                            <button type="button" class="btn btn-outline" onclick="resetKuiz()">Cuba Semula</button>
+                                            <button type="button" class="btn btn-primary" onclick="janaPDF()"><i
+                                                    class="fa-solid fa-download"></i> Pratonton &amp; Jana PDF</button>
+                                            <button type="button" class="btn btn-outline" onclick="resetKuiz()">Cuba
+                                                Semula</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div id="fail-actions-container" style="display: none; justify-content: center; margin-top: 10px;">
-                                    <button type="button" class="btn btn-outline" onclick="resetKuiz()"><i class="fa-solid fa-rotate-right"></i> Cuba Semula</button>
+                                <div id="fail-actions-container"
+                                    style="display: none; justify-content: center; margin-top: 10px;">
+                                    <button type="button" class="btn btn-outline" onclick="resetKuiz()"><i
+                                            class="fa-solid fa-rotate-right"></i> Cuba Semula</button>
                                 </div>
                             </div>
 
@@ -650,25 +892,29 @@
                     </div>
 
 
-            <!-- ========================================== -->
-            </section>`n`n            <!-- TAB 2: DIGITAL POSTER VIEWER (EPROSIDING) -->
+                    <!-- ========================================== -->
+            </section> <!-- TAB 2: DIGITAL POSTER VIEWER (EPROSIDING) -->
             <!-- ========================================== -->
             <section id="tab-poster" class="tab-panel">
                 <div class="panel-header">
                     <div>
-                        <h2><i class="fa-solid fa-file-contract text-cyan"></i> Poster Digital eProsiding MIPAC TVET 2026</h2>
+                        <h2><i class="fa-solid fa-file-contract text-cyan"></i> Poster Digital eProsiding MIPAC TVET
+                            2026</h2>
                         <p>Format rasmi poster kertas kajian & dokumen prosiding A4 Kategori AI DigiTeach.</p>
                     </div>
                     <div>
-                        <a href="Poster_Projek_SmartLine_QR_Rover_MIPACTVET2026.pdf" target="_blank" class="btn btn-primary">
+                        <a href="Poster_Projek_SmartLine_QR_Rover_MIPACTVET2026.pdf" target="_blank"
+                            class="btn btn-primary">
                             <i class="fa-solid fa-download"></i> Buka / Muat Turun PDF
                         </a>
                     </div>
                 </div>
 
                 <!-- A4 PRINTABLE POSTER CONTAINER -->
-                <div class="poster-paper-container" style="height: 80vh; padding: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color);">
-                    <embed src="Poster_Projek_SmartLine_QR_Rover_MIPACTVET2026.pdf" type="application/pdf" width="100%" height="100%" />
+                <div class="poster-paper-container"
+                    style="height: 80vh; padding: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color);">
+                    <embed src="Poster_Projek_SmartLine_QR_Rover_MIPACTVET2026.pdf" type="application/pdf" width="100%"
+                        height="100%" />
                 </div>
             </section>
 
@@ -680,13 +926,14 @@
             <section id="tab-analytics" class="tab-panel">
                 <div class="panel-header">
                     <div>
-                        <h2><i class="fa-solid fa-chart-line text-cyan"></i> Hasil Pengujian & Analitik Pre/Post Test</h2>
+                        <h2><i class="fa-solid fa-chart-line text-cyan"></i> Hasil Pengujian & Analitik Pre/Post Test
+                        </h2>
                         <p>Penilaian impak amali pelatih TVET sebelum dan selepas penggunaan SmartLine QR Rover.</p>
                     </div>
                 </div>
 
                 <div class="analytics-grid">
-                    
+
                     <div class="card card-glow">
                         <div class="card-header">
                             <span><i class="fa-solid fa-chart-bar"></i> Perbandingan Peratusan Kefahaman Pelatih</span>
@@ -738,12 +985,13 @@
                 <div class="panel-header">
                     <div>
                         <h2><i class="fa-solid fa-diagram-project text-cyan"></i> Pemetaan NOSS G452-011-4:2025</h2>
-                        <p>Penjajaran langsung komponen SmartLine QR Rover dengan Competency Unit ADAS Diagnosis Level 4.</p>
+                        <p>Penjajaran langsung komponen SmartLine QR Rover dengan Competency Unit ADAS Diagnosis Level
+                            4.</p>
                     </div>
                 </div>
 
                 <div class="noss-grid">
-                    
+
                     <div class="card card-glow">
                         <div class="card-header">
                             <span><i class="fa-solid fa-camera text-cyan"></i> CU05-W02: Diagnose Camera System</span>
@@ -751,23 +999,30 @@
                         <div class="card-body">
                             <span class="badge badge-category">Komponen Rover: HuskyLens AI Vision Camera</span>
                             <ul class="noss-list">
-                                <li><i class="fa-solid fa-check text-success"></i> Mensimulasikan modul Traffic Sign Recognition (TSR) kenderaan autonomi.</li>
-                                <li><i class="fa-solid fa-check text-success"></i> Melatih pelatih menguji sudut pengesanan visual dan pemprosesan tag QR.</li>
-                                <li><i class="fa-solid fa-check text-success"></i> Diagnostik gangguan pencahayaan & optical alignment defect.</li>
+                                <li><i class="fa-solid fa-check text-success"></i> Mensimulasikan modul Traffic Sign
+                                    Recognition (TSR) kenderaan autonomi.</li>
+                                <li><i class="fa-solid fa-check text-success"></i> Melatih pelatih menguji sudut
+                                    pengesanan visual dan pemprosesan tag QR.</li>
+                                <li><i class="fa-solid fa-check text-success"></i> Diagnostik gangguan pencahayaan &
+                                    optical alignment defect.</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="card card-glow">
                         <div class="card-header">
-                            <span><i class="fa-solid fa-sensor text-amber"></i> CU05-W03: Diagnose Ultrasonic Sensor System</span>
+                            <span><i class="fa-solid fa-sensor text-amber"></i> CU05-W03: Diagnose Ultrasonic Sensor
+                                System</span>
                         </div>
                         <div class="card-body">
                             <span class="badge badge-category">Komponen Rover: Dual Ultrasonic Range Sensor</span>
                             <ul class="noss-list">
-                                <li><i class="fa-solid fa-check text-success"></i> Mensimulasikan modul Automatic Emergency Braking (AEB) & Park Assist.</li>
-                                <li><i class="fa-solid fa-check text-success"></i> Melatih logik ambang jarak zon bahaya (< 20cm emergency trigger).</li>
-                                <li><i class="fa-solid fa-check text-success"></i> Ujian kerosakan talian isyarat & tindak balas ECU henti automatik.</li>
+                                <li><i class="fa-solid fa-check text-success"></i> Mensimulasikan modul Automatic
+                                    Emergency Braking (AEB) & Park Assist.</li>
+                                <li><i class="fa-solid fa-check text-success"></i> Melatih logik ambang jarak zon bahaya
+                                    (< 20cm emergency trigger).</li>
+                                <li><i class="fa-solid fa-check text-success"></i> Ujian kerosakan talian isyarat &
+                                    tindak balas ECU henti automatik.</li>
                             </ul>
                         </div>
                     </div>
@@ -782,7 +1037,8 @@
             <section id="tab-ai-ethics" class="tab-panel">
                 <div class="panel-header">
                     <div>
-                        <h2><i class="fa-solid fa-scale-balanced text-cyan"></i> Penggunaan AI & Sijil Etika AI DigiTeach</h2>
+                        <h2><i class="fa-solid fa-scale-balanced text-cyan"></i> Penggunaan AI & Sijil Etika AI
+                            DigiTeach</h2>
                         <p>Pengisytiharan pematuhan etika dan skop alat AI generatif dalam projek.</p>
                     </div>
                 </div>
@@ -828,57 +1084,91 @@
 
     <!-- FOOTER -->
     <footer class="app-footer">
-        <p>&copy; 2026 Kumpulan Innovate TVET - ADTEC JTM Kampus Kuala Lumpur. Dihasilkan untuk Pertandingan MIPAC TVET 2026 Kategori AI DigiTeach.</p>
+        <p>&copy; 2026 Kumpulan Innovate TVET - ADTEC JTM Kampus Kuala Lumpur. Dihasilkan untuk Pertandingan MIPAC TVET
+            2026 Kategori AI DigiTeach.</p>
     </footer>
 
     <!-- HIDDEN CERTIFICATE TEMPLATE -->
     <div style="position: absolute; top: -9999px; left: -9999px; overflow: hidden;">
-        <div id="certificate-template" style="width: 794px; height: 1123px; background: white; color: #1e293b; font-family: Arial, sans-serif; position: relative; box-sizing: border-box;">
-            
+        <div id="certificate-template"
+            style="width: 794px; height: 1123px; background: white; color: #1e293b; font-family: Arial, sans-serif; position: relative; box-sizing: border-box;">
+
             <!-- HEADER -->
-            <div style="background-color: #0b1c3c; padding: 30px 40px; border-bottom: 15px solid #f59e0b; display: flex; align-items: center; justify-content: center; position: relative;">
-                <img src="assets/site_image_3.jpg" alt="Logo" style="height: 90px; position: absolute; left: 40px; border-radius: 8px;">
+            <div
+                style="background-color: #0b1c3c; padding: 30px 40px; border-bottom: 15px solid #f59e0b; display: flex; align-items: center; justify-content: center; position: relative;">
+                <img src="assets/site_image_3.jpg" alt="Logo"
+                    style="height: 90px; position: absolute; left: 40px; border-radius: 8px;">
                 <div style="text-align: center; margin-left: 10px;">
-                    <h1 style="color: #fbbf24; font-size: 26px; margin: 0 0 10px 0; text-transform: uppercase;">ADTEC JTM KAMPUS KUALA LUMPUR</h1>
-                    <h2 style="color: white; font-size: 20px; margin: 0 0 10px 0; text-transform: uppercase;">SLIP KEPUTUSAN KUIZ</h2>
-                    <p style="color: white; font-size: 16px; margin: 0; font-weight: bold;">SmartLine QR Rover | Modul Pembelajaran Interaktif</p>
+                    <h1 style="color: #fbbf24; font-size: 26px; margin: 0 0 10px 0; text-transform: uppercase;">ADTEC
+                        JTM KAMPUS KUALA LUMPUR</h1>
+                    <h2 style="color: white; font-size: 20px; margin: 0 0 10px 0; text-transform: uppercase;">SLIP
+                        KEPUTUSAN KUIZ</h2>
+                    <p style="color: white; font-size: 16px; margin: 0; font-weight: bold;">SmartLine QR Rover | Modul
+                        Pembelajaran Interaktif</p>
                 </div>
             </div>
 
             <div style="padding: 40px;">
                 <!-- MAKLUMAT PELAJAR -->
-                <h3 style="color: #1e3a8a; font-size: 20px; margin-bottom: 10px; text-transform: uppercase; border-bottom: 2px solid #1e3a8a; padding-bottom: 5px;">MAKLUMAT PELAJAR</h3>
+                <h3
+                    style="color: #1e3a8a; font-size: 20px; margin-bottom: 10px; text-transform: uppercase; border-bottom: 2px solid #1e3a8a; padding-bottom: 5px;">
+                    MAKLUMAT PELAJAR</h3>
                 <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 16px;">
-                    <tr><td style="padding: 8px 0; width: 30%; color: #1e3a8a; font-weight: bold;">Nama :</td><td style="padding: 8px 0;" id="print-name"></td></tr>
-                    <tr><td style="padding: 8px 0; color: #1e3a8a; font-weight: bold;">No. Kad Pengenalan :</td><td style="padding: 8px 0;" id="print-ic"></td></tr>
-                    <tr><td style="padding: 8px 0; color: #1e3a8a; font-weight: bold;">Program / Kursus :</td><td style="padding: 8px 0;" id="print-program"></td></tr>
-                    <tr><td style="padding: 8px 0; color: #1e3a8a; font-weight: bold;">Institusi :</td><td style="padding: 8px 0;" id="print-institution"></td></tr>
-                    <tr><td style="padding: 8px 0; color: #1e3a8a; font-weight: bold;">Tarikh & Masa :</td><td style="padding: 8px 0;" id="print-date"></td></tr>
+                    <tr>
+                        <td style="padding: 8px 0; width: 30%; color: #1e3a8a; font-weight: bold;">Nama :</td>
+                        <td style="padding: 8px 0;" id="print-name"></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px 0; color: #1e3a8a; font-weight: bold;">No. Kad Pengenalan :</td>
+                        <td style="padding: 8px 0;" id="print-ic"></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px 0; color: #1e3a8a; font-weight: bold;">Program / Kursus :</td>
+                        <td style="padding: 8px 0;" id="print-program"></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px 0; color: #1e3a8a; font-weight: bold;">Institusi :</td>
+                        <td style="padding: 8px 0;" id="print-institution"></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px 0; color: #1e3a8a; font-weight: bold;">Tarikh & Masa :</td>
+                        <td style="padding: 8px 0;" id="print-date"></td>
+                    </tr>
                 </table>
 
                 <!-- KEPUTUSAN KUIZ -->
-                <h3 style="color: #1e3a8a; font-size: 20px; margin-bottom: 10px; text-transform: uppercase; border-bottom: 2px solid #1e3a8a; padding-bottom: 5px;">KEPUTUSAN KUIZ</h3>
-                <div style="background-color: #e6f9ec; border-radius: 8px; padding: 20px; text-align: center; margin-bottom: 30px;">
-                    <div style="font-size: 48px; font-weight: bold; color: #10b981; margin-bottom: 10px;" id="print-score">8 / 8</div>
-                    <div style="font-size: 18px; font-weight: bold; color: #10b981; margin-bottom: 10px;" id="print-pct">100% | Had Lulus: 75%</div>
+                <h3
+                    style="color: #1e3a8a; font-size: 20px; margin-bottom: 10px; text-transform: uppercase; border-bottom: 2px solid #1e3a8a; padding-bottom: 5px;">
+                    KEPUTUSAN KUIZ</h3>
+                <div
+                    style="background-color: #e6f9ec; border-radius: 8px; padding: 20px; text-align: center; margin-bottom: 30px;">
+                    <div style="font-size: 48px; font-weight: bold; color: #10b981; margin-bottom: 10px;"
+                        id="print-score">8 / 8</div>
+                    <div style="font-size: 18px; font-weight: bold; color: #10b981; margin-bottom: 10px;"
+                        id="print-pct">100% | Had Lulus: 75%</div>
                     <div style="font-size: 24px; font-weight: bold; color: #10b981;" id="print-status">[LULUS]</div>
                 </div>
 
                 <!-- BUTIRAN JAWAPAN -->
-                <h3 style="color: #1e3a8a; font-size: 20px; margin-bottom: 10px; text-transform: uppercase; border-bottom: 2px solid #1e3a8a; padding-bottom: 5px;">BUTIRAN JAWAPAN</h3>
+                <h3
+                    style="color: #1e3a8a; font-size: 20px; margin-bottom: 10px; text-transform: uppercase; border-bottom: 2px solid #1e3a8a; padding-bottom: 5px;">
+                    BUTIRAN JAWAPAN</h3>
                 <table style="width: 100%; border-collapse: collapse; font-size: 16px;" id="print-answers">
                     <!-- Populated dynamically by app.js -->
                 </table>
             </div>
 
             <!-- FOOTER -->
-            <div style="position: absolute; bottom: 0; left: 0; width: 100%; background-color: #0b1c3c; padding: 20px; text-align: center; box-sizing: border-box;">
-                <p style="color: #fbbf24; font-size: 14px; margin: 0 0 10px 0; font-weight: bold;">ADTEC JTM Kampus Kuala Lumpur | Jabatan Tenaga Manusia</p>
-                <p style="color: #cbd5e1; font-size: 12px; margin: 0;">Dokumen ini dijana secara automatik oleh sistem e-Pembelajaran.</p>
+            <div
+                style="position: absolute; bottom: 0; left: 0; width: 100%; background-color: #0b1c3c; padding: 20px; text-align: center; box-sizing: border-box;">
+                <p style="color: #fbbf24; font-size: 14px; margin: 0 0 10px 0; font-weight: bold;">ADTEC JTM Kampus
+                    Kuala Lumpur | Jabatan Tenaga Manusia</p>
+                <p style="color: #cbd5e1; font-size: 12px; margin: 0;">Dokumen ini dijana secara automatik oleh sistem
+                    e-Pembelajaran.</p>
             </div>
         </div>
     </div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="app.js?v=14"></script>
@@ -901,4 +1191,5 @@
         }
     </script>
 </body>
+
 </html>
