@@ -20,7 +20,7 @@
     <!-- html2canvas and jsPDF for Certificate Generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <link rel="stylesheet" href="style.css?v=18">
+    <link rel="stylesheet" href="style.css?v=17">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192.jpg">
     <meta name="theme-color" content="#06B6D4">
@@ -467,7 +467,8 @@
                                     <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;">
                                         <span
                                             style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">1</span>
-                                        Semakan Awal Sebelum Hidupkan Rover</h4>
+                                        Semakan Awal Sebelum Hidupkan Rover
+                                    </h4>
                                     <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">
                                         Pastikan semua komponen berada dalam keadaan baik sebelum bekalan kuasa
                                         dihidupkan.</p>
@@ -492,7 +493,8 @@
                                     <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;">
                                         <span
                                             style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">2</span>
-                                        Hidupkan Rover dan Uji Sensor Garisan</h4>
+                                        Hidupkan Rover dan Uji Sensor Garisan
+                                    </h4>
                                     <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">
                                         Letakkan rover di atas trek garisan dan uji tindakbalas sensor.</p>
                                     <ul
@@ -515,7 +517,8 @@
                                     <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;">
                                         <span
                                             style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">3</span>
-                                        Uji Pengesanan Halangan</h4>
+                                        Uji Pengesanan Halangan
+                                    </h4>
                                     <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Semasa
                                         rover bergerak, uji fungsi berhenti automatik.</p>
                                     <ul
@@ -543,7 +546,8 @@
                                     <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;">
                                         <span
                                             style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">4</span>
-                                        Uji Kawalan QR Code</h4>
+                                        Uji Kawalan QR Code
+                                    </h4>
                                     <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Gunakan
                                         kad QR yang disediakan untuk uji setiap arahan.</p>
                                     <ul
@@ -565,7 +569,8 @@
                                     <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem;">
                                         <span
                                             style="background: var(--color-cyan); color: black; padding: 2px 8px; border-radius: 50%; margin-right: 8px; font-size: 0.9rem; font-weight: bold;">5</span>
-                                        Penutupan dan Refleksi</h4>
+                                        Penutupan dan Refleksi
+                                    </h4>
                                     <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">
                                         Selesaikan sesi amali dengan betul.</p>
                                     <ul
@@ -955,14 +960,14 @@
                             <div class="metric-icon bg-green"><i class="fa-solid fa-user-check"></i></div>
                             <div class="metric-data">
                                 <span class="metric-value">92.0%</span>
-                                <span class="metric-label">Kadar Keberkesanan Deduksi DTC</span>
+                                <span class="metric-label">Kadar Keberkesanan Diagnostik DTC</span>
                             </div>
                         </div>
                         <div class="metric-card">
                             <div class="metric-icon bg-gold"><i class="fa-solid fa-clock"></i></div>
                             <div class="metric-data">
                                 <span class="metric-value">-65.0%</span>
-                                <span class="metric-label">Masa Latihan Diagnostik Dibutuhkan</span>
+                                <span class="metric-label">Masa Latihan Diagnostik Diperlukan</span>
                             </div>
                         </div>
                         <div class="metric-card">
@@ -1171,7 +1176,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="app.js?v=18"></script>
+    <script src="app.js?v=17"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -1182,7 +1187,7 @@
             if ('caches' in window) {
                 caches.keys().then(names => {
                     for (let name of names) {
-                        if (name !== 'qr-rover-v18') {
+                        if (name !== 'qr-rover-v17') {
                             caches.delete(name);
                         }
                     }
