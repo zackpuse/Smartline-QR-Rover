@@ -196,7 +196,7 @@ body {
     padding: 24px 16px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .sidebar-header h3 {
@@ -270,6 +270,7 @@ body {
     border-radius: var(--radius-md);
     padding: 14px;
     font-size: 12px;
+    margin-top: auto;
 }
 
 .team-title {
