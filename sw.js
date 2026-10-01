@@ -1,4 +1,4 @@
-const CACHE_NAME = 'qr-rover-v17';
+const CACHE_NAME = 'qr-rover-v18';
 const ASSETS = [
     './',
     './index.html',
