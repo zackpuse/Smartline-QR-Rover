@@ -1,0 +1,20 @@
+{
+  "name": "Smartline QR Rover",
+  "short_name": "QR Rover",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#050811",
+  "theme_color": "#06B6D4",
+  "icons": [
+    {
+      "src": "icon-192.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "icon-512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
