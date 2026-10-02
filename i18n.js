@@ -246,54 +246,57 @@ const translations = {
 let currentLang = localStorage.getItem('appLang') || 'ms';
 
 // Function to translate the page if English is selected
-function applyTranslation() {
-    if (currentLang === 'ms') return; // Default language, no need to replace DOM
-    
+function walkAndTranslate(node) {
     const enDict = translations['en'];
-    
-    function walkAndTranslate(node) {
-        if (node.nodeType === Node.TEXT_NODE) {
-            let text = node.textContent.trim();
-            if (text && enDict[text]) {
-                node.textContent = node.textContent.replace(text, enDict[text]);
-            } else {
-                // Try to handle multiline weird spacings by normalizing spaces
-                let normalizedText = text.replace(/\s+/g, ' ');
-                for (let key in enDict) {
-                    let normalizedKey = key.replace(/\s+/g, ' ');
-                    if (normalizedText === normalizedKey) {
-                        node.textContent = enDict[key];
-                        break;
-                    }
-                }
-            }
-        } else if (node.nodeType === Node.ELEMENT_NODE) {
-            if (node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE') {
-                for (let i = 0; i < node.childNodes.length; i++) {
-                    walkAndTranslate(node.childNodes[i]);
+    if (node.nodeType === Node.TEXT_NODE) {
+        let text = node.textContent.trim();
+        if (text && enDict[text]) {
+            node.textContent = node.textContent.replace(text, enDict[text]);
+        } else if (text) {
+            // Try to handle multiline weird spacings by normalizing spaces
+            let normalizedText = text.replace(/\s+/g, ' ');
+            for (let key in enDict) {
+                let normalizedKey = key.replace(/\s+/g, ' ');
+                if (normalizedText === normalizedKey) {
+                    node.textContent = enDict[key];
+                    break;
                 }
             }
         }
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+        if (node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE') {
+            for (let i = 0; i < node.childNodes.length; i++) {
+                walkAndTranslate(node.childNodes[i]);
+            }
+        }
     }
-    
+}
+
+function applyTranslation() {
+    if (currentLang === 'ms') return;
     walkAndTranslate(document.body);
 }
 
 // Observe DOM changes to translate dynamically injected text
 const observer = new MutationObserver((mutations) => {
     if (currentLang === 'ms') return;
-    let shouldTranslate = false;
+    
+    // Disconnect to avoid infinite loop when we modify text
+    observer.disconnect();
+    
     mutations.forEach(mutation => {
-        if (mutation.type === 'childList' || mutation.type === 'characterData') {
-            shouldTranslate = true;
+        if (mutation.type === 'childList') {
+            mutation.addedNodes.forEach(node => {
+                if (node.nodeType === Node.ELEMENT_NODE || node.nodeType === Node.TEXT_NODE) {
+                    walkAndTranslate(node);
+                }
+            });
+        } else if (mutation.type === 'characterData') {
+            walkAndTranslate(mutation.target);
         }
     });
-    if (shouldTranslate) {
-        // Disconnect to avoid infinite loop when we modify text
-        observer.disconnect();
-        applyTranslation();
-        observer.observe(document.body, { childList: true, subtree: true, characterData: true });
-    }
+    
+    observer.observe(document.body, { childList: true, subtree: true, characterData: true });
 });
 
 // Switch Language and Reload Page to apply cleanly
