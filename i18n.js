@@ -65,6 +65,7 @@ const translations = {
         "Semak Jawapan": "Check Answers",
         "Cuba Semula": "Try Again",
         "Kiraan Time-To-Collision (TTC)": "Time-To-Collision (TTC) Calculation",
+        "Video Pengenalan Simulator": "Simulator Introduction Video",
         "Kegagalan talian isyarat Trig/Echo sensor ultrasonik. Halangan tidak dikesan.": "Ultrasonic Trig/Echo signal line failure. Obstacle not detected.",
         "Sila pastikan tiada pintasan litar pada breadboard.": "Please ensure there are no short circuits on the breadboard.",
         "DTC STATUS: C0035 ACTIVE": "DTC STATUS: C0035 ACTIVE",
