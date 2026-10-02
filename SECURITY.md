@@ -14,6 +14,6 @@ Hanya versi terkini (*main branch*) bagi aplikasi SmartLine QR Rover yang meneri
 Jika anda menemui sebarang isu keselamatan atau vulnerabiliti (lubang keselamatan) dalam projek ini, **sila jangan buka "Issue" secara awam**. 
 
 Sebaliknya, sila hubungi pembangun projek terus melalui e-mel:
-📧 **[SILA MASUKKAN E-MEL ANDA DI SINI]**
+📧 **paliezas@gmail.com**
 
 Semua laporan akan dipandang serius. Kami akan cuba memberi maklum balas dan menyelesaikan isu tersebut secepat mungkin sebelum ia didedahkan kepada umum.
