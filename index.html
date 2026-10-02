@@ -1177,6 +1177,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="app.js?v=17"></script>
+    <script src="i18n.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -1187,7 +1188,7 @@
             if ('caches' in window) {
                 caches.keys().then(names => {
                     for (let name of names) {
-                        if (name !== 'qr-rover-v17') {
+                        if (name !== 'qr-rover-v20') {
                             caches.delete(name);
                         }
                     }
