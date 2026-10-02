@@ -105,6 +105,9 @@ function cacheDOM() {
     DOM.dtcTitle = document.getElementById('dtc-code-title');
     DOM.dtcDesc = document.getElementById('dtc-desc-text');
     DOM.dtcRemedy = document.getElementById('dtc-remedy-text');
+    DOM.ttcValDist = document.getElementById('ttc-val-dist');
+    DOM.ttcValSpeed = document.getElementById('ttc-val-speed');
+    DOM.ttcValResult = document.getElementById('ttc-val-result');
 }
 
 /* ==========================================================================
@@ -286,6 +289,21 @@ function updateState() {
         if (DOM.speedBadge) DOM.speedBadge.innerText = `Speed: ${simState.speedCmS.toFixed(1)} cm/s`;
         if (DOM.modeBadge) DOM.modeBadge.innerText = `Mode: ${simState.mode}`;
         if (DOM.valUltrasonic) DOM.valUltrasonic.innerText = `${simState.obstacleDist.toFixed(1)} cm`;
+        
+        // Update new TTC Dashboard
+        if (DOM.ttcValDist) DOM.ttcValDist.innerText = simState.obstacleDist.toFixed(1);
+        if (DOM.ttcValSpeed) DOM.ttcValSpeed.innerText = (simState.maxSpeedCmS || 1.0).toFixed(1);
+        if (DOM.ttcValResult) {
+            DOM.ttcValResult.innerText = simState.ttc.toFixed(1);
+            if (simState.ttc < 1.0) {
+                DOM.ttcValResult.style.color = '#ef4444';
+                DOM.ttcValResult.parentNode.style.background = 'rgba(239, 68, 68, 0.1)';
+            } else {
+                DOM.ttcValResult.style.color = '#fbbf24';
+                DOM.ttcValResult.parentNode.style.background = 'rgba(251, 191, 36, 0.1)';
+            }
+        }
+        
         simState.lastUiUpdate = now;
     }
 
