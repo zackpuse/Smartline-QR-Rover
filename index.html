@@ -434,6 +434,38 @@
                                     
                                     <p style="font-size: 0.95rem;">Secara kesimpulannya, walaupun simulasi ini hanya menggunakan sensor ultrasonik, prinsip operasi asasnya secara tepat mencerminkan fungsi sebenar sistem AEB di dunia nyata, iaitu: <strong>mengesan halangan, menilai potensi perlanggaran, dan mengambil tindakan brek proaktif secara automatik sebelum perlanggaran berlaku.</strong></p>
                                 </div>
+                                
+                                <div
+                                    style="background: var(--bg-dark); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color); grid-column: 1 / -1;">
+                                    <h4 style="color: var(--color-amber); margin-bottom: 10px;"><i
+                                            class="fa-solid fa-camera"></i> Kamera AI (HuskyLens) — Object Recognition & Traffic Sign Recognition (TSR)</h4>
+                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Berfungsi sebagai <strong>mata pintar rover</strong> untuk mengesan dan mengenal pasti objek melalui kamera. HuskyLens menggunakan algoritma pembelajaran mesin yang diproses secara dalaman untuk mengenal pasti objek atau corak tertentu dan menghantar maklumat pengesanan kepada ECU melalui protokol <strong>UART atau I²C</strong>.</p>
+                                    
+                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Dalam simulasi ini, pengesanan <strong>Kod QR, tanda atau objek tertentu</strong> digunakan untuk mewakili konsep <strong>Object Recognition</strong> dalam sistem ADAS. Sistem perlu mengenal pasti objek daripada imej kamera sebelum ECU menentukan tindakan yang sesuai berdasarkan objek yang dikesan.</p>
+                                    
+                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Dalam aplikasi ADAS sebenar, kamera digunakan bersama algoritma <strong>Computer Vision dan Artificial Intelligence</strong> untuk mengesan serta mengklasifikasikan objek seperti:</p>
+                                    
+                                    <ul style="font-size: 0.95rem; margin-bottom: 10px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; list-style-type: none; padding-left: 5px;">
+                                        <li>🚗 Kenderaan</li>
+                                        <li>🚶 Pejalan kaki</li>
+                                        <li>🚲 Penunggang basikal</li>
+                                        <li>🚦 Lampu isyarat</li>
+                                        <li>🛑 Papan tanda jalan</li>
+                                        <li>🏍️ Motosikal</li>
+                                        <li>🛣️ Objek / halangan laluan</li>
+                                    </ul>
+
+                                    <p style="font-size: 0.95rem; margin-bottom: 15px;">Bagi <strong>Traffic Sign Recognition (TSR)</strong>, sistem akan mengenal pasti jenis papan tanda dan memberikan maklumat kepada ECU, contohnya tanda had laju, berhenti atau larangan. Maklumat tersebut kemudiannya boleh digunakan oleh sistem kenderaan untuk memberikan amaran atau menyokong fungsi ADAS yang berkaitan.</p>
+                                    
+                                    <div style="background: rgba(245, 158, 11, 0.1); padding: 10px; border-radius: 6px; border: 1px dashed var(--color-amber); margin-bottom: 15px;">
+                                        <strong style="display: block; margin-bottom: 5px; color: var(--color-amber);">Konsep Simulasi:</strong>
+                                        <span style="font-size: 0.85rem;">Camera → Object Recognition → Object Classification → Data kepada ECU → Tindakan</span>
+                                        <strong style="display: block; margin-top: 10px; margin-bottom: 5px; color: var(--text-primary);">Aplikasi ADAS Sebenar:</strong>
+                                        <span style="font-size: 0.85rem;">Camera → AI / Computer Vision → Object Detection & Classification → Tracking/Interpretation → ADAS Decision → Vehicle Action</span>
+                                    </div>
+
+                                    <p style="font-size: 0.95rem;">Oleh itu, HuskyLens boleh dianggap sebagai <strong>platform pembelajaran untuk memahami konsep asas penglihatan berasaskan AI</strong>, manakala sistem ADAS sebenar menggunakan kamera, model AI yang lebih kompleks dan pemprosesan ECU / <em>Domain Controller</em> untuk mengenal pasti serta mentafsir objek dalam persekitaran jalan raya.</p>
+                                </div>
                             </div>
 
                             <div class="formula-box"
