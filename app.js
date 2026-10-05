@@ -647,10 +647,12 @@ window.semakKuiz = function() {
         q2: 'C',
         q3: 'B',
         q4: 'B',
-        q5: 'C',
+        q5: 'B', // New Q5: TTC
         q6: 'B',
         q7: 'C',
-        q8: 'B'
+        q8: 'C', // New Q8: CAN
+        q9: 'C', // New Q9: LKA
+        q10: 'D' // New Q10: Canny Edge
     };
     
     let score = 0;
@@ -693,7 +695,7 @@ window.semakKuiz = function() {
         alertBox.style.border = '2px solid var(--color-danger)';
         alertTitle.textContent = 'MAAF, ANDA GAGAL.';
         alertTitle.style.color = 'var(--color-danger)';
-        alertDesc.textContent = `Anda memerlukan sekurang-kurangnya 6 markah untuk lulus. Anda mendapat ${score}. Sila baca semula nota di atas.`;
+        alertDesc.textContent = `Anda memerlukan sekurang-kurangnya 8 markah untuk lulus. Anda mendapat ${score}. Sila baca semula nota di atas.`;
         if (explanations) explanations.style.display = 'none';
         certForm.style.display = 'none';
         failActions.style.display = 'flex';
@@ -746,7 +748,7 @@ window.janaPDF = function() {
     const pct = Math.round((score / total) * 100);
     
     document.getElementById('print-score').textContent = `${score} / ${total}`;
-    document.getElementById('print-pct').textContent = `${pct}% | Had Lulus: 75%`;
+    document.getElementById('print-pct').textContent = `${pct}% | Had Lulus: 80%`;
     
     const statusEl = document.getElementById('print-status');
     const scoreBox = statusEl.parentElement;
@@ -771,10 +773,12 @@ window.janaPDF = function() {
         q2: { ans: 'C', label: 'S2: Fungsi HuskyLens' },
         q3: { ans: 'B', label: 'S3: Tindakan kesan halangan' },
         q4: { ans: 'B', label: 'S4: Singkatan AGV' },
-        q5: { ans: 'C', label: 'S5: Julat voltan operasi' },
+        q5: { ans: 'B', label: 'S5: Formula risiko perlanggaran (TTC)' },
         q6: { ans: 'B', label: 'S6: Protokol komunikasi HuskyLens' },
         q7: { ans: 'C', label: 'S7: Otak utama sistem' },
-        q8: { ans: 'B', label: 'S8: Bahan casis rover' }
+        q8: { ans: 'C', label: 'S8: Rangkaian komunikasi ECU' },
+        q9: { ans: 'C', label: 'S9: Fungsi ADAS Line Following' },
+        q10: { ans: 'D', label: 'S10: Teknik pengesanan garisan (AI)' }
     };
     
     const printAnswersEl = document.getElementById('print-answers');
@@ -845,8 +849,8 @@ window.scrollToKuiz = function() {
 };
 
 window.updateQuizProgress = function() {
-    const totalQ = 8;
-    const answered = ['q1','q2','q3','q4','q5','q6','q7','q8'].filter(name => {
+    const totalQ = 10;
+    const answered = ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'].filter(name => {
         return document.querySelector(`input[name="${name}"]:checked`);
     }).length;
     const pct = Math.round((answered / totalQ) * 100);

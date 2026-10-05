@@ -754,7 +754,7 @@
                                         style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px;">
                                         Markah Semasa</div>
                                     <div id="live-score-display"
-                                        style="font-size: 2rem; font-weight: 900; color: var(--color-cyan);">0 / 8</div>
+                                        style="font-size: 2rem; font-weight: 900; color: var(--color-cyan);">0 / 10</div>
                                     <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">soalan
                                     </div>
                                 </div>
@@ -763,9 +763,9 @@
                                     <div
                                         style="font-size: 0.8rem; color: var(--color-amber); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px;">
                                         Had Lulus</div>
-                                    <div style="font-size: 2rem; font-weight: 900; color: var(--color-amber);">6 / 8
+                                    <div style="font-size: 2rem; font-weight: 900; color: var(--color-amber);">8 / 10
                                     </div>
-                                    <div style="font-size: 0.8rem; color: var(--color-amber); margin-top: 4px;">(75%)
+                                    <div style="font-size: 0.8rem; color: var(--color-amber); margin-top: 4px;">(80%)
                                     </div>
                                 </div>
                             </div>
@@ -774,7 +774,7 @@
                             <div style="margin-bottom: 24px;">
                                 <div
                                     style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px;">
-                                    <span>Soalan dijawab: <span id="answered-count">0</span>/8</span>
+                                    <span>Soalan dijawab: <span id="answered-count">0</span>/10</span>
                                     <span><span id="answered-pct">0</span>% selesai</span>
                                 </div>
                                 <div style="background: var(--border-color); border-radius: 4px; height: 6px;">
@@ -865,17 +865,16 @@
                                 <div class="quiz-question"
                                     style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
                                     <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan
-                                            5:</strong> Apakah julat voltan bekalan kuasa yang BETUL untuk operasi
-                                        SmartLine QR Rover?</p>
+                                            5:</strong> Apakah formula yang digunakan untuk mengira risiko perlanggaran dalam sistem AEB?</p>
                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 10px;">
                                         <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
-                                                type="radio" name="q5" value="A"> A. 3.3V – 5V DC</label>
+                                                type="radio" name="q5" value="A"> A. TTC = Kelajuan &times; Jarak</label>
                                         <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
-                                                type="radio" name="q5" value="B"> B. 5V – 6V DC</label>
+                                                type="radio" name="q5" value="B"> B. TTC = Jarak Halangan / Kelajuan Semasa</label>
                                         <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
-                                                type="radio" name="q5" value="C"> C. 7.4V – 12V DC</label>
+                                                type="radio" name="q5" value="C"> C. TTC = Jarak / Masa &times; 2</label>
                                         <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
-                                                type="radio" name="q5" value="D"> D. 12V – 24V DC</label>
+                                                type="radio" name="q5" value="D"> D. TTC = Kelajuan&sup2; / Jarak</label>
                                     </div>
                                 </div>
 
@@ -917,16 +916,48 @@
                                 <div class="quiz-question"
                                     style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
                                     <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan
-                                            8:</strong> Apakah casis (badan) SmartLine QR Rover diperbuat daripada?</p>
+                                            8:</strong> Dalam kenderaan moden, ECU-ECU berkomunikasi antara satu sama lain menggunakan sistem rangkaian automotif yang dikenali sebagai...?</p>
                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 10px;">
                                         <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
-                                                type="radio" name="q8" value="A"> A. Aluminium dan keluli</label>
+                                                type="radio" name="q8" value="A"> A. Bluetooth CAN</label>
                                         <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
-                                                type="radio" name="q8" value="B"> B. Akrilik dan plastik</label>
+                                                type="radio" name="q8" value="B"> B. USB Automotive Protocol</label>
                                         <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
-                                                type="radio" name="q8" value="C"> C. Kayu dan plastik</label>
+                                                type="radio" name="q8" value="C"> C. CAN (Controller Area Network)</label>
                                         <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
-                                                type="radio" name="q8" value="D"> D. Getah dan aluminium</label>
+                                                type="radio" name="q8" value="D"> D. WiFi Industrial Network</label>
+                                    </div>
+                                </div>
+
+                                <div class="quiz-question"
+                                    style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan
+                                            9:</strong> Konsep Line Following pada rover ini mewakili fungsi ADAS yang mana dalam kenderaan sebenar?</p>
+                                    <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 10px;">
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q9" value="A"> A. Autonomous Emergency Braking (AEB)</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q9" value="B"> B. Adaptive Cruise Control (ACC)</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q9" value="C"> C. Lane Keeping Assist (LKA)</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q9" value="D"> D. Blind Spot Monitoring (BSM)</label>
+                                    </div>
+                                </div>
+
+                                <div class="quiz-question"
+                                    style="background: var(--bg-dark); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <p style="color: var(--text-primary); margin-bottom: 10px;"><strong>Soalan
+                                            10:</strong> Dalam teori ADAS, apakah teknik pemprosesan imej yang sering digunakan untuk mengesan tepi garisan lorong jalan?</p>
+                                    <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 10px;">
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q10" value="A"> A. Neural Network Recognition</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q10" value="B"> B. Bluetooth Scanning</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q10" value="C"> C. GPS Mapping</label>
+                                        <label style="cursor:pointer; display:flex; align-items:center; gap:8px;"><input
+                                                type="radio" name="q10" value="D"> D. Canny Edge Detection</label>
                                     </div>
                                 </div>
 
@@ -961,14 +992,14 @@
                                         </li>
                                         <li><strong>S4 (B):</strong> Betul! Syabas! AGV ialah Automated Guided Vehicle —
                                             kenderaan berautonomi yang digunakan dalam industri.</li>
-                                        <li><strong>S5 (C):</strong> Betul! Syabas! Voltan 7.4V-12V sesuai untuk motor
-                                            DC dan elektronik dalam sistem ini.</li>
+                                        <li><strong>S5 (B):</strong> Betul! Syabas! Formula TTC (Time-To-Collision) digunakan oleh ECU untuk menilai sama ada tindakan brek kecemasan diperlukan.</li>
                                         <li><strong>S6 (B):</strong> Betul! Syabas! I2C dan UART adalah protokol
                                             komunikasi berwayar yang biasa digunakan dalam robotik.</li>
                                         <li><strong>S7 (C):</strong> Betul! Syabas! Arduino memproses semua isyarat dari
                                             sensor dan menghantar arahan ke motor driver.</li>
-                                        <li><strong>S8 (B):</strong> Betul! Syabas! Akrilik dan plastik dipilih kerana
-                                            ringan, murah, dan mudah diproses untuk prototaip.</li>
+                                        <li><strong>S8 (C):</strong> Betul! Syabas! CAN (Controller Area Network) adalah sistem rangkaian automotif standard yang menghubungkan semua ECU.</li>
+                                        <li><strong>S9 (C):</strong> Betul! Syabas! Sensor IR rover menyimulasikan fungsi LKA (Lane Keeping Assist).</li>
+                                        <li><strong>S10 (D):</strong> Betul! Syabas! Canny Edge Detection adalah algoritma untuk mengekstrak ciri tepi garisan.</li>
                                     </ul>
                                 </div>
 
