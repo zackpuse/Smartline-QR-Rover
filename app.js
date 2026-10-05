@@ -806,8 +806,8 @@ window.janaPDF = function() {
         
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td style="padding: 8px 0; width: 20%; color: ${color}; font-weight: bold;">${statusText}</td>
-            <td style="padding: 8px 0; color: #334155;">${answers[key].label}</td>
+            <td style="padding: 4px 0; width: 20%; color: ${color}; font-weight: bold;">${statusText}</td>
+            <td style="padding: 4px 0; color: #334155;">${answers[key].label}</td>
         `;
         printAnswersEl.appendChild(tr);
     }
