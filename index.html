@@ -466,6 +466,43 @@
 
                                     <p style="font-size: 0.95rem;">Oleh itu, HuskyLens boleh dianggap sebagai <strong>platform pembelajaran untuk memahami konsep asas penglihatan berasaskan AI</strong>, manakala sistem ADAS sebenar menggunakan kamera, model AI yang lebih kompleks dan pemprosesan ECU / <em>Domain Controller</em> untuk mengenal pasti serta mentafsir objek dalam persekitaran jalan raya.</p>
                                 </div>
+                                <div
+                                    style="background: var(--bg-dark); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color); grid-column: 1 / -1;">
+                                    <h4 style="color: var(--color-gold); margin-bottom: 10px;"><i
+                                            class="fa-solid fa-microchip"></i> Mikropengawal (Arduino Uno) — Simulasi ECU</h4>
+                                    
+                                    <p style="font-size: 0.95rem; margin-top: 8px; margin-bottom: 10px;"><strong>Arduino Uno</strong> digunakan sebagai mikropengawal utama dalam simulasi untuk menerima input daripada pelbagai penderia, memproses keadaan sistem dan menghasilkan arahan kepada penggerak seperti <strong>Motor DC dan sistem stereng</strong>.</p>
+                                    
+                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Dalam simulasi ini, Arduino Uno bertindak sebagai <strong>model ringkas Unit Kawalan Elektronik (ECU)</strong>. Maklumat daripada sensor IR, kamera AI atau sensor jarak diterima dan diproses berdasarkan logik kawalan yang telah diprogramkan. Arduino kemudiannya menghasilkan isyarat kawalan seperti <strong>PWM (Pulse Width Modulation)</strong> untuk mengawal kelajuan motor atau sistem penggerak.</p>
+                                    
+                                    <div style="background: rgba(6, 182, 212, 0.1); padding: 10px; border-radius: 6px; border: 1px dashed var(--color-cyan); margin-bottom: 15px;">
+                                        <strong style="display: block; margin-bottom: 5px; color: var(--color-cyan);">Aliran Asas Simulasi:</strong>
+                                        <span style="font-size: 0.85rem;">Sensor → Arduino Uno (ECU Simulasi) → Algoritma Kawalan → PWM → Actuator</span>
+                                    </div>
+                                    
+                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Konsep ini mewakili fungsi asas ECU dalam kenderaan sebenar, iaitu <strong>menerima data penderia, membuat keputusan berdasarkan perisian kawalan dan menghantar arahan kepada aktuator</strong>.</p>
+                                    
+                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Dalam kenderaan sebenar, fungsi kawalan tidak dilaksanakan oleh satu mikropengawal sahaja. Sebuah kenderaan moden mempunyai pelbagai ECU atau modul kawalan yang mengendalikan fungsi tertentu secara berasingan (nod-nod mandiri), contohnya:</p>
+                                    
+                                    <ul style="font-size: 0.95rem; margin-bottom: 15px; margin-left: 20px; color: var(--text-secondary);">
+                                        <li><strong style="color: var(--text-primary);">ADAS / Camera ECU</strong> – memproses maklumat daripada kamera dan mengesan objek atau lorong.</li>
+                                        <li><strong style="color: var(--text-primary);">ABS / ESC ECU</strong> – mengawal sistem brek dan kestabilan kenderaan.</li>
+                                        <li><strong style="color: var(--text-primary);">Steering ECU</strong> – mengawal bantuan atau arahan sistem stereng.</li>
+                                        <li><strong style="color: var(--text-primary);">Powertrain ECU</strong> – mengawal enjin atau sistem pemacu elektrik.</li>
+                                        <li><strong style="color: var(--text-primary);">Body Control Module (BCM)</strong> – mengawal pelbagai fungsi badan kenderaan.</li>
+                                    </ul>
+                                    
+                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">ECU-ECU tersebut perlu bertukar maklumat supaya setiap sistem dapat bertindak secara terselaras. Komunikasi ini lazimnya menggunakan sistem rangkaian automotif seperti <strong>CAN (Controller Area Network)</strong>.</p>
+                                    
+                                    <div style="background: rgba(245, 158, 11, 0.1); padding: 10px; border-radius: 6px; border: 1px dashed var(--color-amber); margin-bottom: 15px;">
+                                        <strong style="display: block; margin-bottom: 5px; color: var(--color-amber);">Contoh dalam sistem AEB sebenar:</strong>
+                                        <span style="font-size: 0.85rem;">Camera/Radar → ADAS ECU → <strong style="color: var(--text-primary);">CAN Network</strong> → Brake/ESC ECU → Brake Actuator</span>
+                                        <strong style="display: block; margin-top: 10px; margin-bottom: 5px; color: var(--color-cyan);">Contoh dalam simulasi Arduino Uno (Dipermudahkan):</strong>
+                                        <span style="font-size: 0.85rem;">Sensor → Arduino Uno → Logik ADAS → PWM → Motor/Actuator</span>
+                                    </div>
+                                    
+                                    <p style="font-size: 0.95rem;">Oleh itu, Arduino Uno bukan mewakili keseluruhan seni bina elektronik kenderaan moden, tetapi digunakan sebagai <strong>platform pembelajaran untuk memahami prinsip asas ECU, input sensor, pemprosesan keputusan, komunikasi kawalan dan output kepada aktuator</strong> sebelum peserta diperkenalkan kepada sistem ECU berbilang nod dan rangkaian CAN dalam kenderaan sebenar.</p>
+                                </div>
                             </div>
 
                             <div class="formula-box"
@@ -503,39 +540,9 @@
                                 </li>
                                 <li>
                                     <strong style="color: var(--text-primary);"><i class="fa-solid fa-microchip"></i>
-                                        Mikropengawal (Arduino Uno) — Simulasi ECU</strong>
-                                    
-                                    <p style="font-size: 0.95rem; margin-top: 8px; margin-bottom: 10px;"><strong>Arduino Uno</strong> digunakan sebagai mikropengawal utama dalam simulasi untuk menerima input daripada pelbagai penderia, memproses keadaan sistem dan menghasilkan arahan kepada penggerak seperti <strong>Motor DC dan sistem stereng</strong>.</p>
-                                    
-                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Dalam simulasi ini, Arduino Uno bertindak sebagai <strong>model ringkas Unit Kawalan Elektronik (ECU)</strong>. Maklumat daripada sensor IR, kamera AI atau sensor jarak diterima dan diproses berdasarkan logik kawalan yang telah diprogramkan. Arduino kemudiannya menghasilkan isyarat kawalan seperti <strong>PWM (Pulse Width Modulation)</strong> untuk mengawal kelajuan motor atau sistem penggerak.</p>
-                                    
-                                    <div style="background: rgba(6, 182, 212, 0.1); padding: 10px; border-radius: 6px; border: 1px dashed var(--color-cyan); margin-bottom: 15px;">
-                                        <strong style="display: block; margin-bottom: 5px; color: var(--color-cyan);">Aliran Asas Simulasi:</strong>
-                                        <span style="font-size: 0.85rem;">Sensor → Arduino Uno (ECU Simulasi) → Algoritma Kawalan → PWM → Actuator</span>
-                                    </div>
-                                    
-                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Konsep ini mewakili fungsi asas ECU dalam kenderaan sebenar, iaitu <strong>menerima data penderia, membuat keputusan berdasarkan perisian kawalan dan menghantar arahan kepada aktuator</strong>.</p>
-                                    
-                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Dalam kenderaan sebenar, fungsi kawalan tidak dilaksanakan oleh satu mikropengawal sahaja. Sebuah kenderaan moden mempunyai pelbagai ECU atau modul kawalan yang mengendalikan fungsi tertentu secara berasingan (nod-nod mandiri), contohnya:</p>
-                                    
-                                    <ul style="font-size: 0.95rem; margin-bottom: 15px; margin-left: 20px; color: var(--text-secondary);">
-                                        <li><strong style="color: var(--text-primary);">ADAS / Camera ECU</strong> – memproses maklumat daripada kamera dan mengesan objek atau lorong.</li>
-                                        <li><strong style="color: var(--text-primary);">ABS / ESC ECU</strong> – mengawal sistem brek dan kestabilan kenderaan.</li>
-                                        <li><strong style="color: var(--text-primary);">Steering ECU</strong> – mengawal bantuan atau arahan sistem stereng.</li>
-                                        <li><strong style="color: var(--text-primary);">Powertrain ECU</strong> – mengawal enjin atau sistem pemacu elektrik.</li>
-                                        <li><strong style="color: var(--text-primary);">Body Control Module (BCM)</strong> – mengawal pelbagai fungsi badan kenderaan.</li>
-                                    </ul>
-                                    
-                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">ECU-ECU tersebut perlu bertukar maklumat supaya setiap sistem dapat bertindak secara terselaras. Komunikasi ini lazimnya menggunakan sistem rangkaian automotif seperti <strong>CAN (Controller Area Network)</strong>.</p>
-                                    
-                                    <div style="background: rgba(245, 158, 11, 0.1); padding: 10px; border-radius: 6px; border: 1px dashed var(--color-amber); margin-bottom: 15px;">
-                                        <strong style="display: block; margin-bottom: 5px; color: var(--color-amber);">Contoh dalam sistem AEB sebenar:</strong>
-                                        <span style="font-size: 0.85rem;">Camera/Radar → ADAS ECU → <strong style="color: var(--text-primary);">CAN Network</strong> → Brake/ESC ECU → Brake Actuator</span>
-                                        <strong style="display: block; margin-top: 10px; margin-bottom: 5px; color: var(--color-cyan);">Contoh dalam simulasi Arduino Uno (Dipermudahkan):</strong>
-                                        <span style="font-size: 0.85rem;">Sensor → Arduino Uno → Logik ADAS → PWM → Motor/Actuator</span>
-                                    </div>
-                                    
-                                    <p style="font-size: 0.95rem;">Oleh itu, Arduino Uno bukan mewakili keseluruhan seni bina elektronik kenderaan moden, tetapi digunakan sebagai <strong>platform pembelajaran untuk memahami prinsip asas ECU, input sensor, pemprosesan keputusan, komunikasi kawalan dan output kepada aktuator</strong> sebelum peserta diperkenalkan kepada sistem ECU berbilang nod dan rangkaian CAN dalam kenderaan sebenar.</p>
+                                        Mikropengawal (ECU)</strong><br>
+                                    Papan utama yang memproses input penderia dan mengawal penggerak Motor Arus Terus
+                                    (DC Motor) menerusi isyarat PWM (Pulse Width Modulation) untuk memecut atau membrek.
                                 </li>
                             </ul>
                         </div>
