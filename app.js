@@ -831,7 +831,12 @@ window.janaPDF = function() {
     }
     
     // Use html2canvas and jspdf
-    html2canvasLib(certTemplate, { scale: 2 }).then(canvas => {
+    html2canvasLib(certTemplate, { 
+        scale: 2,
+        scrollY: 0,
+        windowHeight: certTemplate.scrollHeight,
+        height: certTemplate.scrollHeight
+    }).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jspdfLib({
             orientation: 'portrait',
