@@ -11,7 +11,7 @@ Kaedah ini tidak memerlukan sebarang hosting luar! Kami telah membina satu fail 
 ### Langkah-Langkah:
 1. Buka fail **[google_site_embed_bundle.html](file:///d:/Mipac%20Tvet/google_site_embed_bundle.html)** dalam editor teks (Notepad / VS Code).
 2. Salin (*Copy*) keseluruhan kandungan fail tersebut (`Ctrl + A` ➔ `Ctrl + C`).
-3. Buka editor Google Sites anda di **[https://sites.google.com/jtm.gov.my/smartlineqrrover/home](https://sites.google.com/jtm.gov.my/smartlineqrrover/home)**.
+3. Buka editor Google Sites anda di **[site anda)**.
 4. Di panel kanan, klik **Insert (Sisip)** ➔ **Embed (Suntik)**.
 5. Pilih tab **Embed Code (Suntik Kod HTML)** (BUKAN tab *By URL*).
 6. Tampal (*Paste*) kod yang disalin tadi ke dalam petak tersebut (`Ctrl + V`).
@@ -20,12 +20,12 @@ Kaedah ini tidak memerlukan sebarang hosting luar! Kami telah membina satu fail 
 
 ---
 
-## 📌 KAEDAH 2: Google Apps Script Web App (Bawah Akaun @jtm.gov.my)
+## 📌 KAEDAH 2: Google Apps Script Web App (Bawah Akaun @email.anda)
 
 Jika anda mahu hoskan secara URL dalam ekosistem Google Workspace institusi anda tanpa sekatan:
 
 ### Langkah-Langkah:
-1. Buka **[script.google.com](https://script.google.com)** (log masuk akaun `@jtm.gov.my` anda).
+1. Buka **[script.google.com](https://script.google.com)** (log masuk akaun `@email.anda` anda).
 2. Klik **New project (Projek Baharu)**.
 3. Dalam fail `Code.gs`, gantikan dengan kod berikut:
    ```javascript
@@ -40,7 +40,7 @@ Jika anda mahu hoskan secara URL dalam ekosistem Google Workspace institusi anda
 6. Klik **Deploy (Sebar)** ➔ **New deployment (Penyebaran baharu)**.
 7. Pilih jenis **Web app**:
    - *Execute as:* **Me**
-   - *Who has access:* **Anyone** (atau *Anyone within JTM*)
+   - *Who has access:* **Anyone** (atau *Anyone within organisation*)
 8. Klik **Deploy** dan salin URL Web App yang diberikan (bermula dengan `https://script.google.com/macros/s/...`).
 9. Di Google Sites anda, klik **Insert** ➔ **Embed** ➔ **By URL** dan tampal URL Google Apps Script tadi!
 
