@@ -358,7 +358,6 @@ const translations = {
         "Oleh itu, Arduino Uno bukan mewakili keseluruhan seni bina elektronik kenderaan moden, tetapi digunakan sebagai ": "Therefore, the Arduino Uno does not represent the entire electronic architecture of modern vehicles, but is used as a ",
         "platform pembelajaran untuk memahami prinsip asas ECU, input sensor, pemprosesan keputusan, komunikasi kawalan dan output kepada aktuator": "learning platform to understand the basic principles of ECUs, sensor input, decision processing, control communication, and output to actuators",
         " sebelum peserta diperkenalkan kepada sistem ECU berbilang nod dan rangkaian CAN dalam kenderaan sebenar.": " before participants are introduced to multi-node ECU systems and CAN networks in real vehicles.",
-,
         "Simulasi ini menggunakan": "This simulation uses",
         "Sensor Inframerah (IR)": "Infrared (IR) Sensor",
         "sebagai komponen utama bagi tujuan pengesanan garisan. Sensor IR beroperasi dengan menilai perbezaan pantulan cahaya di antara garisan hitam dan permukaan lantai yang putih bagi mengenal pasti kedudukan dan orientasi kenderaan secara relatif terhadap laluan.": "as the main component for line detection purposes. The IR sensor operates by evaluating the difference in light reflection between the black line and the white floor surface to identify the position and orientation of the vehicle relative to the path.",
