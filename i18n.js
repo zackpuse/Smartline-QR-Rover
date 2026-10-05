@@ -543,7 +543,7 @@ function toggleLanguage() {
 }
 
 // Run translation when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+function initLanguageSystem() {
     applyTranslation();
     if (currentLang === 'en') {
         observer.observe(document.body, { childList: true, subtree: true, characterData: true });
@@ -551,12 +551,19 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add translation toggle button dynamically to header
     const navActions = document.querySelector('.nav-actions');
-    if (navActions) {
+    if (navActions && !document.getElementById('lang-toggle-btn')) {
         const langBtn = document.createElement('button');
+        langBtn.id = 'lang-toggle-btn';
         langBtn.className = 'btn btn-outline btn-sm';
         langBtn.style.marginLeft = '10px';
         langBtn.innerHTML = '<i class="fa-solid fa-language"></i> ' + (currentLang === 'ms' ? 'English' : 'Bahasa Melayu');
         langBtn.onclick = toggleLanguage;
         navActions.appendChild(langBtn);
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLanguageSystem);
+} else {
+    initLanguageSystem();
+}
