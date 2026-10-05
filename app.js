@@ -660,8 +660,22 @@ window.semakKuiz = function() {
     
     for (let key in answers) {
         const selected = form.querySelector(`input[name="${key}"]:checked`);
-        if (selected && selected.value === answers[key]) {
+        const isCorrect = selected && selected.value === answers[key];
+        if (isCorrect) {
             score++;
+        }
+        
+        const explEl = document.getElementById('expl-' + key);
+        if (explEl) {
+             let originalText = explEl.innerHTML;
+             if (originalText.includes('</span>')) {
+                 originalText = originalText.substring(originalText.indexOf('</span>') + 7).trim();
+             }
+             if (isCorrect) {
+                  explEl.innerHTML = `<span style="color: #10b981; font-weight:bold;">[BETUL]</span> ${originalText}`;
+             } else {
+                  explEl.innerHTML = `<span style="color: #ef4444; font-weight:bold;">[SALAH]</span> ${originalText}`;
+             }
         }
     }
     
