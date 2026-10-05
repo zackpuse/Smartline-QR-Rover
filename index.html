@@ -400,19 +400,39 @@
                                     style="background: var(--bg-dark); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);">
                                     <h4 style="color: var(--color-cyan); margin-bottom: 10px;"><i
                                             class="fa-solid fa-road"></i> Pengikutan Garisan (Line Following)</h4>
-                                    <p style="font-size: 0.95rem;">Menggunakan Sensor Garisan Inframerah (IR). Mata
-                                        sensor membaca perbezaan pantulan cahaya antara garisan hitam dan lantai putih
-                                        untuk menghantar isyarat membetulkan pusingan tayar kiri dan kanan (seperti
-                                        sistem <em>Lane Keeping Assist</em>).</p>
+                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Simulasi ini menggunakan <strong>Sensor Inframerah (IR)</strong> sebagai komponen utama bagi tujuan pengesanan garisan. Sensor IR beroperasi dengan menilai perbezaan pantulan cahaya di antara garisan hitam dan permukaan lantai yang putih bagi mengenal pasti kedudukan dan orientasi kenderaan secara relatif terhadap laluan.</p>
+                                    
+                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Berdasarkan isyarat pantulan yang dikesan oleh sensor, sistem akan menganalisis sama ada kenderaan cenderung ke arah kiri, kanan, atau berada tepat di tengah laluan. Maklumat input ini seterusnya diproses untuk menjana arahan pembetulan (<em>corrective steering</em>) kepada aktuator stereng, bagi memastikan kenderaan sentiasa berpusat dan kekal berada di atas garisan.</p>
+                                    
+                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Pendekatan ini diaplikasikan sebagai <strong>simulasi asas yang mewakili fungsi sistem Bantuan Pengekalan Lorong (Lane Keeping Assist – LKA)</strong>. Dalam aplikasi Bantuan Pemandu Lanjutan (ADAS) dunia sebenar, keupayaan pengesanan lorong dipacu oleh <strong>kamera hadapan</strong> yang membaca penanda lorong (<em>lane marking</em>) atau sempadan jalan. Imej visual daripada kamera diproses menggunakan teknik penglihatan komputer (<em>computer vision</em>)—termasuklah algoritma seperti <strong>Canny Edge Detection</strong>—untuk mengekstrak ciri profil tepi garisan sebelum profil trajektori lorong dapat dianalisis secara terperinci.</p>
+                                    
+                                    <p style="font-size: 0.95rem; margin-bottom: 15px;">Secara ringkasnya, penggunaan sensor IR di dalam simulasi ini mendemonstrasikan prinsip paling asas bagi <strong>pengesanan kedudukan laluan</strong>. Ia menterjemahkan secara berkonsep algoritma kompleks berasaskan kamera dan pemprosesan imej yang melengkapi sistem LKA sebenar.</p>
+
+                                    <div style="background: rgba(6, 182, 212, 0.1); padding: 10px; border-radius: 6px; border: 1px dashed var(--color-cyan);">
+                                        <strong style="display: block; margin-bottom: 5px; color: var(--color-cyan);">Aliran Konsep Simulasi:</strong>
+                                        <span style="font-size: 0.85rem;">Sensor IR → Pengesanan Garisan → Penilaian Kedudukan Laluan → Arahan Pembetulan Stereng</span>
+                                        <strong style="display: block; margin-top: 10px; margin-bottom: 5px; color: var(--text-primary);">Aliran Aplikasi LKA Sebenar:</strong>
+                                        <span style="font-size: 0.85rem;">Kamera (<em>Camera</em>) → Pemprosesan Imej (<em>Image Processing</em>) → Pengesanan Lorong (<em>Lane Detection</em>) → Penilaian Kedudukan Lorong → Pembetulan Stereng (<em>Steering Correction</em>)</span>
+                                    </div>
                                 </div>
                                 <div
                                     style="background: var(--bg-dark); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);">
                                     <h4 style="color: var(--color-danger); margin-bottom: 10px;"><i
                                             class="fa-solid fa-car-burst"></i> Brek Kecemasan Autonomi (AEB)</h4>
-                                    <p style="font-size: 0.95rem;">Menggunakan gelombang bunyi Ultrasonik yang bertindak
-                                        sebagai <strong>Radar</strong> (Radio Detection and Ranging). Jika pantulan
-                                        gelombang mengesan halangan dalam masa yang terlalu singkat, daya inersia brek
-                                        diaktifkan.</p>
+                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Simulasi <strong>Brek Kecemasan Autonomi (Autonomous Emergency Braking – AEB)</strong> menunjukkan bagaimana sistem Bantuan Pemandu Lanjutan (ADAS) berfungsi mengesan objek di hadapan kenderaan dan mengaktifkan brek secara automatik apabila wujud risiko perlanggaran.</p>
+                                    
+                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Dalam aplikasi sebenar, sistem AEB bergantung kepada sensor seperti <strong>radar automotif, kamera, dan/atau LiDAR</strong> untuk mengesan halangan, mengukur jarak, serta menjejak pergerakan relatif objek terhadap kenderaan. Radar automotif, misalnya, menggunakan <strong>gelombang elektromagnetik frekuensi radio</strong> bagi mengukur parameter seperti jarak dan kelajuan dengan tepat.</p>
+                                    
+                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Bagi tujuan simulasi ini, <strong>sensor ultrasonik diaplikasikan untuk mewakili konsep pengesanan objek berasaskan radar</strong>. Sensor ini beroperasi dengan memancarkan gelombang bunyi dan menerima kembali gelombang pantulan daripada objek. Jarak objek kemudiannya dianggarkan berdasarkan sela masa yang diambil untuk gelombang tersebut berpatah balik ke sensor.</p>
+
+                                    <p style="font-size: 0.95rem; margin-bottom: 10px;">Sekiranya objek dikesan menghampiri pada jarak yang kritikal dan menimbulkan risiko perlanggaran, sistem akan serta-merta menghantar isyarat kepada aktuator brek untuk melaksanakan <strong>brek kecemasan secara automatik</strong>.</p>
+                                    
+                                    <div style="background: rgba(239, 68, 68, 0.1); padding: 10px; border-radius: 6px; border: 1px dashed var(--color-danger); margin-bottom: 15px;">
+                                        <strong style="display: block; margin-bottom: 5px; color: var(--color-danger);">Aliran Konsep Simulasi:</strong>
+                                        <span style="font-size: 0.85rem;">Pengesanan Objek → Pengukuran Jarak → Penilaian Risiko Perlanggaran → Arahan Brek → Kenderaan Berhenti</span>
+                                    </div>
+                                    
+                                    <p style="font-size: 0.95rem;">Secara kesimpulannya, walaupun simulasi ini hanya menggunakan sensor ultrasonik, prinsip operasi asasnya secara tepat mencerminkan fungsi sebenar sistem AEB di dunia nyata, iaitu: <strong>mengesan halangan, menilai potensi perlanggaran, dan mengambil tindakan brek proaktif secara automatik sebelum perlanggaran berlaku.</strong></p>
                                 </div>
                             </div>
 
