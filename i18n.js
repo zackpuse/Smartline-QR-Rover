@@ -475,6 +475,8 @@ const translations = {
         "Oleh itu, Arduino Uno bukan mewakili keseluruhan seni bina elektronik kenderaan moden, tetapi digunakan sebagai": "Therefore, the Arduino Uno does not represent the entire electronic architecture of modern vehicles, but is used as a",
         "platform pembelajaran untuk memahami prinsip asas ECU, input sensor, pemprosesan keputusan, komunikasi kawalan dan output kepada aktuator": "learning platform to understand the basic principles of ECUs, sensor input, decision processing, control communication, and output to actuators",
         "sebelum peserta diperkenalkan kepada sistem ECU berbilang nod dan rangkaian CAN dalam kenderaan sebenar.": "before participants are introduced to multi-node ECU systems and CAN networks in real vehicles.",
+        "Simulator Diagnostik dan Kawalan ADAS Secara Langsung": "Live ADAS Control & Diagnostic Simulator",
+        "Paparan Trek Micro & Rover": "Micro Track & Rover Visualizer"
     }
 };
 
